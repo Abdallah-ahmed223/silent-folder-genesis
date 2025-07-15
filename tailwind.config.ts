@@ -52,16 +52,28 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				// Custom portfolio theme colors
+				'cyber-blue': 'hsl(var(--cyber-blue))',
+				'electric-cyan': 'hsl(var(--electric-cyan))',
+				'neon-purple': 'hsl(var(--neon-purple))',
+				'plasma-pink': 'hsl(var(--plasma-pink))',
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-secondary': 'var(--gradient-secondary)',
+				'gradient-dark': 'var(--gradient-dark)',
+				'gradient-space': 'var(--gradient-space)',
+			},
+			boxShadow: {
+				'glow-primary': 'var(--glow-primary)',
+				'glow-secondary': 'var(--glow-secondary)',
+				'glow-accent': 'var(--glow-accent)',
+			},
+			animation: {
+				'gradient-shift': 'gradient-shift 3s ease-in-out infinite alternate',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+				'rotate-3d': 'rotate-3d 20s linear infinite',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
