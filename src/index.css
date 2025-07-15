@@ -10,11 +10,11 @@
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     
-    /* 3D Portfolio Theme Colors - Light Mode Optimized */
-    --cyber-blue: 210 100% 40%;  /* Darker blue for better light mode contrast */
-    --electric-cyan: 180 100% 35%; /* Darker cyan for light mode */
-    --neon-purple: 270 100% 60%;
-    --plasma-pink: 320 100% 60%;
+    /* 3D Portfolio Theme Colors */
+    --cyber-blue: 195 100% 50%;
+    --electric-cyan: 180 100% 50%;
+    --neon-purple: 270 100% 70%;
+    --plasma-pink: 320 100% 70%;
     
     /* UI Components */
     --card: 0 0% 100%;
@@ -22,7 +22,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     
-    --primary: 210 100% 40%;  /* Much better for light mode readability */
+    --primary: 195 100% 50%;
     --primary-foreground: 0 0% 100%;
     
     --secondary: 240 4.8% 95.9%;
@@ -31,26 +31,26 @@
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     
-    --accent: 180 100% 35%;  /* Darker cyan for light mode */
-    --accent-foreground: 0 0% 100%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 240 5.9% 10%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 210 100% 40%;
+    --ring: 195 100% 50%;
     
     --radius: 0.75rem;
     
-    /* Custom Design Tokens - Light Mode */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 40%), hsl(270 100% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(180 100% 35%), hsl(320 100% 60%));
-    --gradient-dark: linear-gradient(135deg, hsl(240 10% 96%), hsl(240 20% 98%));
+    /* Custom Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%), hsl(270 100% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(180 100% 50%), hsl(320 100% 70%));
+    --gradient-dark: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 20% 8%));
     
-    --glow-primary: 0 0 15px hsl(210 100% 40% / 0.3);
-    --glow-secondary: 0 0 15px hsl(180 100% 35% / 0.3);
-    --glow-accent: 0 0 20px hsl(270 100% 60% / 0.4);
+    --glow-primary: 0 0 20px hsl(195 100% 50% / 0.5);
+    --glow-secondary: 0 0 20px hsl(180 100% 50% / 0.5);
+    --glow-accent: 0 0 30px hsl(270 100% 70% / 0.6);
     
     --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --animation-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -67,7 +67,7 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
     
-    --primary: 195 100% 50%;  /* Bright cyan for dark mode */
+    --primary: 195 100% 50%;
     --primary-foreground: 240 10% 3.9%;
     
     --secondary: 240 3.7% 15.9%;
@@ -76,7 +76,7 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
     
-    --accent: 180 100% 50%;  /* Bright cyan for dark mode */
+    --accent: 180 100% 50%;
     --accent-foreground: 240 10% 3.9%;
     
     --destructive: 0 62.8% 30.6%;

@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
-import FloatingElements3D from './FloatingElements3D'
 
 const contactInfo = [
   {
@@ -42,10 +41,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative">
-      {/* 3D Background Elements */}
-      <FloatingElements3D intensity="medium" className="opacity-10" />
-      
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,13 +89,8 @@ export default function ContactSection() {
                   whileHover={{ x: 8 }}
                   className="block"
                 >
-                  <Card className="glow-card hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
-                    {/* 3D elements in contact cards */}
-                    <div className="absolute inset-0 opacity-5">
-                      <FloatingElements3D intensity="low" />
-                    </div>
-                    
-                    <CardContent className="p-4 relative z-10">
+                  <Card className="glow-card hover:border-primary/50 transition-all duration-300">
+                    <CardContent className="p-4">
                       <div className="flex items-center space-x-4">
                         <div className="p-3 rounded-lg bg-primary/10 text-primary">
                           <item.icon className="w-5 h-5" />
@@ -150,13 +141,8 @@ export default function ContactSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="glow-card relative overflow-hidden">
-              {/* 3D background for form */}
-              <div className="absolute inset-0 opacity-5">
-                <FloatingElements3D intensity="medium" />
-              </div>
-              
-              <CardContent className="p-8 relative z-10">
+            <Card className="glow-card">
+              <CardContent className="p-8">
                 <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -241,7 +227,7 @@ export default function ContactSection() {
         </div>
       </div>
 
-      {/* Background decoration with 3D elements */}
+      {/* Background decoration */}
       <div className="absolute inset-0 -z-10 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
