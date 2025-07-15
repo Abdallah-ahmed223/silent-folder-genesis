@@ -11,48 +11,56 @@ import {
   Paintbrush,
   Rocket
 } from 'lucide-react'
+import Skill3DIcon from './Skill3DIcon'
+import FloatingElements3D from './FloatingElements3D'
 
 const skillCategories = [
   {
     title: 'Frontend Development',
     icon: Code2,
     skills: ['React', 'TypeScript', 'Next.js', 'Vue.js', 'Tailwind CSS'],
-    color: 'from-blue-500 to-cyan-500',
+    color: '#3b82f6',
+    type: 'frontend' as const,
     delay: 0
   },
   {
     title: '3D & Animation',
     icon: Layers3,
     skills: ['Three.js', 'React Three Fiber', 'GSAP', 'Framer Motion', 'WebGL'],
-    color: 'from-purple-500 to-pink-500',
+    color: '#8b5cf6',
+    type: 'animation' as const,
     delay: 0.2
   },
   {
     title: 'Backend & Database',
     icon: Database,
     skills: ['Node.js', 'PostgreSQL', 'MongoDB', 'Express', 'GraphQL'],
-    color: 'from-emerald-500 to-teal-500',
+    color: '#10b981',
+    type: 'backend' as const,
     delay: 0.4
   },
   {
     title: 'Mobile Development',
     icon: Smartphone,
     skills: ['React Native', 'Expo', 'iOS', 'Android', 'Flutter'],
-    color: 'from-orange-500 to-red-500',
+    color: '#f59e0b',
+    type: 'mobile' as const,
     delay: 0.6
   },
   {
     title: 'Design & UI/UX',
     icon: Paintbrush,
     skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research', 'Accessibility'],
-    color: 'from-pink-500 to-rose-500',
+    color: '#ec4899',
+    type: 'design' as const,
     delay: 0.8
   },
   {
     title: 'Performance & Tools',
     icon: Rocket,
     skills: ['Webpack', 'Vite', 'Docker', 'AWS', 'Performance Optimization'],
-    color: 'from-indigo-500 to-purple-500',
+    color: '#6366f1',
+    type: 'tools' as const,
     delay: 1.0
   }
 ]
@@ -79,8 +87,11 @@ const skillVariants = {
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20 relative">
+      {/* 3D Background Elements */}
+      <FloatingElements3D intensity="high" className="opacity-15" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -111,11 +122,20 @@ export default function SkillsSection() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group"
             >
-              <div className="glow-card p-6 h-full">
+              <div className="glow-card p-6 h-full relative overflow-hidden">
+                {/* 3D background elements for each skill card */}
+                <div className="absolute inset-0 opacity-5">
+                  <FloatingElements3D intensity="low" />
+                </div>
+                
                 {/* Category Header */}
-                <div className="flex items-center mb-6">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color} mr-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <category.icon className="w-6 h-6 text-white" />
+                <div className="flex items-center mb-6 relative z-10">
+                  <div className="mr-4">
+                    <Skill3DIcon 
+                      type={category.type} 
+                      color={category.color}
+                      isActive={false}
+                    />
                   </div>
                   <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
                     {category.title}
@@ -123,7 +143,7 @@ export default function SkillsSection() {
                 </div>
 
                 {/* Skills List */}
-                <div className="space-y-3">
+                <div className="space-y-3 relative z-10">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skill}
@@ -143,7 +163,10 @@ export default function SkillsSection() {
                 </div>
 
                 {/* Hover Effect Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-lg pointer-events-none`}></div>
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-lg pointer-events-none"
+                  style={{ backgroundColor: category.color }}
+                ></div>
               </div>
             </motion.div>
           ))}
@@ -169,13 +192,20 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center relative"
             >
-              <div className="text-3xl md:text-4xl font-bold hero-text mb-2">
-                {stat.number}
+              {/* Small 3D element for each stat */}
+              <div className="absolute inset-0 opacity-10">
+                <FloatingElements3D intensity="low" />
               </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                {stat.label}
+              
+              <div className="relative z-10">
+                <div className="text-3xl md:text-4xl font-bold hero-text mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-muted-foreground font-medium">
+                  {stat.label}
+                </div>
               </div>
             </motion.div>
           ))}

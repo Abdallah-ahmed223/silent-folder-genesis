@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { Github, ExternalLink, Code, Palette, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import Project3DCard from './Project3DCard'
+import FloatingElements3D from './FloatingElements3D'
 
 const projects = [
   {
@@ -53,8 +55,11 @@ const itemVariants = {
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      {/* 3D Background Elements */}
+      <FloatingElements3D intensity="medium" className="opacity-20" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +90,12 @@ export default function ProjectsSection() {
               whileHover={{ y: -8 }}
               className="group"
             >
-              <Card className="glow-card h-full overflow-hidden">
+              <Card className="glow-card h-full overflow-hidden relative">
+                {/* 3D floating elements inside card */}
+                <div className="absolute inset-0 opacity-10 pointer-events-none">
+                  <FloatingElements3D intensity="low" />
+                </div>
+                
                 <div className="relative overflow-hidden">
                   <img
                     src={project.image}
@@ -94,15 +104,13 @@ export default function ProjectsSection() {
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
                   
-                  {/* Project Icon */}
+                  {/* 3D Project Icon */}
                   <div className="absolute top-4 left-4">
-                    <div className="p-2 rounded-lg bg-background/80 backdrop-blur-sm">
-                      <project.icon className="w-5 h-5 text-primary" />
-                    </div>
+                    <Project3DCard isHovered={false} />
                   </div>
                 </div>
 
-                <CardContent className="p-6">
+                <CardContent className="p-6 relative z-10">
                   <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>

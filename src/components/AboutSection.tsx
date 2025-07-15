@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Download, MapPin, Calendar, Heart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import FloatingElements3D from './FloatingElements3D'
 
 const stats = [
   { label: 'Years of Experience', value: '4+', icon: Calendar },
@@ -11,8 +12,11 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      {/* 3D Background Elements */}
+      <FloatingElements3D intensity="low" className="opacity-30" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <motion.div
@@ -69,7 +73,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 relative"
           >
             {/* Profile Image */}
             <div className="relative mx-auto lg:mx-0 w-80 h-80">
@@ -80,6 +84,10 @@ export default function AboutSection() {
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
+                {/* 3D overlay elements */}
+                <div className="absolute inset-0">
+                  <FloatingElements3D intensity="low" className="opacity-20" />
+                </div>
               </div>
             </div>
 
@@ -92,16 +100,23 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="glow-card p-4 text-center group hover:scale-105 transition-transform duration-300"
+                  className="glow-card p-4 text-center group hover:scale-105 transition-transform duration-300 relative overflow-hidden"
                 >
-                  <div className="flex items-center justify-center mb-2">
-                    <stat.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  {/* 3D background for each stat */}
+                  <div className="absolute inset-0 opacity-10">
+                    <FloatingElements3D intensity="low" />
                   </div>
-                  <div className="text-2xl font-bold hero-text mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {stat.label}
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-center mb-2">
+                      <stat.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div className="text-2xl font-bold hero-text mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {stat.label}
+                    </div>
                   </div>
                 </motion.div>
               ))}
