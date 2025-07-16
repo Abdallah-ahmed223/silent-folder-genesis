@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { Helmet } from "react-helmet";
 import logoSrc from "@/images/logo.png";
+import "./i18n";
 const queryClient = new QueryClient();
 
 const App = () => (
