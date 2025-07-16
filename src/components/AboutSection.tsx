@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion'
-import { Download, MapPin, Calendar, Heart } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
+import { motion } from "framer-motion";
+import { Download, MapPin, Calendar, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ImageSrc from "@/images/me.webp";
 const stats = [
-  { label: 'Years of Experience', value: '4+', icon: Calendar },
-  { label: 'Projects Completed', value: '50+', icon: Heart },
-  { label: 'Happy Clients', value: '25+', icon: MapPin },
-  { label: 'Technologies', value: '15+', icon: Download }
-]
+  { label: "Years of Experience", value: "3+", icon: Calendar },
+  { label: "Projects Completed", value: "50+", icon: Heart },
+  { label: "Happy Clients", value: "25+", icon: MapPin },
+  { label: "Technologies", value: "15+", icon: Download },
+];
 
 export default function AboutSection() {
   return (
@@ -25,25 +25,25 @@ export default function AboutSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
               About <span className="hero-text">Me</span>
             </h2>
-            
+
             <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate frontend developer with over 4 years of experience 
-                creating immersive digital experiences. I specialize in building 
-                modern web applications that combine beautiful design with 
-                cutting-edge technology.
+                I'm a passionate frontend developer with over 4 years of
+                experience creating immersive digital experiences. I specialize
+                in building modern web applications that combine beautiful
+                design with cutting-edge technology.
               </p>
-              
+
               <p>
-                My expertise spans from traditional React development to advanced 
-                3D web experiences using Three.js and React Three Fiber. I believe 
-                in the power of interactive design to tell compelling stories and 
-                create memorable user experiences.
+                My expertise spans from traditional React development to
+                advanced 3D web experiences using Three.js and React Three
+                Fiber. I believe in the power of interactive design to tell
+                compelling stories and create memorable user experiences.
               </p>
-              
+
               <p>
-                When I'm not coding, you'll find me exploring new technologies, 
-                contributing to open-source projects, or experimenting with the 
+                When I'm not coding, you'll find me exploring new technologies,
+                contributing to open-source projects, or experimenting with the
                 latest web standards and design trends.
               </p>
             </div>
@@ -53,10 +53,14 @@ export default function AboutSection() {
                 <Download className="w-5 h-5 mr-2" />
                 Download Resume
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
               >
                 Get In Touch
               </Button>
@@ -75,11 +79,7 @@ export default function AboutSection() {
             <div className="relative mx-auto lg:mx-0 w-80 h-80">
               <div className="absolute inset-0 bg-gradient-primary rounded-2xl rotate-6 glow-card"></div>
               <div className="relative bg-card rounded-2xl overflow-hidden border border-primary/20">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
+                <img src={ImageSrc} alt="Profile" className="object-fit" />
               </div>
             </div>
 
@@ -110,5 +110,5 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

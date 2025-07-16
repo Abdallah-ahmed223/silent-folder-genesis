@@ -9,49 +9,61 @@
     /* Base colors - Light mode */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
-    
+
     /* 3D Portfolio Theme Colors */
     --cyber-blue: 195 100% 50%;
     --electric-cyan: 180 100% 50%;
     --neon-purple: 270 100% 70%;
     --plasma-pink: 320 100% 70%;
-    
+
     /* UI Components */
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    
+
     --primary: 195 100% 50%;
     --primary-foreground: 0 0% 100%;
-    
+
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
-    
+
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    
+
     --accent: 180 100% 50%;
     --accent-foreground: 240 5.9% 10%;
-    
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    
+
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 195 100% 50%;
-    
+
     --radius: 0.75rem;
-    
+
     /* Custom Design Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%), hsl(270 100% 70%));
-    --gradient-secondary: linear-gradient(135deg, hsl(180 100% 50%), hsl(320 100% 70%));
-    --gradient-dark: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 20% 8%));
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(195 100% 50%),
+      hsl(270 100% 70%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(180 100% 50%),
+      hsl(320 100% 70%)
+    );
+    --gradient-dark: linear-gradient(
+      135deg,
+      hsl(240 10% 3.9%),
+      hsl(240 20% 8%)
+    );
+
     --glow-primary: 0 0 20px hsl(195 100% 50% / 0.5);
     --glow-secondary: 0 0 20px hsl(180 100% 50% / 0.5);
     --glow-accent: 0 0 30px hsl(270 100% 70% / 0.6);
-    
+
     --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --animation-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --animation-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -61,37 +73,53 @@
     /* Dark theme - Futuristic space theme */
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    
+
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    
+
     --primary: 195 100% 50%;
     --primary-foreground: 240 10% 3.9%;
-    
+
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    
+
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-    
+
     --accent: 180 100% 50%;
     --accent-foreground: 240 10% 3.9%;
-    
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    
+
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 195 100% 50%;
-    
+
     /* Enhanced gradients for dark mode */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%), hsl(270 100% 70%));
-    --gradient-secondary: linear-gradient(135deg, hsl(180 100% 50%), hsl(320 100% 70%));
-    --gradient-dark: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 20% 8%));
-    --gradient-space: radial-gradient(ellipse at center, hsl(240 10% 8%) 0%, hsl(240 10% 3.9%) 100%);
-    
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(195 100% 50%),
+      hsl(270 100% 70%)
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(180 100% 50%),
+      hsl(320 100% 70%)
+    );
+    --gradient-dark: linear-gradient(
+      135deg,
+      hsl(240 10% 3.9%),
+      hsl(240 20% 8%)
+    );
+    --gradient-space: radial-gradient(
+      ellipse at center,
+      hsl(240 10% 8%) 0%,
+      hsl(240 10% 3.9%) 100%
+    );
+
     /* Enhanced glows for dark mode */
     --glow-primary: 0 0 30px hsl(195 100% 50% / 0.8);
     --glow-secondary: 0 0 30px hsl(180 100% 50% / 0.8);
@@ -108,7 +136,7 @@
     @apply bg-background text-foreground overflow-x-hidden;
     background: var(--gradient-space);
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -121,22 +149,22 @@
     background-size: 200% 200%;
     animation: gradient-shift 3s ease-in-out infinite alternate;
   }
-  
+
   .glow-card {
     @apply bg-card/80 backdrop-blur-lg border border-primary/20 rounded-lg;
     box-shadow: var(--glow-primary);
     transition: all var(--animation-smooth);
   }
-  
+
   .glow-card:hover {
     box-shadow: var(--glow-accent);
     transform: translateY(-2px);
   }
-  
+
   .floating-animation {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite alternate;
   }
@@ -145,26 +173,50 @@
 /* Custom Animations */
 @layer utilities {
   @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
   }
-  
+
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
-  
+
   @keyframes pulse-glow {
-    0% { box-shadow: var(--glow-primary); }
-    100% { box-shadow: var(--glow-accent); }
+    0% {
+      box-shadow: var(--glow-primary);
+    }
+    100% {
+      box-shadow: var(--glow-accent);
+    }
   }
-  
+
   @keyframes rotate-3d {
-    0% { transform: rotateX(0deg) rotateY(0deg); }
-    100% { transform: rotateX(360deg) rotateY(360deg); }
+    0% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+      transform: rotateX(360deg) rotateY(360deg);
+    }
   }
-  
+
   .scroll-smooth {
     scroll-behavior: smooth;
   }
+}
+html {
+  overflow-x: hidden !important;
+}
+::selection {
+  background-color: transparent;
+  color: inherit;
 }

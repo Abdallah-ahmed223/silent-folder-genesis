@@ -46,10 +46,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Crafting immersive digital experiences with modern web technologies,
-            React, and cutting-edge 3D graphics.
+            React Js, Vue Js, Next Js and cutting-edge 3D graphics.
           </motion.p>
 
           {/* CTA Buttons */}
