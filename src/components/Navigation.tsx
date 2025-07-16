@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
+import { Menu, X, Sun, Moon, Monitor, Languages } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { name: "nav.home", href: "#home" },
+  { name: "nav.about", href: "#about" },
+  { name: "nav.projects", href: "#projects" },
+  { name: "nav.skills", href: "#skills" },
+  { name: "nav.contact", href: "#contact" },
 ];
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,12 @@ export default function Navigation() {
   }, []);
 
   const ThemeIcon = theme === "dark" ? Sun : theme === "light" ? Moon : Monitor;
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(newLang);
+    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+  };
 
   return (
     <>
@@ -62,20 +70,30 @@ export default function Navigation() {
                     className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative group"
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.name}
+                     {t(item.name)}
                     <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                   </motion.a>
                 ))}
               </div>
             </div>
 
-            {/* Theme Toggle & Mobile Menu */}
+            {/* Language Toggle, Theme Toggle & Mobile Menu */}
             <div className="flex items-center space-x-2">
               <Button
                 variant="ghost"
                 size="sm"
+                onClick={toggleLanguage}
+                className="rounded-full w-9 h-9 p-0"
+                title={i18n.language === "en" ? "Switch to Arabic" : "Switch to English"}
+              >
+                <Languages className="h-4 w-4" />
+              </Button>
+              
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => {
-                  const themes = ["light", "dark"] as const;
+                  const themes = ["light", "dark", "system"] as const;
                   const currentIndex = themes.indexOf(theme);
                   const nextTheme = themes[(currentIndex + 1) % themes.length];
                   setTheme(nextTheme);
@@ -125,7 +143,7 @@ export default function Navigation() {
                     className="text-foreground hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.name}
+                    {t(item.name)}
                   </motion.a>
                 ))}
               </div>
