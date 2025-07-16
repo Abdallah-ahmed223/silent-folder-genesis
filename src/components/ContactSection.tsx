@@ -4,23 +4,24 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
+import { useTranslation } from 'react-i18next'
 
 const contactInfo = [
   {
     icon: Mail,
-    label: 'Email',
+    label: 'contact.info.email',
     value: 'hello@example.com',
     href: 'mailto:hello@example.com'
   },
   {
     icon: Phone,
-    label: 'Phone',
+    label: 'contact.info.phone',
     value: '+1 (555) 123-4567',
     href: 'tel:+15551234567'
   },
   {
     icon: MapPin,
-    label: 'Location',
+    label: 'contact.info.location',
     value: 'San Francisco, CA',
     href: '#'
   }
@@ -33,6 +34,8 @@ const socialLinks = [
 ]
 
 export default function ContactSection() {
+  const { t } = useTranslation();
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Handle form submission
@@ -50,11 +53,10 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Get In <span className="hero-text">Touch</span>
+            {t('contact.title')} <span className="hero-text">{t('contact.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your next project
-            and create something amazing together.
+            {t('contact.description')}
           </p>
         </motion.div>
 
@@ -68,11 +70,9 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
+              <h3 className="text-2xl font-semibold mb-6">{t('contact.letsConnect')}</h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Whether you have a project in mind, want to collaborate, or just 
-                want to say hello, I'd love to hear from you. Reach out through 
-                any of the channels below.
+                {t('contact.connectDescription')}
               </p>
             </div>
 
@@ -97,7 +97,7 @@ export default function ContactSection() {
                         </div>
                         <div>
                           <p className="text-sm text-muted-foreground">
-                            {item.label}
+                            {t(item.label)}
                           </p>
                           <p className="font-medium">{item.value}</p>
                         </div>
@@ -110,7 +110,7 @@ export default function ContactSection() {
 
             {/* Social Links */}
             <div className="pt-8">
-              <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
+              <h4 className="text-lg font-semibold mb-4">{t('contact.followMe')}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -143,30 +143,30 @@ export default function ContactSection() {
           >
             <Card className="glow-card">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+                <h3 className="text-2xl font-semibold mb-6">{t('contact.sendMessage')}</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                        First Name
+                        {t('contact.form.firstName')}
                       </label>
                       <Input
                         id="firstName"
                         type="text"
-                        placeholder="John"
+                        placeholder={t('contact.form.placeholders.firstName')}
                         required
                         className="bg-background/50"
                       />
                     </div>
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                        Last Name
+                        {t('contact.form.lastName')}
                       </label>
                       <Input
                         id="lastName"
                         type="text"
-                        placeholder="Doe"
+                        placeholder={t('contact.form.placeholders.lastName')}
                         required
                         className="bg-background/50"
                       />
@@ -175,12 +175,12 @@ export default function ContactSection() {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
+                      {t('contact.form.email')}
                     </label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder={t('contact.form.placeholders.email')}
                       required
                       className="bg-background/50"
                     />
@@ -188,12 +188,12 @@ export default function ContactSection() {
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
+                      {t('contact.form.subject')}
                     </label>
                     <Input
                       id="subject"
                       type="text"
-                      placeholder="Project Inquiry"
+                      placeholder={t('contact.form.placeholders.subject')}
                       required
                       className="bg-background/50"
                     />
@@ -201,11 +201,11 @@ export default function ContactSection() {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
+                      {t('contact.form.message')}
                     </label>
                     <Textarea
                       id="message"
-                      placeholder="Tell me about your project..."
+                      placeholder={t('contact.form.placeholders.message')}
                       rows={5}
                       required
                       className="bg-background/50 resize-none"
@@ -218,7 +218,7 @@ export default function ContactSection() {
                     className="w-full glow-card group"
                   >
                     <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
-                    Send Message
+                    {t('contact.form.send')}
                   </Button>
                 </form>
               </CardContent>

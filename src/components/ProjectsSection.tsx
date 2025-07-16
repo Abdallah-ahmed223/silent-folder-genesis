@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Github, ExternalLink, Code, Palette, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { useTranslation } from 'react-i18next'
 
 const projects = [
   {
@@ -52,6 +53,7 @@ const itemVariants = {
 }
 
 export default function ProjectsSection() {
+  const { t } = useTranslation();
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -63,11 +65,10 @@ export default function ProjectsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Featured <span className="hero-text">Projects</span>
+            {t('projects.title')} <span className="hero-text">{t('projects.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my latest work, featuring modern web applications with
-            cutting-edge technologies and interactive experiences.
+            {t('projects.description')}
           </p>
         </motion.div>
 
@@ -132,7 +133,7 @@ export default function ProjectsSection() {
                     >
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-                        Code
+                        {t('projects.buttons.code')}
                       </a>
                     </Button>
                     <Button
@@ -142,7 +143,7 @@ export default function ProjectsSection() {
                     >
                       <a href={project.live} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-                        Live
+                        {t('projects.buttons.live')}
                       </a>
                     </Button>
                   </div>
@@ -165,7 +166,7 @@ export default function ProjectsSection() {
             size="lg"
             className="px-8 py-3 text-lg font-semibold border-primary/50 hover:border-primary glow-card"
           >
-            View All Projects
+            {t('projects.viewAll')}
           </Button>
         </motion.div>
       </div>

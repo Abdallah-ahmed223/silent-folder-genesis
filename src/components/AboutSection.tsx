@@ -2,14 +2,16 @@ import { motion } from "framer-motion";
 import { Download, MapPin, Calendar, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageSrc from "@/images/me.webp";
+import { useTranslation } from 'react-i18next';
 const stats = [
-  { label: "Years of Experience", value: "3+", icon: Calendar },
-  { label: "Projects Completed", value: "50+", icon: Heart },
-  { label: "Happy Clients", value: "25+", icon: MapPin },
-  { label: "Technologies", value: "15+", icon: Download },
+  { label: "about.stats.experience", value: "3+", icon: Calendar },
+  { label: "about.stats.projects", value: "50+", icon: Heart },
+  { label: "about.stats.clients", value: "25+", icon: MapPin },
+  { label: "about.stats.technologies", value: "15+", icon: Download },
 ];
 
 export default function AboutSection() {
+  const { t } = useTranslation();
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -23,35 +25,27 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-              About <span className="hero-text">Me</span>
+              {t('about.title')} <span className="hero-text">{t('about.titleHighlight')}</span>
             </h2>
 
             <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate frontend developer with over 4 years of
-                experience creating immersive digital experiences. I specialize
-                in building modern web applications that combine beautiful
-                design with cutting-edge technology.
+                {t('about.paragraph1')}
               </p>
 
               <p>
-                My expertise spans from traditional React development to
-                advanced 3D web experiences using Three.js and React Three
-                Fiber. I believe in the power of interactive design to tell
-                compelling stories and create memorable user experiences.
+                {t('about.paragraph2')}
               </p>
 
               <p>
-                When I'm not coding, you'll find me exploring new technologies,
-                contributing to open-source projects, or experimenting with the
-                latest web standards and design trends.
+                {t('about.paragraph3')}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" className="glow-card">
                 <Download className="w-5 h-5 mr-2" />
-                Download Resume
+                {t('about.downloadResume')}
               </Button>
               <Button
                 variant="outline"
@@ -62,7 +56,7 @@ export default function AboutSection() {
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Get In Touch
+                {t('about.getInTouch')}
               </Button>
             </div>
           </motion.div>
@@ -101,7 +95,7 @@ export default function AboutSection() {
                     {stat.value}
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {stat.label}
+                    {t(stat.label)}
                   </div>
                 </motion.div>
               ))}

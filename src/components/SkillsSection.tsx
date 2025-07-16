@@ -11,45 +11,46 @@ import {
   Paintbrush,
   Rocket
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const skillCategories = [
   {
-    title: 'Frontend Development',
+    title: 'skills.categories.frontend',
     icon: Code2,
     skills: ['React', 'TypeScript', 'Next.js', 'Vue.js', 'Tailwind CSS'],
     color: 'from-blue-500 to-cyan-500',
     delay: 0
   },
   {
-    title: '3D & Animation',
+    title: 'skills.categories.animation',
     icon: Layers3,
     skills: ['Three.js', 'React Three Fiber', 'GSAP', 'Framer Motion', 'WebGL'],
     color: 'from-purple-500 to-pink-500',
     delay: 0.2
   },
   {
-    title: 'Backend & Database',
+    title: 'skills.categories.backend',
     icon: Database,
     skills: ['Node.js', 'PostgreSQL', 'MongoDB', 'Express', 'GraphQL'],
     color: 'from-emerald-500 to-teal-500',
     delay: 0.4
   },
   {
-    title: 'Mobile Development',
+    title: 'skills.categories.mobile',
     icon: Smartphone,
     skills: ['React Native', 'Expo', 'iOS', 'Android', 'Flutter'],
     color: 'from-orange-500 to-red-500',
     delay: 0.6
   },
   {
-    title: 'Design & UI/UX',
+    title: 'skills.categories.design',
     icon: Paintbrush,
     skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research', 'Accessibility'],
     color: 'from-pink-500 to-rose-500',
     delay: 0.8
   },
   {
-    title: 'Performance & Tools',
+    title: 'skills.categories.performance',
     icon: Rocket,
     skills: ['Webpack', 'Vite', 'Docker', 'AWS', 'Performance Optimization'],
     color: 'from-indigo-500 to-purple-500',
@@ -78,6 +79,7 @@ const skillVariants = {
 }
 
 export default function SkillsSection() {
+  const { t } = useTranslation();
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20">
       <div className="max-w-7xl mx-auto">
@@ -89,11 +91,10 @@ export default function SkillsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Technical <span className="hero-text">Skills</span>
+            {t('skills.title')} <span className="hero-text">{t('skills.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern, scalable, and performant
-            web applications with cutting-edge technologies.
+            {t('skills.description')}
           </p>
         </motion.div>
 
@@ -118,7 +119,7 @@ export default function SkillsSection() {
                     <category.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
-                    {category.title}
+                    {t(category.title)}
                   </h3>
                 </div>
 
@@ -158,10 +159,10 @@ export default function SkillsSection() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
-            { number: '4+', label: 'Years Experience' },
-            { number: '50+', label: 'Projects Completed' },
-            { number: '15+', label: 'Technologies' },
-            { number: '100%', label: 'Client Satisfaction' }
+            { number: '4+', label: 'skills.stats.experience' },
+            { number: '50+', label: 'skills.stats.projects' },
+            { number: '15+', label: 'skills.stats.technologies' },
+            { number: '100%', label: 'skills.stats.satisfaction' }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -175,7 +176,7 @@ export default function SkillsSection() {
                 {stat.number}
               </div>
               <div className="text-sm text-muted-foreground font-medium">
-                {stat.label}
+                {t(stat.label)}
               </div>
             </motion.div>
           ))}

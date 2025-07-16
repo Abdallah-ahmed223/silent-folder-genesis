@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Portfolio3DScene from './Portfolio3DScene'
+import { useTranslation } from 'react-i18next'
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com', label: 'GitHub' },
@@ -10,6 +11,8 @@ const socialLinks = [
 ]
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+  
   const scrollToNext = () => {
     const element = document.getElementById('about')
     element?.scrollIntoView({ behavior: 'smooth' })
@@ -37,8 +40,8 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight"
           >
-            <span className="block">Frontend</span>
-            <span className="hero-text block">Developer</span>
+            <span className="block">{t('hero.title')}</span>
+            <span className="hero-text block">{t('hero.subtitle')}</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -48,8 +51,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg sm:text-xl lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
-            Crafting immersive digital experiences with modern web technologies,
-            React Js, Vue Js, Next Js and cutting-edge 3D graphics.
+            {t('hero.description')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -64,7 +66,7 @@ export default function HeroSection() {
               className="glow-card px-8 py-3 text-lg font-semibold"
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              View My Work
+              {t('hero.viewWork')}
             </Button>
             <Button
               variant="outline"
@@ -72,7 +74,7 @@ export default function HeroSection() {
               className="px-8 py-3 text-lg font-semibold border-primary/50 hover:border-primary"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Get In Touch
+              {t('hero.getInTouch')}
             </Button>
           </motion.div>
 
