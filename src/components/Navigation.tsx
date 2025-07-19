@@ -43,17 +43,27 @@ export default function Navigation() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-background/80 backdrop-blur-lg border-b border-primary/20"
-            : "bg-transparent"
+            ? "bg-background/90 backdrop-blur-xl border-b border-primary/30 glow-card"
+            : "bg-background/20 backdrop-blur-sm"
         }`}
+        style={{
+          background: scrolled 
+            ? 'linear-gradient(90deg, hsl(var(--background) / 0.9), hsl(var(--background) / 0.8), hsl(var(--background) / 0.9))'
+            : 'linear-gradient(90deg, hsl(var(--background) / 0.1), hsl(var(--background) / 0.05), hsl(var(--background) / 0.1))'
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.div whileHover={{ scale: 1.05 }} className="flex-shrink-0">
-              <span className="text-2xl font-bold hero-text">
-                Abdallah Ahmed
-              </span>
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 rounded-full cosmic-gradient flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">◉</span>
+                </div>
+                <span className="text-2xl font-bold hero-text font-mono">
+                  SPACE.DEV
+                </span>
+              </div>
             </motion.div>
 
             {/* Desktop Navigation */}

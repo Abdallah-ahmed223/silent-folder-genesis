@@ -1,90 +1,161 @@
 import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Float } from '@react-three/drei'
-import { Group, Mesh, BoxGeometry, SphereGeometry, TorusGeometry, MeshStandardMaterial } from 'three'
+import { OrbitControls, Float, Text, Sphere, Torus, Box } from '@react-three/drei'
+import { Group } from 'three'
 
-// Simplified floating geometry without complex refs
-function FloatingGeometry() {
-  const groupRef = useRef<Group>(null)
+// Advanced Space Scene with multiple cosmic elements
+function SpaceStation() {
+  const stationRef = useRef<Group>(null)
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime()
     
-    if (groupRef.current) {
-      groupRef.current.rotation.y = time * 0.1
+    if (stationRef.current) {
+      stationRef.current.rotation.y = time * 0.05
+      stationRef.current.rotation.x = Math.sin(time * 0.3) * 0.1
     }
   })
 
   return (
-    <group ref={groupRef}>
-      {/* Main floating shapes */}
-      <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
-        <mesh position={[-4, 2, -2]}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshStandardMaterial 
-            color="#00bfff" 
-            emissive="#00bfff" 
-            emissiveIntensity={0.2}
-            roughness={0.1}
-            metalness={0.8}
-          />
-        </mesh>
-      </Float>
-
-      <Float speed={2} rotationIntensity={2} floatIntensity={1.5}>
-        <mesh position={[4, -1, -1]}>
-          <boxGeometry args={[1.5, 1.5, 1.5]} />
-          <meshStandardMaterial 
-            color="#8b5cf6" 
-            emissive="#8b5cf6" 
-            emissiveIntensity={0.3}
-            roughness={0.2}
-            metalness={0.7}
-          />
-        </mesh>
-      </Float>
-
-      <Float speed={1.8} rotationIntensity={1.5} floatIntensity={2.5}>
-        <mesh position={[0, -3, -3]}>
-          <torusGeometry args={[1.2, 0.4, 16, 100]} />
-          <meshStandardMaterial 
-            color="#ff1493" 
-            emissive="#ff1493" 
-            emissiveIntensity={0.25}
-            roughness={0.1}
-            metalness={0.9}
-          />
-        </mesh>
-      </Float>
-
-      {/* Smaller floating particles */}
-      {Array.from({ length: 8 }, (_, i) => (
-        <Float key={i} speed={1 + Math.random()} rotationIntensity={Math.random() * 2} floatIntensity={1 + Math.random()}>
-          <mesh position={[
-            (Math.random() - 0.5) * 12,
-            (Math.random() - 0.5) * 8,
-            (Math.random() - 0.5) * 8
-          ]}>
-            <sphereGeometry args={[0.1 + Math.random() * 0.2, 16, 16]} />
+    <group ref={stationRef}>
+      {/* Central Space Station Core */}
+      <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
+        <group>
+          {/* Main Hub */}
+          <Sphere args={[1.5, 32, 32]} position={[0, 0, 0]}>
             <meshStandardMaterial 
-              color={Math.random() > 0.5 ? "#00ffff" : "#ff69b4"} 
-              emissive={Math.random() > 0.5 ? "#00ffff" : "#ff69b4"}
-              emissiveIntensity={0.4}
+              color="#0ea5e9" 
+              emissive="#0ea5e9" 
+              emissiveIntensity={0.3}
+              roughness={0.2}
+              metalness={0.8}
+              transparent
+              opacity={0.8}
             />
-          </mesh>
-        </Float>
-      ))}
+          </Sphere>
+
+          {/* Station Rings */}
+          <Torus args={[2.5, 0.2, 8, 32]} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
+            <meshStandardMaterial 
+              color="#a855f7" 
+              emissive="#a855f7" 
+              emissiveIntensity={0.4}
+              roughness={0.1}
+              metalness={0.9}
+            />
+          </Torus>
+
+          <Torus args={[3.2, 0.15, 6, 24]} position={[0, 0, 0]} rotation={[0, Math.PI / 4, Math.PI / 3]}>
+            <meshStandardMaterial 
+              color="#06b6d4" 
+              emissive="#06b6d4" 
+              emissiveIntensity={0.3}
+              roughness={0.1}
+              metalness={0.8}
+            />
+          </Torus>
+        </group>
+      </Float>
     </group>
   )
 }
 
-// Simple loading fallback
+// Floating Cosmic Objects
+function CosmicElements() {
+  const elementsRef = useRef<Group>(null)
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime()
+    
+    if (elementsRef.current) {
+      elementsRef.current.rotation.y = time * 0.08
+    }
+  })
+
+  return (
+    <group ref={elementsRef}>
+      {/* Asteroid Field */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const angle = (i / 12) * Math.PI * 2
+        const radius = 8 + Math.random() * 4
+        const x = Math.cos(angle) * radius
+        const z = Math.sin(angle) * radius
+        const y = (Math.random() - 0.5) * 6
+
+        return (
+          <Float key={i} speed={0.5 + Math.random()} rotationIntensity={Math.random() * 2} floatIntensity={1 + Math.random()}>
+            <Box 
+              args={[0.2 + Math.random() * 0.4, 0.2 + Math.random() * 0.4, 0.2 + Math.random() * 0.4]} 
+              position={[x, y, z]}
+            >
+              <meshStandardMaterial 
+                color={['#64748b', '#94a3b8', '#cbd5e1'][Math.floor(Math.random() * 3)]}
+                emissive="#475569"
+                emissiveIntensity={0.1}
+                roughness={0.8}
+                metalness={0.3}
+              />
+            </Box>
+          </Float>
+        )
+      })}
+
+      {/* Energy Orbs */}
+      {Array.from({ length: 6 }, (_, i) => {
+        const angle = (i / 6) * Math.PI * 2
+        const radius = 12
+        const x = Math.cos(angle) * radius
+        const z = Math.sin(angle) * radius
+
+        return (
+          <Float key={`orb-${i}`} speed={2 + Math.random()} rotationIntensity={3} floatIntensity={3}>
+            <Sphere args={[0.3, 16, 16]} position={[x, Math.sin(angle * 2) * 2, z]}>
+              <meshStandardMaterial 
+                color={['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981'][Math.floor(Math.random() * 4)]}
+                emissive={['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981'][Math.floor(Math.random() * 4)]}
+                emissiveIntensity={0.6}
+                transparent
+                opacity={0.8}
+              />
+            </Sphere>
+          </Float>
+        )
+      })}
+
+      {/* Distant Planets */}
+      <Float speed={0.3} rotationIntensity={0.2} floatIntensity={0.5}>
+        <Sphere args={[0.8, 20, 20]} position={[-15, 3, -8]}>
+          <meshStandardMaterial 
+            color="#ef4444" 
+            emissive="#ef4444" 
+            emissiveIntensity={0.2}
+            roughness={0.3}
+          />
+        </Sphere>
+      </Float>
+
+      <Float speed={0.4} rotationIntensity={0.3} floatIntensity={0.7}>
+        <Sphere args={[1.2, 24, 24]} position={[18, -2, -12]}>
+          <meshStandardMaterial 
+            color="#22c55e" 
+            emissive="#22c55e" 
+            emissiveIntensity={0.15}
+            roughness={0.4}
+          />
+        </Sphere>
+      </Float>
+    </group>
+  )
+}
+
+// Loading fallback with space theme
 function SceneLoading() {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="text-center">
-        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-primary font-medium">Loading 3D Scene...</p>
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4 nebula-pulse"></div>
+        <p className="text-primary font-medium font-mono">INITIALIZING SPACE ENVIRONMENT...</p>
+        <div className="text-xs text-accent font-mono mt-2">◉ LOADING COSMIC ELEMENTS</div>
       </div>
     </div>
   )
@@ -99,27 +170,37 @@ export default function Portfolio3DScene({ className = "" }: Portfolio3DScenePro
     <div className={`relative w-full h-full ${className}`}>
       <Suspense fallback={<SceneLoading />}>
         <Canvas
-          camera={{ position: [0, 0, 8], fov: 60 }}
+          camera={{ position: [0, 2, 15], fov: 50 }}
           gl={{ antialias: true, alpha: true }}
           dpr={[1, 2]}
         >
-          {/* Simplified lighting */}
-          <ambientLight intensity={0.4} />
-          <pointLight position={[10, 10, 10]} intensity={1} color="#00bfff" />
-          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ff1493" />
+          {/* Advanced Lighting Setup */}
+          <ambientLight intensity={0.2} />
           
-          {/* 3D Objects */}
-          <FloatingGeometry />
+          {/* Multiple colored lights for cosmic effect */}
+          <pointLight position={[10, 10, 10]} intensity={1.5} color="#0ea5e9" />
+          <pointLight position={[-10, -10, -10]} intensity={1} color="#a855f7" />
+          <pointLight position={[0, 15, 5]} intensity={0.8} color="#06b6d4" />
+          <pointLight position={[15, -5, -10]} intensity={0.6} color="#ec4899" />
           
-          {/* Camera Controls */}
+          {/* Rim lighting */}
+          <directionalLight position={[20, 20, 20]} intensity={0.3} color="#ffffff" />
+          
+          {/* 3D Space Elements */}
+          <SpaceStation />
+          <CosmicElements />
+          
+          {/* Interactive Camera Controls */}
           <OrbitControls
             enablePan={false}
             enableZoom={false}
             enableRotate={true}
             autoRotate={true}
-            autoRotateSpeed={0.5}
-            minPolarAngle={Math.PI / 3}
-            maxPolarAngle={Math.PI - Math.PI / 3}
+            autoRotateSpeed={0.3}
+            minPolarAngle={Math.PI / 4}
+            maxPolarAngle={Math.PI - Math.PI / 4}
+            maxAzimuthAngle={Math.PI / 4}
+            minAzimuthAngle={-Math.PI / 4}
           />
         </Canvas>
       </Suspense>
