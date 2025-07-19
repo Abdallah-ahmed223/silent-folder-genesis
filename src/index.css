@@ -2,180 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Cosmic Space Portfolio Design System - Space Identity */
+/* Professional Aerospace Design System */
 
 @layer base {
   :root {
-    /* Cosmic Base Colors - Light mode */
-    --background: 240 10% 4%;
-    --foreground: 200 100% 95%;
+    /* Professional Tech Color Palette */
+    --background: 240 10% 3%;
+    --foreground: 210 40% 98%;
 
-    /* Deep Space Theme Colors */
-    --cosmic-blue: 220 100% 60%;
-    --nebula-purple: 270 100% 65%;
-    --starlight-cyan: 190 100% 70%;
-    --galaxy-pink: 320 90% 75%;
-    --void-dark: 240 15% 8%;
+    /* High-Tech Interface Colors */
+    --tech-blue: 214 100% 60%;
+    --tech-cyan: 189 100% 65%;
+    --tech-silver: 210 20% 85%;
+    --tech-orange: 25 95% 58%;
+    --tech-green: 142 76% 55%;
 
-    /* Cosmic UI Components */
-    --card: 240 15% 8%;
-    --card-foreground: 200 100% 95%;
+    /* UI Component Colors */
+    --card: 240 15% 6%;
+    --card-foreground: 210 40% 95%;
     --popover: 240 15% 8%;
-    --popover-foreground: 200 100% 95%;
+    --popover-foreground: 210 40% 95%;
 
-    --primary: 220 100% 60%;
+    --primary: 214 100% 60%;
     --primary-foreground: 240 15% 8%;
 
-    --secondary: 240 10% 15%;
-    --secondary-foreground: 200 100% 95%;
+    --secondary: 240 10% 12%;
+    --secondary-foreground: 210 40% 95%;
 
     --muted: 240 10% 15%;
-    --muted-foreground: 210 20% 70%;
+    --muted-foreground: 210 20% 65%;
 
-    --accent: 190 100% 70%;
+    --accent: 189 100% 65%;
     --accent-foreground: 240 15% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 15% 20%;
-    --input: 240 15% 20%;
-    --ring: 220 100% 60%;
-
-    --radius: 0.75rem;
-
-    /* Cosmic Design Tokens */
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(220 100% 60%),
-      hsl(270 100% 65%),
-      hsl(320 90% 75%)
-    );
-    --gradient-secondary: linear-gradient(
-      135deg,
-      hsl(190 100% 70%),
-      hsl(220 100% 60%),
-      hsl(270 100% 65%)
-    );
-    --gradient-nebula: radial-gradient(
-      circle at 30% 40%,
-      hsl(270 100% 65% / 0.8) 0%,
-      hsl(220 100% 60% / 0.6) 30%,
-      hsl(190 100% 70% / 0.4) 60%,
-      transparent 100%
-    );
-    --gradient-starfield: radial-gradient(
-      circle at 70% 20%,
-      hsl(200 100% 95% / 0.3) 0%,
-      transparent 2%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      hsl(200 100% 95% / 0.2) 0%,
-      transparent 1%
-    ),
-    radial-gradient(
-      circle at 90% 60%,
-      hsl(200 100% 95% / 0.15) 0%,
-      transparent 1.5%
-    );
-    --gradient-space: radial-gradient(
-      ellipse at center,
-      hsl(240 15% 8%) 0%,
-      hsl(240 20% 4%) 50%,
-      hsl(240 30% 2%) 100%
-    );
-
-    --glow-cosmic: 0 0 30px hsl(220 100% 60% / 0.6), 0 0 60px hsl(220 100% 60% / 0.4);
-    --glow-nebula: 0 0 40px hsl(270 100% 65% / 0.7), 0 0 80px hsl(270 100% 65% / 0.3);
-    --glow-starlight: 0 0 20px hsl(190 100% 70% / 0.8), 0 0 40px hsl(190 100% 70% / 0.5);
-
-    --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-cosmic: 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .dark {
-    /* Enhanced Cosmic Dark Theme */
-    --background: 240 20% 2%;
-    --foreground: 200 100% 98%;
-
-    --card: 240 15% 6%;
-    --card-foreground: 200 100% 95%;
-    --popover: 240 15% 6%;
-    --popover-foreground: 200 100% 95%;
-
-    --primary: 220 100% 65%;
-    --primary-foreground: 240 20% 2%;
-
-    --secondary: 240 10% 12%;
-    --secondary-foreground: 200 100% 95%;
-
-    --muted: 240 10% 12%;
-    --muted-foreground: 210 15% 75%;
-
-    --accent: 190 100% 75%;
-    --accent-foreground: 240 20% 2%;
-
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 240 15% 15%;
     --input: 240 15% 15%;
-    --ring: 220 100% 65%;
+    --ring: 214 100% 60%;
 
-    /* Enhanced cosmic gradients for dark mode */
+    --radius: 0.5rem;
+
+    /* Professional Gradients */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(220 100% 65%),
-      hsl(270 100% 70%),
-      hsl(320 90% 80%)
+      hsl(214 100% 60%),
+      hsl(189 100% 65%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(190 100% 75%),
-      hsl(220 100% 65%),
-      hsl(270 100% 70%)
+      hsl(240 15% 8%),
+      hsl(240 10% 12%)
     );
-    --gradient-nebula: radial-gradient(
-      circle at 30% 40%,
-      hsl(270 100% 70% / 0.9) 0%,
-      hsl(220 100% 65% / 0.7) 30%,
-      hsl(190 100% 75% / 0.5) 60%,
-      transparent 100%
-    );
-    --gradient-starfield: radial-gradient(
-      circle at 70% 20%,
-      hsl(200 100% 98% / 0.4) 0%,
-      transparent 2%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      hsl(200 100% 98% / 0.3) 0%,
-      transparent 1%
-    ),
-    radial-gradient(
-      circle at 90% 60%,
-      hsl(200 100% 98% / 0.2) 0%,
-      transparent 1.5%
-    ),
-    radial-gradient(
-      circle at 15% 30%,
-      hsl(200 100% 98% / 0.1) 0%,
-      transparent 1%
+    --gradient-tech: linear-gradient(
+      135deg,
+      hsl(214 100% 60% / 0.1),
+      hsl(189 100% 65% / 0.1)
     );
     --gradient-space: radial-gradient(
       ellipse at center,
-      hsl(240 20% 6%) 0%,
-      hsl(240 25% 3%) 50%,
-      hsl(240 30% 1%) 100%
+      hsl(240 15% 6%) 0%,
+      hsl(240 20% 3%) 50%,
+      hsl(240 25% 1%) 100%
     );
 
-    /* Enhanced cosmic glows for dark mode */
-    --glow-cosmic: 0 0 40px hsl(220 100% 65% / 0.8), 0 0 80px hsl(220 100% 65% / 0.4);
-    --glow-nebula: 0 0 50px hsl(270 100% 70% / 0.9), 0 0 100px hsl(270 100% 70% / 0.3);
-    --glow-starlight: 0 0 30px hsl(190 100% 75% / 0.9), 0 0 60px hsl(190 100% 75% / 0.5);
+    /* Professional Shadows */
+    --shadow-tech: 0 4px 20px hsl(214 100% 60% / 0.15);
+    --shadow-glow: 0 0 30px hsl(214 100% 60% / 0.2);
+    --shadow-card: 0 8px 32px hsl(240 25% 1% / 0.5);
+
+    /* Transitions */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Enhanced dark mode for professional look */
+    --background: 240 15% 2%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 15% 4%;
+    --card-foreground: 210 40% 95%;
+    --popover: 240 15% 4%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 214 100% 65%;
+    --primary-foreground: 240 15% 2%;
+
+    --secondary: 240 10% 8%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 240 10% 10%;
+    --muted-foreground: 210 15% 70%;
+
+    --accent: 189 100% 70%;
+    --accent-foreground: 240 15% 2%;
+
+    --border: 240 15% 12%;
+    --input: 240 15% 12%;
+    --ring: 214 100% 65%;
+
+    --gradient-space: radial-gradient(
+      ellipse at center,
+      hsl(240 15% 4%) 0%,
+      hsl(240 20% 2%) 50%,
+      hsl(240 25% 1%) 100%
+    );
+    --shadow-tech: 0 4px 20px hsl(214 100% 65% / 0.2);
+    --shadow-glow: 0 0 30px hsl(214 100% 65% / 0.25);
   }
 }
 
@@ -186,235 +122,191 @@
 
   body {
     @apply bg-background text-foreground overflow-x-hidden;
-    background: var(--gradient-space), var(--gradient-starfield);
+    background: var(--gradient-space);
     background-attachment: fixed;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden !important;
   }
 }
 
-/* Cosmic Component Styles */
+/* Professional Tech Component Styles */
 @layer components {
-  .hero-text {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
-    background-size: 200% 200%;
-    animation: cosmic-shift 4s ease-in-out infinite alternate;
+  .tech-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    background-size: 100% 100%;
+    transition: all var(--transition-smooth);
   }
 
-  .glow-card {
-    @apply bg-card/90 backdrop-blur-xl border border-primary/30 rounded-xl;
-    box-shadow: var(--glow-cosmic);
-    transition: all var(--animation-smooth);
+  .tech-card {
+    @apply bg-card/95 backdrop-blur-xl border border-border rounded-lg;
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-smooth);
     position: relative;
   }
 
-  .glow-card::before {
+  .tech-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--gradient-nebula);
+    background: var(--gradient-tech);
     opacity: 0;
     border-radius: inherit;
-    transition: opacity var(--animation-smooth);
+    transition: opacity var(--transition-smooth);
     pointer-events: none;
   }
 
-  .glow-card:hover {
-    box-shadow: var(--glow-nebula);
-    transform: translateY(-4px) scale(1.01);
-    border-color: hsl(var(--primary) / 0.6);
+  .tech-card:hover {
+    box-shadow: var(--shadow-tech);
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.5);
   }
 
-  .glow-card:hover::before {
-    opacity: 0.1;
+  .tech-card:hover::before {
+    opacity: 1;
   }
 
-  .cosmic-float {
-    animation: cosmic-float 8s ease-in-out infinite;
+  .tech-button {
+    @apply relative overflow-hidden;
+    background: var(--gradient-primary);
+    transition: all var(--transition-smooth);
   }
 
-  .nebula-pulse {
-    animation: nebula-pulse 3s ease-in-out infinite alternate;
+  .tech-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, hsl(var(--foreground) / 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform var(--transition-smooth);
   }
 
-  .starfield-bg {
-    background: var(--gradient-starfield);
-    animation: starfield-twinkle 6s ease-in-out infinite;
+  .tech-button:hover::before {
+    transform: translateX(100%);
+  }
+
+  .professional-grid {
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .status-indicator {
+    @apply relative;
+  }
+
+  .status-indicator::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: currentColor;
+    opacity: 0.2;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
 
-/* Cosmic Animations */
+/* Professional Animations */
 @layer utilities {
-  @keyframes cosmic-shift {
+  @keyframes subtle-float {
     0%, 100% {
-      background-position: 0% 50%;
-      filter: hue-rotate(0deg);
-    }
-    25% {
-      background-position: 100% 50%;
-      filter: hue-rotate(90deg);
+      transform: translateY(0px);
     }
     50% {
-      background-position: 200% 50%;
-      filter: hue-rotate(180deg);
-    }
-    75% {
-      background-position: 300% 50%;
-      filter: hue-rotate(270deg);
+      transform: translateY(-5px);
     }
   }
 
-  @keyframes cosmic-float {
+  @keyframes tech-glow {
     0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    25% {
-      transform: translateY(-15px) rotate(2deg);
+      box-shadow: var(--shadow-tech);
     }
     50% {
-      transform: translateY(-30px) rotate(0deg);
-    }
-    75% {
-      transform: translateY(-15px) rotate(-2deg);
+      box-shadow: var(--shadow-glow);
     }
   }
 
-  @keyframes nebula-pulse {
+  @keyframes scan-line {
     0% {
-      box-shadow: var(--glow-cosmic);
-      filter: brightness(1);
-    }
-    50% {
-      box-shadow: var(--glow-nebula);
-      filter: brightness(1.2);
+      transform: translateX(-100%);
     }
     100% {
-      box-shadow: var(--glow-starlight);
-      filter: brightness(1.1);
+      transform: translateX(100%);
     }
   }
 
-  @keyframes starfield-twinkle {
-    0%, 100% {
-      opacity: 0.8;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes cosmic-rotate {
-    0% {
-      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    }
-    33% {
-      transform: rotateX(120deg) rotateY(120deg) rotateZ(120deg);
-    }
-    66% {
-      transform: rotateX(240deg) rotateY(240deg) rotateZ(240deg);
-    }
-    100% {
-      transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-    }
-  }
-
-  .cosmic-gradient {
+  .tech-gradient {
     background: var(--gradient-primary);
-    background-size: 400% 400%;
-    animation: cosmic-shift var(--animation-cosmic);
-  }
-
-  .scroll-smooth {
-    scroll-behavior: smooth;
-  }
-
-  /* Spaceship UI Elements */
-  .hologram-effect {
-    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
     background-size: 200% 200%;
-    animation: hologram-scan 3s linear infinite;
+    animation: gradient-shift 3s ease-in-out infinite alternate;
   }
 
-  .circuit-pattern {
-    background-image: 
-      linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-      linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
   }
 
-  .scanner-line {
+  .subtle-float {
+    animation: subtle-float 6s ease-in-out infinite;
+  }
+
+  .tech-glow {
+    animation: tech-glow 4s ease-in-out infinite;
+  }
+
+  .scan-effect {
     position: relative;
     overflow: hidden;
   }
 
-  .scanner-line::after {
+  .scan-effect::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent);
-    animation: scanner-sweep 2s linear infinite;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+    animation: scan-line 3s linear infinite;
   }
 
-  /* Terminal-style text */
-  .terminal-text {
-    font-family: 'Courier New', monospace;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00;
-  }
-}
-
-/* Enhanced Cosmic Animations */
-@layer utilities {
-  @keyframes hologram-scan {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  .professional-transition {
+    transition: all var(--transition-smooth);
   }
 
-  @keyframes scanner-sweep {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-
-  @keyframes data-stream {
-    0% { transform: translateY(100vh); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100vh); opacity: 0; }
-  }
-
-  /* Module System Styles */
+  /* Enhanced scrollbar */
   .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--primary)) hsl(var(--background));
   }
 
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
     background: hsl(var(--background));
-    border-radius: 3px;
+    border-radius: 4px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
-    border-radius: 3px;
+    background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent)));
+    border-radius: 4px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--accent));
+    background: linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--primary)));
   }
 }
-html {
-  overflow-x: hidden !important;
-}
+
 ::selection {
-  background-color: transparent;
+  background-color: hsl(var(--primary) / 0.3);
   color: inherit;
 }

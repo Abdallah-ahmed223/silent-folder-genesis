@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Home, User, Briefcase, Cpu, Mail, 
-  Rocket, Zap, Target, Satellite, 
+  Activity, Database, Settings, Wifi,
   Languages, Sun, Moon, Monitor 
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -22,40 +22,40 @@ const spaceModules = [
     icon: Home, 
     label: 'nav.home', 
     status: 'ONLINE',
-    color: '#0ea5e9',
-    description: 'Command Center'
+    color: 'hsl(214, 100%, 60%)',
+    description: 'Control Center'
   },
   { 
     id: 'bio-lab' as SpaceModule, 
     icon: User, 
     label: 'nav.about', 
     status: 'ACTIVE',
-    color: '#a855f7',
-    description: 'Bio Analysis Lab'
+    color: 'hsl(189, 100%, 65%)',
+    description: 'Personnel Data'
   },
   { 
     id: 'engineering' as SpaceModule, 
     icon: Briefcase, 
     label: 'nav.projects', 
     status: 'OPERATIONAL',
-    color: '#06b6d4',
-    description: 'Engineering Bay'
+    color: 'hsl(142, 76%, 55%)',
+    description: 'Project Systems'
   },
   { 
     id: 'tactical' as SpaceModule, 
     icon: Cpu, 
     label: 'nav.skills', 
     status: 'READY',
-    color: '#10b981',
-    description: 'Tactical Systems'
+    color: 'hsl(25, 95%, 58%)',
+    description: 'Technical Skills'
   },
   { 
     id: 'communications' as SpaceModule, 
     icon: Mail, 
     label: 'nav.contact', 
     status: 'STANDBY',
-    color: '#f59e0b',
-    description: 'Comm Array'
+    color: 'hsl(210, 20%, 85%)',
+    description: 'Communications'
   },
 ]
 
@@ -114,53 +114,64 @@ export default function SpaceshipDashboard({ activeModule, onModuleChange }: Spa
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 p-4"
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 p-6"
       >
         <div className="max-w-7xl mx-auto">
           {/* Top Status Bar */}
-          <div className="glow-card p-3 mb-4 flex justify-between items-center text-xs font-mono">
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-accent">SYSTEM OPERATIONAL</span>
+          <div className="tech-card p-4 mb-4 professional-grid">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-8">
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-green-400 rounded-full status-indicator"></div>
+                  <span className="text-accent font-medium text-sm">SYSTEM OPERATIONAL</span>
+                </div>
+                <div className="text-muted-foreground text-sm font-mono">
+                  {systemTime.toISOString().split('T')[0]}
+                </div>
+                <div className="text-muted-foreground text-sm font-mono">
+                  {systemTime.toLocaleTimeString()}
+                </div>
               </div>
-              <div className="text-muted-foreground">
-                STARDATE: {systemTime.toISOString().split('T')[0]}
+              <div className="flex items-center space-x-6 text-sm font-mono">
+                <div className="flex items-center space-x-2">
+                  <Activity className="w-4 h-4 text-primary" />
+                  <span className="text-primary">PWR: 100%</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Database className="w-4 h-4 text-accent" />
+                  <span className="text-accent">SYS: ONLINE</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Wifi className="w-4 h-4 text-green-400" />
+                  <span className="text-green-400">NET: ACTIVE</span>
+                </div>
               </div>
-              <div className="text-muted-foreground">
-                TIME: {systemTime.toLocaleTimeString()}
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-primary">PWR: 100%</div>
-              <div className="text-accent">NAV: LOCKED</div>
-              <div className="text-green-400">SYS: ONLINE</div>
             </div>
           </div>
 
           {/* Main Navigation Console */}
-          <div className="glow-card p-6 hologram-effect">
+          <div className="tech-card p-6">
             <div className="flex items-center justify-between">
-              {/* Ship Logo/Brand */}
+              {/* Professional Logo/Brand */}
               <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-3"
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center space-x-4"
               >
                 <div className="relative">
-                  <div className="w-12 h-12 cosmic-gradient rounded-full flex items-center justify-center">
-                    <Rocket className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 tech-gradient rounded-lg flex items-center justify-center">
+                    <Settings className="w-6 h-6 text-white" />
                   </div>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur opacity-75"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg blur opacity-60"></div>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold hero-text">STARSHIP PORTFOLIO</h1>
-                  <p className="text-xs text-muted-foreground font-mono">DEEP SPACE EXPLORATION VESSEL</p>
+                  <h1 className="text-2xl font-bold tech-text">AEROSPACE SYSTEMS</h1>
+                  <p className="text-sm text-muted-foreground font-mono">MISSION CONTROL INTERFACE</p>
                 </div>
               </motion.div>
 
               {/* Module Navigation */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-3">
                 {spaceModules.map((module) => {
                   const isActive = activeModule === module.id
                   const ModuleIcon = module.icon
@@ -168,24 +179,24 @@ export default function SpaceshipDashboard({ activeModule, onModuleChange }: Spa
                   return (
                     <motion.div
                       key={module.id}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.02, y: -1 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       <Button
                         variant={isActive ? "default" : "ghost"}
                         size="lg"
                         onClick={() => handleModuleChange(module.id)}
-                        className={`relative group flex flex-col items-center p-4 min-w-[120px] h-auto ${
+                        className={`relative group flex flex-col items-center p-4 min-w-[110px] h-auto professional-transition ${
                           isActive 
-                            ? 'cosmic-gradient shadow-lg' 
-                            : 'hover:bg-primary/10 border border-primary/20'
+                            ? 'tech-gradient shadow-lg border-0' 
+                            : 'tech-card border hover:border-primary/50'
                         }`}
                         disabled={isWarping}
                       >
-                        <ModuleIcon className={`w-5 h-5 mb-1 ${
+                        <ModuleIcon className={`w-5 h-5 mb-2 ${
                           isActive ? 'text-white' : 'text-primary'
                         }`} />
-                        <span className={`text-xs font-medium ${
+                        <span className={`text-xs font-medium mb-1 ${
                           isActive ? 'text-white' : 'text-foreground'
                         }`}>
                           {t(module.label)}
@@ -198,14 +209,9 @@ export default function SpaceshipDashboard({ activeModule, onModuleChange }: Spa
                         
                         {/* Status Indicator */}
                         <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full ${
-                          isActive ? 'bg-green-400' : 'bg-primary/60'
-                        } ${isActive ? 'animate-pulse' : ''}`}>
+                          isActive ? 'bg-green-400 status-indicator' : 'bg-primary/60'
+                        }`}>
                         </div>
-
-                        {/* Hover Effect */}
-                        <div className={`absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-md ${
-                          isActive ? 'from-white/20 to-white/10' : 'from-primary/20 to-accent/20'
-                        }`}></div>
                       </Button>
                     </motion.div>
                   )
@@ -213,12 +219,12 @@ export default function SpaceshipDashboard({ activeModule, onModuleChange }: Spa
               </div>
 
               {/* System Controls */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-3">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={toggleLanguage}
-                  className="rounded-full w-10 h-10 p-0 glow-card"
+                  className="tech-card w-10 h-10 p-0 professional-transition"
                   title={i18n.language === "en" ? "Switch to Arabic" : "Switch to English"}
                 >
                   <Languages className="h-4 w-4" />
@@ -233,7 +239,7 @@ export default function SpaceshipDashboard({ activeModule, onModuleChange }: Spa
                     const nextTheme = themes[(currentIndex + 1) % themes.length]
                     setTheme(nextTheme)
                   }}
-                  className="rounded-full w-10 h-10 p-0 glow-card"
+                  className="tech-card w-10 h-10 p-0 professional-transition"
                 >
                   <ThemeIcon className="h-4 w-4" />
                 </Button>
