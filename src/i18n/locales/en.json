@@ -7,89 +7,87 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Software Engineer",
-    "subtitle": "Frontend Developer",
-    "description": "Crafting immersive digital experiences with modern web technologies, React Js, Vue Js, Next Js and cutting-edge 3D graphics.",
-    "viewWork": "View My Work",
-    "getInTouch": "Get In Touch"
+    "title": "Cosmic",
+    "subtitle": "Developer",
+    "description": "Crafting stellar digital experiences across the digital universe. Specializing in modern web technologies and cosmic user interfaces.",
+    "viewWork": "Explore Universe",
+    "getInTouch": "Contact Mission Control"
   },
   "about": {
-    "title": "About",
-    "titleHighlight": "Me",
-    "paragraph1": "I'm a passionate frontend developer with over 3 years of experience creating immersive digital experiences. I specialize in building modern web applications that combine beautiful design with cutting-edge technology.",
-    "paragraph2": "My expertise spans from traditional React development to advanced 3D web experiences using Three.js and React Three Fiber. I believe in the power of interactive design to tell compelling stories and create memorable user experiences.",
-    "paragraph3": "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or experimenting with the latest web standards and design trends.",
-    "downloadResume": "Download Resume",
-    "getInTouch": "Get In Touch",
+    "title": "About My",
+    "titleHighlight": "Cosmic Journey",
+    "paragraph1": "Welcome to my corner of the digital cosmos! I'm a passionate developer who explores the infinite possibilities of web technology, creating stellar user experiences that transcend ordinary boundaries.",
+    "paragraph2": "With years of experience navigating the vast universe of frontend development, I specialize in React, TypeScript, and Three.js - the perfect toolkit for building immersive, space-age applications that captivate and inspire.",
+    "paragraph3": "When I'm not coding, you'll find me stargazing, exploring new technologies, or contemplating the mysteries of the digital universe. Ready to embark on an extraordinary journey together?",
+    "downloadResume": "Download Cosmic CV",
+    "getInTouch": "Launch Communication",
     "stats": {
-      "experience": "Years of Experience",
-      "projects": "Projects Completed",
-      "clients": "Happy Clients",
-      "technologies": "Technologies"
+      "experience": "Years in Space",
+      "projects": "Missions Completed",
+      "clients": "Galaxies Served",
+      "technologies": "Tech Mastered"
     }
   },
   "projects": {
-    "title": "Featured",
+    "title": "Stellar",
     "titleHighlight": "Projects",
-    "description": "A showcase of my latest work, featuring modern web applications with cutting-edge technologies and interactive experiences.",
-    "viewAll": "View All Projects",
+    "description": "Explore my constellation of digital creations, where innovative technology meets cosmic creativity to deliver extraordinary user experiences.",
+    "viewAll": "Explore All Galaxies",
     "buttons": {
-      "code": "Code",
-      "live": "Live"
+      "code": "View Code",
+      "live": "Launch Mission"
     }
   },
   "skills": {
-    "title": "Technical",
-    "titleHighlight": "Skills",
-    "description": "A comprehensive toolkit for building modern, scalable, and performant web applications with cutting-edge technologies.",
+    "title": "Cosmic",
+    "titleHighlight": "Arsenal",
+    "description": "My technological toolkit spans across multiple galaxies of development, from frontend frameworks to 3D experiences and beyond.",
     "categories": {
-      "frontend": "Frontend Development",
+      "frontend": "Frontend Mastery",
       "animation": "3D & Animation",
-      "backend": "Backend & Database",
-      "mobile": "Mobile Development",
-      "design": "Design & UI/UX",
-      "performance": "Performance & Tools"
+      "design": "Cosmic Design",
+      "performance": "Performance Optimization"
     },
     "stats": {
-      "experience": "Years Experience",
-      "projects": "Projects Completed",
-      "technologies": "Technologies",
-      "satisfaction": "Client Satisfaction"
+      "experience": "Years in Space",
+      "projects": "Missions Completed",
+      "technologies": "Tech Mastered",
+      "satisfaction": "Success Rate"
     }
   },
   "seo": {
-    "title": "Modern Portfolio - Full Stack Developer",
-    "description": "Professional portfolio showcasing modern web development skills, projects, and experience with React, TypeScript, and Three.js",
-    "siteName": "Modern Portfolio",
-    "author": "Professional Developer", 
-    "jobTitle": "Full Stack Developer"
+    "title": "Cosmic Developer - Space-Age Portfolio",
+    "description": "Professional cosmic portfolio showcasing stellar web development skills, interstellar projects, and experience with React, TypeScript, and Three.js across the digital universe",
+    "siteName": "Cosmic Portfolio",
+    "author": "Cosmic Developer", 
+    "jobTitle": "Space-Age Full Stack Developer"
   },
   "contact": {
-    "title": "Get In",
-    "titleHighlight": "Touch",
-    "description": "Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.",
-    "letsConnect": "Let's Connect",
-    "connectDescription": "Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you. Reach out through any of the channels below.",
-    "followMe": "Follow Me",
-    "sendMessage": "Send a Message",
+    "title": "Mission",
+    "titleHighlight": "Control",
+    "description": "Ready to launch your next digital adventure? Let's connect and explore the infinite possibilities of the web together.",
+    "letsConnect": "Establish Communication",
+    "connectDescription": "Whether you have a cosmic vision that needs bringing to life, or you're looking for a stellar developer to join your mission, I'm here to help make it happen.",
+    "followMe": "Follow the Cosmic Journey",
+    "sendMessage": "Transmit Your Message",
     "form": {
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email",
       "subject": "Subject",
       "message": "Message",
-      "send": "Send Message",
+      "send": "Launch Message",
       "placeholders": {
         "firstName": "John",
         "lastName": "Doe",
         "email": "john@example.com",
         "subject": "Project Inquiry",
-        "message": "Tell me about your project..."
+        "message": "Tell me about your cosmic project..."
       }
     },
     "info": {
       "email": "Email",
-      "phone": "Phone",
+      "phone": "Phone", 
       "location": "Location"
     }
   }
