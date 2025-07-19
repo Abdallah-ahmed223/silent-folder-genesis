@@ -7,8 +7,8 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Frontend",
-    "subtitle": "Developer",
+    "title": "Software Engineer",
+    "subtitle": "Frontend Developer",
     "description": "Crafting immersive digital experiences with modern web technologies, React Js, Vue Js, Next Js and cutting-edge 3D graphics.",
     "viewWork": "View My Work",
     "getInTouch": "Get In Touch"
@@ -16,7 +16,7 @@
   "about": {
     "title": "About",
     "titleHighlight": "Me",
-    "paragraph1": "I'm a passionate frontend developer with over 4 years of experience creating immersive digital experiences. I specialize in building modern web applications that combine beautiful design with cutting-edge technology.",
+    "paragraph1": "I'm a passionate frontend developer with over 3 years of experience creating immersive digital experiences. I specialize in building modern web applications that combine beautiful design with cutting-edge technology.",
     "paragraph2": "My expertise spans from traditional React development to advanced 3D web experiences using Three.js and React Three Fiber. I believe in the power of interactive design to tell compelling stories and create memorable user experiences.",
     "paragraph3": "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or experimenting with the latest web standards and design trends.",
     "downloadResume": "Download Resume",

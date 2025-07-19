@@ -70,10 +70,10 @@ export default function AboutSection() {
             className="space-y-8"
           >
             {/* Profile Image */}
-            <div className="relative mx-auto lg:mx-0 w-80 h-80">
+            <div style={{margin : 'auto'}} className="relative lg:mx-0 w-80 h-80">
               <div className="absolute inset-0 bg-gradient-primary rounded-2xl rotate-6 glow-card"></div>
               <div className="relative bg-card rounded-2xl overflow-hidden border border-primary/20">
-                <img src={ImageSrc} alt="Profile" className="object-fit" />
+                <img src={ImageSrc} alt="Profile" className="h-[21vw] w-full" />
               </div>
             </div>
 

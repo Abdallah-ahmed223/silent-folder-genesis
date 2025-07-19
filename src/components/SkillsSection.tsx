@@ -24,37 +24,23 @@ const skillCategories = [
   {
     title: 'skills.categories.animation',
     icon: Layers3,
-    skills: ['Three.js', 'React Three Fiber', 'GSAP', 'Framer Motion', 'WebGL'],
+    skills: ['Three.js', 'React Three Fiber', 'Framer Motion'],
     color: 'from-purple-500 to-pink-500',
     delay: 0.2
-  },
-  {
-    title: 'skills.categories.backend',
-    icon: Database,
-    skills: ['Node.js', 'PostgreSQL', 'MongoDB', 'Express', 'GraphQL'],
-    color: 'from-emerald-500 to-teal-500',
-    delay: 0.4
-  },
-  {
-    title: 'skills.categories.mobile',
-    icon: Smartphone,
-    skills: ['React Native', 'Expo', 'iOS', 'Android', 'Flutter'],
-    color: 'from-orange-500 to-red-500',
-    delay: 0.6
   },
   {
     title: 'skills.categories.design',
     icon: Paintbrush,
     skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research', 'Accessibility'],
     color: 'from-pink-500 to-rose-500',
-    delay: 0.8
+    delay: 0.4
   },
   {
     title: 'skills.categories.performance',
     icon: Rocket,
     skills: ['Webpack', 'Vite', 'Docker', 'AWS', 'Performance Optimization'],
     color: 'from-indigo-500 to-purple-500',
-    delay: 1.0
+    delay: 0.6
   }
 ]
 
@@ -159,7 +145,7 @@ export default function SkillsSection() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
-            { number: '4+', label: 'skills.stats.experience' },
+            { number: '3+', label: 'skills.stats.experience' },
             { number: '50+', label: 'skills.stats.projects' },
             { number: '15+', label: 'skills.stats.technologies' },
             { number: '100%', label: 'skills.stats.satisfaction' }
