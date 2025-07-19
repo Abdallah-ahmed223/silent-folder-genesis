@@ -57,6 +57,13 @@
       "satisfaction": "رضا العملاء"
     }
   },
+  "seo": {
+    "title": "ملف شخصي حديث - مطور ويب متكامل",
+    "description": "ملف شخصي احترافي يعرض مهارات تطوير الويب الحديثة، والمشاريع، والخبرة مع React، TypeScript، و Three.js",
+    "siteName": "ملف شخصي حديث",
+    "author": "مطور محترف",
+    "jobTitle": "مطور ويب متكامل"
+  },
   "contact": {
     "title": "تواصل",
     "titleHighlight": "معي",

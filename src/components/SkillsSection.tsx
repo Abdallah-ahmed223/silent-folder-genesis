@@ -12,6 +12,9 @@ import {
   Rocket
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { lazy, Suspense } from 'react'
+
+const Skills3DScene = lazy(() => import('./3d/Skills3DScene'))
 
 const skillCategories = [
   {
@@ -67,8 +70,15 @@ const skillVariants = {
 export default function SkillsSection() {
   const { t } = useTranslation();
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20 relative">
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <Suspense fallback={<div />}>
+          <Skills3DScene />
+        </Suspense>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

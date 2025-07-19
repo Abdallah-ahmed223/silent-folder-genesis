@@ -3,6 +3,9 @@ import { Download, MapPin, Calendar, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageSrc from "@/images/me.webp";
 import { useTranslation } from 'react-i18next';
+import { lazy, Suspense } from 'react';
+
+const About3DScene = lazy(() => import('./3d/About3DScene'));
 const stats = [
   { label: "about.stats.experience", value: "3+", icon: Calendar },
   { label: "about.stats.projects", value: "50+", icon: Heart },
@@ -13,8 +16,15 @@ const stats = [
 export default function AboutSection() {
   const { t } = useTranslation();
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <Suspense fallback={<div />}>
+          <About3DScene />
+        </Suspense>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <motion.div

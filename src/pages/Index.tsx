@@ -1,11 +1,13 @@
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 import Navigation from '@/components/Navigation'
 import HeroSection from '@/components/HeroSection'
-import AboutSection from '@/components/AboutSection'
-import ProjectsSection from '@/components/ProjectsSection'
-import SkillsSection from '@/components/SkillsSection'
-import ContactSection from '@/components/ContactSection'
-import Footer from '@/components/Footer'
+
+// Lazy load sections for better performance
+const AboutSection = lazy(() => import('@/components/AboutSection'))
+const ProjectsSection = lazy(() => import('@/components/ProjectsSection'))
+const SkillsSection = lazy(() => import('@/components/SkillsSection'))
+const ContactSection = lazy(() => import('@/components/ContactSection'))
+const Footer = lazy(() => import('@/components/Footer'))
 
 // Loading component for 3D scenes
 function PageLoading() {
@@ -25,11 +27,13 @@ const Index = () => {
       <div className="min-h-screen bg-gradient-space">
         <Navigation />
         <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <ContactSection />
-        <Footer />
+        <Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+          <AboutSection />
+          <ProjectsSection />
+          <SkillsSection />
+          <ContactSection />
+          <Footer />
+        </Suspense>
       </div>
     </Suspense>
   );

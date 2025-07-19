@@ -5,6 +5,9 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTranslation } from 'react-i18next'
+import { lazy, Suspense } from 'react'
+
+const Contact3DScene = lazy(() => import('./3d/Contact3DScene'))
 
 const contactInfo = [
   {
@@ -44,7 +47,14 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative">
-      <div className="max-w-7xl mx-auto">
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-15 pointer-events-none">
+        <Suspense fallback={<div />}>
+          <Contact3DScene />
+        </Suspense>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

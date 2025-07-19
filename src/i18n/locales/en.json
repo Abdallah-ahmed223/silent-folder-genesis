@@ -57,6 +57,13 @@
       "satisfaction": "Client Satisfaction"
     }
   },
+  "seo": {
+    "title": "Modern Portfolio - Full Stack Developer",
+    "description": "Professional portfolio showcasing modern web development skills, projects, and experience with React, TypeScript, and Three.js",
+    "siteName": "Modern Portfolio",
+    "author": "Professional Developer", 
+    "jobTitle": "Full Stack Developer"
+  },
   "contact": {
     "title": "Get In",
     "titleHighlight": "Touch",

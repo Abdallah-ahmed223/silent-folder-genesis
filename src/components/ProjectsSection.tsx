@@ -3,6 +3,9 @@ import { Github, ExternalLink, Code, Palette, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTranslation } from 'react-i18next'
+import { lazy, Suspense } from 'react'
+
+const Projects3DScene = lazy(() => import('./3d/Projects3DScene'))
 
 const projects = [
   {
@@ -55,8 +58,15 @@ const itemVariants = {
 export default function ProjectsSection() {
   const { t } = useTranslation();
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-25 pointer-events-none">
+        <Suspense fallback={<div />}>
+          <Projects3DScene />
+        </Suspense>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
