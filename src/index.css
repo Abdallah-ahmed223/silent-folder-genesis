@@ -6,89 +6,83 @@
 
 @layer base {
   :root {
-    /* Cosmic Base Colors - Light mode */
-    --background: 240 10% 4%;
-    --foreground: 200 100% 95%;
+    /* Light Mode - Space Station/Laboratory Theme */
+    --background: 210 40% 98%;
+    --foreground: 222 84% 4.9%;
 
-    /* Deep Space Theme Colors */
-    --cosmic-blue: 220 100% 60%;
-    --nebula-purple: 270 100% 65%;
-    --starlight-cyan: 190 100% 70%;
-    --galaxy-pink: 320 90% 75%;
-    --void-dark: 240 15% 8%;
+    /* Space Laboratory Colors */
+    --cosmic-blue: 217 91% 60%;
+    --nebula-purple: 262 83% 58%;
+    --starlight-cyan: 199 89% 48%;
+    --galaxy-pink: 336 75% 40%;
+    --solar-gold: 45 93% 47%;
 
-    /* Cosmic UI Components */
-    --card: 240 15% 8%;
-    --card-foreground: 200 100% 95%;
-    --popover: 240 15% 8%;
-    --popover-foreground: 200 100% 95%;
+    /* Light Mode UI Components */
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
 
-    --primary: 220 100% 60%;
-    --primary-foreground: 240 15% 8%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 240 10% 15%;
-    --secondary-foreground: 200 100% 95%;
+    --secondary: 210 40% 94%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 240 10% 15%;
-    --muted-foreground: 210 20% 70%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 190 100% 70%;
-    --accent-foreground: 240 15% 8%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 15% 20%;
-    --input: 240 15% 20%;
-    --ring: 220 100% 60%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
-    /* Cosmic Design Tokens */
+    /* Light Mode Space Theme Gradients */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(220 100% 60%),
-      hsl(270 100% 65%),
-      hsl(320 90% 75%)
+      hsl(217 91% 60%),
+      hsl(199 89% 48%),
+      hsl(262 83% 58%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(190 100% 70%),
-      hsl(220 100% 60%),
-      hsl(270 100% 65%)
+      hsl(199 89% 48%),
+      hsl(217 91% 60%),
+      hsl(45 93% 47%)
     );
-    --gradient-nebula: radial-gradient(
-      circle at 30% 40%,
-      hsl(270 100% 65% / 0.8) 0%,
-      hsl(220 100% 60% / 0.6) 30%,
-      hsl(190 100% 70% / 0.4) 60%,
-      transparent 100%
+    --gradient-space: linear-gradient(
+      135deg,
+      hsl(210 40% 98%) 0%,
+      hsl(217 91% 95%) 50%,
+      hsl(199 89% 96%) 100%
     );
     --gradient-starfield: radial-gradient(
       circle at 70% 20%,
-      hsl(200 100% 95% / 0.3) 0%,
+      hsl(217 91% 60% / 0.08) 0%,
       transparent 2%
     ),
     radial-gradient(
       circle at 20% 80%,
-      hsl(200 100% 95% / 0.2) 0%,
+      hsl(199 89% 48% / 0.06) 0%,
       transparent 1%
     ),
     radial-gradient(
       circle at 90% 60%,
-      hsl(200 100% 95% / 0.15) 0%,
+      hsl(262 83% 58% / 0.04) 0%,
       transparent 1.5%
     );
-    --gradient-space: radial-gradient(
-      ellipse at center,
-      hsl(240 15% 8%) 0%,
-      hsl(240 20% 4%) 50%,
-      hsl(240 30% 2%) 100%
-    );
 
-    --glow-cosmic: 0 0 30px hsl(220 100% 60% / 0.6), 0 0 60px hsl(220 100% 60% / 0.4);
-    --glow-nebula: 0 0 40px hsl(270 100% 65% / 0.7), 0 0 80px hsl(270 100% 65% / 0.3);
-    --glow-starlight: 0 0 20px hsl(190 100% 70% / 0.8), 0 0 40px hsl(190 100% 70% / 0.5);
+    /* Light Mode Glows */
+    --glow-cosmic: 0 4px 20px hsl(217 91% 60% / 0.15), 0 0 40px hsl(217 91% 60% / 0.1);
+    --glow-nebula: 0 4px 25px hsl(262 83% 58% / 0.15), 0 0 50px hsl(262 83% 58% / 0.08);
+    --glow-starlight: 0 4px 15px hsl(199 89% 48% / 0.2), 0 0 30px hsl(199 89% 48% / 0.1);
 
     --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --animation-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -97,85 +91,86 @@
   }
 
   .dark {
-    /* Enhanced Cosmic Dark Theme */
-    --background: 240 20% 2%;
-    --foreground: 200 100% 98%;
+    /* Dark Mode - Deep Space Theme */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 240 15% 6%;
-    --card-foreground: 200 100% 95%;
-    --popover: 240 15% 6%;
-    --popover-foreground: 200 100% 95%;
+    /* Deep Space Colors Enhanced */
+    --cosmic-blue: 217 91% 65%;
+    --nebula-purple: 262 83% 70%;
+    --starlight-cyan: 199 89% 60%;
+    --galaxy-pink: 336 75% 60%;
+    --solar-gold: 45 93% 58%;
 
-    --primary: 220 100% 65%;
-    --primary-foreground: 240 20% 2%;
+    /* Dark Mode UI Components */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --secondary: 240 10% 12%;
-    --secondary-foreground: 200 100% 95%;
+    --primary: 217 91% 65%;
+    --primary-foreground: 240 10% 3.9%;
 
-    --muted: 240 10% 12%;
-    --muted-foreground: 210 15% 75%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --accent: 190 100% 75%;
-    --accent-foreground: 240 20% 2%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 199 89% 60%;
+    --accent-foreground: 240 10% 3.9%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 15% 15%;
-    --input: 240 15% 15%;
-    --ring: 220 100% 65%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 217 91% 65%;
 
-    /* Enhanced cosmic gradients for dark mode */
+    /* Dark Mode Space Theme Gradients */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(220 100% 65%),
-      hsl(270 100% 70%),
-      hsl(320 90% 80%)
+      hsl(217 91% 65%),
+      hsl(262 83% 70%),
+      hsl(199 89% 60%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(190 100% 75%),
-      hsl(220 100% 65%),
-      hsl(270 100% 70%)
+      hsl(199 89% 60%),
+      hsl(217 91% 65%),
+      hsl(336 75% 60%)
     );
-    --gradient-nebula: radial-gradient(
-      circle at 30% 40%,
-      hsl(270 100% 70% / 0.9) 0%,
-      hsl(220 100% 65% / 0.7) 30%,
-      hsl(190 100% 75% / 0.5) 60%,
-      transparent 100%
+    --gradient-space: radial-gradient(
+      ellipse at center,
+      hsl(240 10% 3.9%) 0%,
+      hsl(240 15% 2%) 50%,
+      hsl(240 20% 1%) 100%
     );
     --gradient-starfield: radial-gradient(
       circle at 70% 20%,
-      hsl(200 100% 98% / 0.4) 0%,
+      hsl(0 0% 98% / 0.1) 0%,
       transparent 2%
     ),
     radial-gradient(
       circle at 20% 80%,
-      hsl(200 100% 98% / 0.3) 0%,
+      hsl(0 0% 98% / 0.08) 0%,
       transparent 1%
     ),
     radial-gradient(
       circle at 90% 60%,
-      hsl(200 100% 98% / 0.2) 0%,
+      hsl(0 0% 98% / 0.06) 0%,
       transparent 1.5%
     ),
     radial-gradient(
-      circle at 15% 30%,
-      hsl(200 100% 98% / 0.1) 0%,
+      circle at 40% 40%,
+      hsl(0 0% 98% / 0.04) 0%,
       transparent 1%
     );
-    --gradient-space: radial-gradient(
-      ellipse at center,
-      hsl(240 20% 6%) 0%,
-      hsl(240 25% 3%) 50%,
-      hsl(240 30% 1%) 100%
-    );
 
-    /* Enhanced cosmic glows for dark mode */
-    --glow-cosmic: 0 0 40px hsl(220 100% 65% / 0.8), 0 0 80px hsl(220 100% 65% / 0.4);
-    --glow-nebula: 0 0 50px hsl(270 100% 70% / 0.9), 0 0 100px hsl(270 100% 70% / 0.3);
-    --glow-starlight: 0 0 30px hsl(190 100% 75% / 0.9), 0 0 60px hsl(190 100% 75% / 0.5);
+    /* Dark Mode Enhanced Glows */
+    --glow-cosmic: 0 0 30px hsl(217 91% 65% / 0.4), 0 0 60px hsl(217 91% 65% / 0.2);
+    --glow-nebula: 0 0 40px hsl(262 83% 70% / 0.5), 0 0 80px hsl(262 83% 70% / 0.2);
+    --glow-starlight: 0 0 25px hsl(199 89% 60% / 0.6), 0 0 50px hsl(199 89% 60% / 0.3);
   }
 }
 
@@ -188,6 +183,7 @@
     @apply bg-background text-foreground overflow-x-hidden;
     background: var(--gradient-space), var(--gradient-starfield);
     background-attachment: fixed;
+    transition: all var(--animation-smooth);
   }
 
   html {
@@ -204,7 +200,7 @@
   }
 
   .glow-card {
-    @apply bg-card/90 backdrop-blur-xl border border-primary/30 rounded-xl;
+    @apply bg-card/80 backdrop-blur-xl border border-border rounded-xl;
     box-shadow: var(--glow-cosmic);
     transition: all var(--animation-smooth);
     position: relative;
@@ -214,7 +210,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--gradient-nebula);
+    background: var(--gradient-primary);
     opacity: 0;
     border-radius: inherit;
     transition: opacity var(--animation-smooth);
@@ -223,11 +219,15 @@
 
   .glow-card:hover {
     box-shadow: var(--glow-nebula);
-    transform: translateY(-4px) scale(1.01);
-    border-color: hsl(var(--primary) / 0.6);
+    transform: translateY(-2px) scale(1.01);
+    border-color: hsl(var(--primary) / 0.5);
   }
 
   .glow-card:hover::before {
+    opacity: 0.05;
+  }
+
+  .dark .glow-card:hover::before {
     opacity: 0.1;
   }
 
@@ -242,6 +242,18 @@
   .starfield-bg {
     background: var(--gradient-starfield);
     animation: starfield-twinkle 6s ease-in-out infinite;
+  }
+
+  /* Light mode specific styles */
+  :root .light-mode-panel {
+    @apply bg-white/90 backdrop-blur-sm border border-primary/20;
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.1);
+  }
+
+  /* Dark mode specific styles */
+  .dark .dark-mode-panel {
+    @apply bg-card/50 backdrop-blur-lg border border-primary/30;
+    box-shadow: var(--glow-cosmic);
   }
 }
 
@@ -360,11 +372,20 @@
     animation: scanner-sweep 2s linear infinite;
   }
 
-  /* Terminal-style text */
+  /* Terminal-style text - adaptive for themes */
   .terminal-text {
     font-family: 'Courier New', monospace;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00;
+    transition: all var(--animation-smooth);
+  }
+
+  :root .terminal-text {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+  }
+
+  .dark .terminal-text {
+    color: hsl(var(--accent));
+    text-shadow: 0 0 10px hsl(var(--accent) / 0.6);
   }
 }
 

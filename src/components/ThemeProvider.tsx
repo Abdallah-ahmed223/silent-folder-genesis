@@ -22,7 +22,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'dark', // Default to dark theme for portfolio
+  defaultTheme = 'light', // Default to light theme for better accessibility
   storageKey = 'portfolio-ui-theme',
   ...props
 }: ThemeProviderProps) {
