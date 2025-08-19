@@ -61,13 +61,13 @@ export default function Navigation() {
                   <span className="text-white font-bold text-sm">◉</span>
                 </div>
                 <span className="text-2xl font-bold hero-text font-mono">
-                  SPACE.DEV
+                  Abdallah Ahmed
                 </span>
               </div>
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block pe-[9vw]">
+            <div className="hidden md:block pe-32">
               <div className="flex items-baseline space-x-4">
                 {navItems.map((item, index) => (
                   <motion.a
@@ -103,7 +103,7 @@ export default function Navigation() {
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  const themes = ["light", "dark", "system"] as const;
+                  const themes = ["light", "dark"] as const;
                   const currentIndex = themes.indexOf(theme);
                   const nextTheme = themes[(currentIndex + 1) % themes.length];
                   setTheme(nextTheme);
