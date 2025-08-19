@@ -51,6 +51,7 @@
     "embla-carousel-react": "^8.3.0",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.5",
+    "gsap": "^3.13.0",
     "i18next": "^25.3.2",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
