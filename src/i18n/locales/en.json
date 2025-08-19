@@ -7,40 +7,40 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Software Engineer",
-    "subtitle": "Frontend Developer",
-    "description": "Crafting digital experiences across the digital universe. Specializing in modern web technologies and user interfaces.",
-    "viewWork": "Explore My Work",
-    "getInTouch": "Contact Me"
+    "title": "Cosmic",
+    "subtitle": "Developer",
+    "description": "Crafting stellar digital experiences across the digital universe. Specializing in modern web technologies and cosmic user interfaces.",
+    "viewWork": "Explore Universe",
+    "getInTouch": "Contact Mission Control"
   },
   "about": {
     "title": "About My",
-    "titleHighlight": "Journey",
+    "titleHighlight": "Cosmic Journey",
     "paragraph1": "Welcome to my corner of the digital cosmos! I'm a passionate developer who explores the infinite possibilities of web technology, creating stellar user experiences that transcend ordinary boundaries.",
-    "paragraph2": "With 3 years of experience navigating the vast universe of frontend development, I specialize in React, Vue, Wordpress, TypeScript, and Three.js - the perfect toolkit for building immersive, space-age applications that captivate and inspire.",
+    "paragraph2": "With years of experience navigating the vast universe of frontend development, I specialize in React, TypeScript, and Three.js - the perfect toolkit for building immersive, space-age applications that captivate and inspire.",
     "paragraph3": "When I'm not coding, you'll find me stargazing, exploring new technologies, or contemplating the mysteries of the digital universe. Ready to embark on an extraordinary journey together?",
-    "downloadResume": "Download CV",
-    "getInTouch": "Contact Me",
+    "downloadResume": "Download Cosmic CV",
+    "getInTouch": "Launch Communication",
     "stats": {
-      "experience": "Years Of Experience",
-      "projects": "Projects Completed",
-      "clients": "Clients",
-      "technologies": "Skills"
+      "experience": "Years in Space",
+      "projects": "Missions Completed",
+      "clients": "Galaxies Served",
+      "technologies": "Tech Mastered"
     }
   },
   "projects": {
-    "title": "My",
+    "title": "Stellar",
     "titleHighlight": "Projects",
     "description": "Explore my constellation of digital creations, where innovative technology meets cosmic creativity to deliver extraordinary user experiences.",
-    "viewAll": "Explore All Projects",
+    "viewAll": "Explore All Galaxies",
     "buttons": {
       "code": "View Code",
-      "live": "Launch Project"
+      "live": "Launch Mission"
     }
   },
   "skills": {
-    "title": "My",
-    "titleHighlight": "Skills",
+    "title": "Cosmic",
+    "titleHighlight": "Arsenal",
     "description": "My technological toolkit spans across multiple galaxies of development, from frontend frameworks to 3D experiences and beyond.",
     "categories": {
       "frontend": "Frontend Mastery",
@@ -63,39 +63,26 @@
     "jobTitle": "Space-Age Full Stack Developer"
   },
   "contact": {
-    "title": "Contact",
-    "titleHighlight": "Me",
+    "title": "Mission",
+    "titleHighlight": "Control",
     "description": "Ready to launch your next digital adventure? Let's connect and explore the infinite possibilities of the web together.",
     "letsConnect": "Establish Communication",
-    "connectDescription": "Whether you have a cosmic vision that needs bringing to life, or you're looking for a developer to join your mission, I'm here to help make it happen.",
+    "connectDescription": "Whether you have a cosmic vision that needs bringing to life, or you're looking for a stellar developer to join your mission, I'm here to help make it happen.",
     "followMe": "Follow the Cosmic Journey",
     "sendMessage": "Transmit Your Message",
     "form": {
-      "fullName": "Full Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "email": "Email",
       "subject": "Subject",
       "message": "Message",
-      "send": "Send Message",
-      "sending": "Sending...",
-      "successTitle": "Message Sent!",
-      "successMessage": "Your message has been successfully sent. I'll respond as soon as possible!",
-      "errorTitle": "Failed",
-      "errorMessage": "There was an issue sending your message. Please try again or contact me directly.",
+      "send": "Launch Message",
       "placeholders": {
-        "fullName": "Your Full Name",
-        "email": "Your Email",
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john@example.com",
         "subject": "Project Inquiry",
-        "message": "Tell me about your project..."
-      },
-      "errors": {
-        "nameRequired": "Name is required",
-        "nameMin": "Name must be at least 2 characters",
-        "emailRequired": "Email is required",
-        "emailInvalid": "Please enter a valid email address",
-        "subjectRequired": "Subject is required",
-        "subjectMin": "Subject must be at least 3 characters",
-        "messageRequired": "Message is required",
-        "messageMin": "Message must be at least 10 characters"
+        "message": "Tell me about your cosmic project..."
       }
     },
     "info": {

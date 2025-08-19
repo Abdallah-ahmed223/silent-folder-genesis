@@ -1,17 +1,11 @@
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Loader2, AlertCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTranslation } from 'react-i18next'
 import { lazy, Suspense } from 'react'
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { useToast } from '@/hooks/use-toast';
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-
 
 const Contact3DScene = lazy(() => import('./3d/Contact3DScene'))
 
@@ -42,79 +36,14 @@ const socialLinks = [
   { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' }
 ]
 
-interface FormValues {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
 export default function ContactSection() {
   const { t } = useTranslation();
-  const form = useRef<HTMLFormElement>(null);
-  const { toast } = useToast();
-
-  // Form validation schema using Yup with translated error messages
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .required(t('contact.form.errors.nameRequired'))
-      .min(2, t('contact.form.errors.nameMin')),
-    email: Yup.string()
-      .email(t('contact.form.errors.emailInvalid'))
-      .required(t('contact.form.errors.emailRequired')),
-    subject: Yup.string()
-      .required(t('contact.form.errors.subjectRequired'))
-      .min(3, t('contact.form.errors.subjectMin')),
-    message: Yup.string()
-      .required(t('contact.form.errors.messageRequired'))
-      .min(10, t('contact.form.errors.messageMin'))
-  });
-
-  // Initial form values
-  const initialValues: FormValues = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  };
-
-  const handleSubmit = async (values: FormValues, { resetForm, setSubmitting }: FormikHelpers<FormValues>) => {
-    const formEl = form.current;
-    if (!formEl) return;
-    
-    console.log('Submitting form data:', values);
-    
-    try {
-      // Send email using EmailJS
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formEl,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
-      
-      console.log('✅ Email sent successfully!');
-      // Reset form after successful submission
-      resetForm();
-      // Show success toast notification
-      toast({
-        title: t('contact.form.successTitle'),
-        description: t('contact.form.successMessage'),
-        variant: 'default',
-      });
-    } catch (error) {
-      console.error('❌ Failed to send email:', error);
-      // Show error toast notification
-      toast({
-        title: t('contact.form.errorTitle'),
-        description: t('contact.form.errorMessage'),
-        variant: 'destructive',
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle form submission
+    console.log('Form submitted')
+  }
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative">
@@ -226,122 +155,82 @@ export default function ContactSection() {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-semibold mb-6">{t('contact.sendMessage')}</h3>
                 
-                <Formik
-                  initialValues={initialValues}
-                  validationSchema={validationSchema}
-                  onSubmit={handleSubmit}
-                >
-                  {({ isSubmitting, errors, touched }) => (
-                    <Form ref={form} className="space-y-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium mb-2">
-                          {t('contact.form.firstName')}
-                        </label>
-                        <Field
-                          as={Input}
-                          id="name"
-                          name="name"
-                          type="text"
-                          placeholder={t('contact.form.placeholders.firstName')}
-                          className={`bg-background/50 ${errors.name && touched.name ? 'border-red-500' : ''}`}
-                        />
-                        <ErrorMessage name="name">
-                          {msg => (
-                            <div className="text-red-500 text-sm mt-1 flex items-center">
-                              <AlertCircle className="h-4 w-4 mr-1" />
-                              {msg}
-                            </div>
-                          )}
-                        </ErrorMessage>
-                      </div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium mb-2">
+                        {t('contact.form.firstName')}
+                      </label>
+                      <Input
+                        id="firstName"
+                        type="text"
+                        placeholder={t('contact.form.placeholders.firstName')}
+                        required
+                        className="bg-background/50"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium mb-2">
+                        {t('contact.form.lastName')}
+                      </label>
+                      <Input
+                        id="lastName"
+                        type="text"
+                        placeholder={t('contact.form.placeholders.lastName')}
+                        required
+                        className="bg-background/50"
+                      />
+                    </div>
+                  </div>
 
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-2">
-                          {t('contact.form.email')}
-                        </label>
-                        <Field
-                          as={Input}
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder={t('contact.form.placeholders.email')}
-                          className={`bg-background/50 ${errors.email && touched.email ? 'border-red-500' : ''}`}
-                        />
-                        <ErrorMessage name="email">
-                          {msg => (
-                            <div className="text-red-500 text-sm mt-1 flex items-center">
-                              <AlertCircle className="h-4 w-4 mr-1" />
-                              {msg}
-                            </div>
-                          )}
-                        </ErrorMessage>
-                      </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      {t('contact.form.email')}
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder={t('contact.form.placeholders.email')}
+                      required
+                      className="bg-background/50"
+                    />
+                  </div>
 
-                      <div>
-                        <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                          {t('contact.form.subject')}
-                        </label>
-                        <Field
-                          as={Input}
-                          id="subject"
-                          name="subject"
-                          type="text"
-                          placeholder={t('contact.form.placeholders.subject')}
-                          className={`bg-background/50 ${errors.subject && touched.subject ? 'border-red-500' : ''}`}
-                        />
-                        <ErrorMessage name="subject">
-                          {msg => (
-                            <div className="text-red-500 text-sm mt-1 flex items-center">
-                              <AlertCircle className="h-4 w-4 mr-1" />
-                              {msg}
-                            </div>
-                          )}
-                        </ErrorMessage>
-                      </div>
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                      {t('contact.form.subject')}
+                    </label>
+                    <Input
+                      id="subject"
+                      type="text"
+                      placeholder={t('contact.form.placeholders.subject')}
+                      required
+                      className="bg-background/50"
+                    />
+                  </div>
 
-                      <div>
-                        <label htmlFor="message" className="block text-sm font-medium mb-2">
-                          {t('contact.form.message')}
-                        </label>
-                        <Field
-                          as={Textarea}
-                          id="message"
-                          name="message"
-                          placeholder={t('contact.form.placeholders.message')}
-                          rows={5}
-                          className={`bg-background/50 resize-none ${errors.message && touched.message ? 'border-red-500' : ''}`}
-                        />
-                        <ErrorMessage name="message">
-                          {msg => (
-                            <div className="text-red-500 text-sm mt-1 flex items-center">
-                              <AlertCircle className="h-4 w-4 mr-1" />
-                              {msg}
-                            </div>
-                          )}
-                        </ErrorMessage>
-                      </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      {t('contact.form.message')}
+                    </label>
+                    <Textarea
+                      id="message"
+                      placeholder={t('contact.form.placeholders.message')}
+                      rows={5}
+                      required
+                      className="bg-background/50 resize-none"
+                    />
+                  </div>
 
-                      <Button
-                        type="submit"
-                        size="lg"
-                        className="w-full glow-card group"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                            {t('contact.form.sending')}
-                          </>
-                        ) : (
-                          <>
-                            <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
-                            {t('contact.form.send')}
-                          </>
-                        )}
-                      </Button>
-                    </Form>
-                  )}
-                </Formik>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full glow-card group"
+                  >
+                    <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    {t('contact.form.send')}
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </motion.div>
