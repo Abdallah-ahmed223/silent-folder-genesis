@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react'
 import Navigation from '@/components/Navigation'
 import HeroSection from '@/components/HeroSection'
 import SpaceParticles from '@/components/SpaceParticles'
-import SmoothScrollContainer from '@/components/SmoothScrollContainer'
+import { useGSAPScroll } from '@/hooks/useGSAPScroll'
 
 // Lazy load sections for better performance
 const AboutSection = lazy(() => import('@/components/AboutSection'))
@@ -25,9 +25,11 @@ function PageLoading() {
 }
 
 const Index = () => {
+  const { containerRef } = useGSAPScroll();
+
   return (
     <Suspense fallback={<PageLoading />}>
-      <div className="min-h-screen bg-gradient-space relative">
+      <div ref={containerRef} className="bg-gradient-space relative">
         {/* Animated space particles background */}
         <SpaceParticles />
         
@@ -37,53 +39,50 @@ const Index = () => {
         </div>
         
         {/* Hero Section - Full screen */}
-        <section className="scroll-section min-h-screen w-screen flex-shrink-0">
-          <div className="section-content h-full">
+        <section className="scroll-section min-h-screen w-full flex items-center justify-center">
+          <div className="section-content w-full h-full">
             <HeroSection />
           </div>
         </section>
         
-        {/* Smooth scroll container for other sections */}
-        <SmoothScrollContainer>
-          <Suspense fallback={
-            <div className="h-screen flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4 nebula-pulse"></div>
-                <p className="text-primary font-mono">LOADING COSMIC INTERFACE...</p>
-              </div>
+        <Suspense fallback={
+          <div className="h-screen flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4 nebula-pulse"></div>
+              <p className="text-primary font-mono">LOADING COSMIC INTERFACE...</p>
             </div>
-          }>
-            <section className="scroll-section min-h-screen w-screen flex-shrink-0">
-              <div className="section-content h-full">
-                <AboutSection />
-              </div>
-            </section>
-            
-            <section className="scroll-section min-h-screen w-screen flex-shrink-0">
-              <div className="section-content h-full">
-                <ProjectsSection />
-              </div>
-            </section>
-            
-            <section className="scroll-section min-h-screen w-screen flex-shrink-0">
-              <div className="section-content h-full">
-                <SkillsSection />
-              </div>
-            </section>
-            
-            <section className="scroll-section min-h-screen w-screen flex-shrink-0">
-              <div className="section-content h-full">
-                <ContactSection />
-              </div>
-            </section>
-            
-            <section className="scroll-section min-h-screen w-screen flex-shrink-0">
-              <div className="section-content h-full">
-                <Footer />
-              </div>
-            </section>
-          </Suspense>
-        </SmoothScrollContainer>
+          </div>
+        }>
+          <section className="scroll-section min-h-screen w-full flex items-center justify-center">
+            <div className="section-content w-full h-full">
+              <AboutSection />
+            </div>
+          </section>
+          
+          <section className="scroll-section min-h-screen w-full flex items-center justify-center">
+            <div className="section-content w-full h-full">
+              <ProjectsSection />
+            </div>
+          </section>
+          
+          <section className="scroll-section min-h-screen w-full flex items-center justify-center">
+            <div className="section-content w-full h-full">
+              <SkillsSection />
+            </div>
+          </section>
+          
+          <section className="scroll-section min-h-screen w-full flex items-center justify-center">
+            <div className="section-content w-full h-full">
+              <ContactSection />
+            </div>
+          </section>
+          
+          <section className="scroll-section min-h-screen w-full flex items-center justify-center">
+            <div className="section-content w-full h-full">
+              <Footer />
+            </div>
+          </section>
+        </Suspense>
       </div>
     </Suspense>
   );

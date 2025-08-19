@@ -141,24 +141,23 @@
 
 /* Light Mode Panel */
 .light-mode-panel {
-  background-color: rgba(255, 255, 255, 0.05); /* Light, translucent background */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Dark Mode Panel */
 .dark-mode-panel {
-  background-color: rgba(0, 0, 0, 0.2); /* Dark, translucent background */
-  border: 1px solid rgba(0, 0, 0, 0.3); /* More pronounced dark border */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* More visible shadow */
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* GSAP Smooth Scroll Styles */
+/* GSAP Scroll Styles for vertical scrolling */
 .scroll-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .section-content {
@@ -169,12 +168,11 @@
   justify-content: center;
 }
 
-/* Ensure sections don't interfere with each other */
-body {
-  overflow-x: hidden;
+/* Smooth scroll transitions */
+html {
+  scroll-behavior: auto; /* Let GSAP handle smooth scrolling */
 }
 
-/* Smooth scroll transitions */
-.gsap-scroll-container {
-  will-change: transform;
+body {
+  overflow-x: hidden;
 }
