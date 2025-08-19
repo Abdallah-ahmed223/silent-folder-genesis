@@ -7,11 +7,11 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Cosmic",
-    "subtitle": "Developer",
-    "description": "Crafting stellar digital experiences across the digital universe. Specializing in modern web technologies and cosmic user interfaces.",
-    "viewWork": "Explore Universe",
-    "getInTouch": "Contact Mission Control"
+    "title": "Software Engineer",
+    "subtitle": "Frontend Developer",
+    "description": "Hi, I'm Abdallah — a frontend developer who turns ideas into immersive, multilingual web experiences.",
+    "viewWork": "My Projects",
+    "getInTouch": "Contact Me"
   },
   "about": {
     "title": "About My",

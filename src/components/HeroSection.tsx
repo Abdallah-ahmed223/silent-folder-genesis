@@ -5,25 +5,19 @@ import Portfolio3DScene from './Portfolio3DScene'
 import { useTranslation } from 'react-i18next'
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Mail, href: 'mailto:hello@example.com', label: 'Email' },
+  { icon: Github, href: 'https://github.com/abdallah-ahmed222', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/abdallah-ahmed-783512231/', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:abdallah.ahmed2022222@gmail.com', label: 'Email' },
 ]
 
 const spaceStats = [
-  { icon: Zap, value: "100+", label: "Projects Deployed" },
-  { icon: Cpu, value: "5+", label: "Years Experience" },
+  { icon: Zap, value: "30+", label: "Projects Deployed" },
+  { icon: Cpu, value: "3+", label: "Years Experience" },
   { icon: Satellite, value: "∞", label: "Lines of Code" },
 ]
 
 export default function HeroSection() {
   const { t } = useTranslation();
-  
-  const scrollToNext = () => {
-    const element = document.getElementById('about')
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Starfield Background */}
@@ -33,34 +27,6 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Portfolio3DScene />
       </div>
-
-      {/* Spaceship Dashboard UI Elements */}
-      <div className="absolute top-4 left-4 z-20 hidden lg:block">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.5 }}
-          className="glow-card light-mode-panel dark-mode-panel p-4 space-y-2"
-        >
-          <div className="text-xs text-accent font-mono">STATUS: ONLINE</div>
-          <div className="text-xs text-muted-foreground font-mono">CONN: STABLE</div>
-          <div className="text-xs text-primary font-mono">SYS: OPERATIONAL</div>
-        </motion.div>
-      </div>
-
-      <div className="absolute top-4 right-4 z-20 hidden lg:block">
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.7 }}
-          className="glow-card light-mode-panel dark-mode-panel p-4 space-y-2"
-        >
-          <div className="text-xs text-accent font-mono">PWR: 100%</div>
-          <div className="text-xs text-muted-foreground font-mono">THR: NOMINAL</div>
-          <div className="text-xs text-primary font-mono">NAV: LOCKED</div>
-        </motion.div>
-      </div>
-
       {/* Content Overlay */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <motion.div
@@ -89,7 +55,7 @@ export default function HeroSection() {
             className="text-4xl sm:text-6xl lg:text-8xl font-bold leading-tight"
           >
             <span className="block">{t('hero.title')}</span>
-            <span className="hero-text block cosmic-float">{t('hero.subtitle')}</span>
+            <span className="hero-text block cosmic-float h-[7.8vw]">{t('hero.subtitle')}</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -97,7 +63,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl  p-4 rounded-sm lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed light-mode-panel dark-mode-panel"
           >
             {t('hero.description')}
           </motion.p>
@@ -154,7 +120,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex justify-center space-x-6 pt-8"
+            className="flex justify-center pt-8"
           >
             {socialLinks.map((social, index) => (
               <motion.a
@@ -164,10 +130,10 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full glow-card light-mode-panel dark-mode-panel group relative overflow-hidden"
+                className="p-3 rounded-full glow-card light-mode-panel dark-mode-panel group relative overflow-hidden  mx-3 "
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors duration-300 relative z-10" />
+                <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors duration-300 relative z-10 " />
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="sr-only">{social.label}</span>
               </motion.a>
@@ -175,32 +141,8 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={scrollToNext}
-            className="p-2 rounded-full glow-card light-mode-panel dark-mode-panel hover:bg-primary/10 transition-colors duration-300"
-          >
-            <ArrowDown className="w-6 h-6 text-primary" />
-          </Button>
-        </motion.div>
-      </motion.div>
-
       {/* Background Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/60 pointer-events-none z-[5]"></div>
-      
       {/* Grid Overlay for Spaceship Feel */}
       <div className="absolute inset-0 opacity-10 pointer-events-none z-[6]" 
            style={{
