@@ -59,13 +59,6 @@ export default function ProjectsSection() {
   const { t } = useTranslation();
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
-      {/* 3D Background */}
-      <div className="absolute inset-0 opacity-25 pointer-events-none">
-        <Suspense fallback={<div />}>
-          <Projects3DScene />
-        </Suspense>
-      </div>
-      
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
