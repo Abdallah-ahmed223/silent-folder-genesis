@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'exo': ['Exo 2', 'system-ui', '-apple-system', 'sans-serif'],
+				'neural': ['Exo 2', 'system-ui', '-apple-system', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -52,24 +57,32 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom portfolio theme colors
+				// Premium portfolio theme colors
 				'cyber-blue': 'hsl(var(--cyber-blue))',
 				'electric-cyan': 'hsl(var(--electric-cyan))',
 				'neon-purple': 'hsl(var(--neon-purple))',
 				'plasma-pink': 'hsl(var(--plasma-pink))',
+				'quantum-green': 'hsl(var(--quantum-green))',
+				'neural-orange': 'hsl(var(--neural-orange))',
 			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-dark': 'var(--gradient-dark)',
-				'gradient-space': 'var(--gradient-space)',
+				'gradient-neural': 'var(--gradient-neural)',
 			},
 			boxShadow: {
 				'glow-primary': 'var(--glow-primary)',
 				'glow-secondary': 'var(--glow-secondary)',
 				'glow-accent': 'var(--glow-accent)',
+				'shadow-neural': 'var(--shadow-neural)',
 			},
 			animation: {
+				'neural-pulse': 'neural-pulse 4s ease-in-out infinite',
+				'quantum-float': 'quantum-float 6s ease-in-out infinite',
+				'hologram-sweep': 'hologram-sweep 3s linear infinite',
+				'grid-flow': 'grid-flow 20s linear infinite',
+				'data-stream': 'data-stream 3s linear infinite',
+				'pulse-ring': 'pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				'gradient-shift': 'gradient-shift 3s ease-in-out infinite alternate',
 				'float': 'float 6s ease-in-out infinite',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
@@ -96,11 +109,39 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
-			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				},
+				'neural-pulse': {
+					'0%, 100%': {
+						'background-position': '0% 50%',
+						'filter': 'hue-rotate(0deg) brightness(1)',
+					},
+					'25%': {
+						'background-position': '100% 50%',
+						'filter': 'hue-rotate(90deg) brightness(1.2)',
+					},
+					'50%': {
+						'background-position': '200% 50%',
+						'filter': 'hue-rotate(180deg) brightness(1.1)',
+					},
+					'75%': {
+						'background-position': '300% 50%',
+						'filter': 'hue-rotate(270deg) brightness(1.2)',
+					},
+				},
+				'quantum-float': {
+					'0%, 100%': {
+						transform: 'translateY(0px) rotateX(0deg)',
+					},
+					'25%': {
+						transform: 'translateY(-20px) rotateX(5deg)',
+					},
+					'50%': {
+						transform: 'translateY(-40px) rotateX(0deg)',
+					},
+					'75%': {
+						transform: 'translateY(-20px) rotateX(-5deg)',
+					},
+				},
 			}
 		}
 	},

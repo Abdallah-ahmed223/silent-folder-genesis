@@ -1,176 +1,141 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Cosmic Space Portfolio Design System - Space Identity */
+/* Premium Portfolio Design System - Futuristic Identity */
 
 @layer base {
   :root {
-    /* Light Mode - Space Station/Laboratory Theme */
-    --background: 210 40% 98%;
-    --foreground: 222 84% 4.9%;
+    /* Light Mode - High-tech Laboratory Theme */
+    --background: 220 25% 97%;
+    --foreground: 225 15% 8%;
 
-    /* Space Laboratory Colors */
-    --cosmic-blue: 217 91% 60%;
-    --nebula-purple: 262 83% 58%;
-    --starlight-cyan: 199 89% 48%;
-    --galaxy-pink: 336 75% 40%;
-    --solar-gold: 45 93% 47%;
+    /* Futuristic Color Palette */
+    --cyber-blue: 210 100% 56%;
+    --electric-cyan: 180 100% 50%;
+    --neon-purple: 270 100% 70%;
+    --plasma-pink: 320 100% 70%;
+    --quantum-green: 120 100% 50%;
+    --neural-orange: 30 100% 60%;
 
-    /* Light Mode UI Components */
+    /* Enhanced UI Components */
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 4.9%;
+    --card-foreground: 225 15% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 4.9%;
+    --popover-foreground: 225 15% 8%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 100% 56%;
+    --primary-foreground: 220 25% 97%;
 
-    --secondary: 210 40% 94%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 25% 90%;
+    --secondary-foreground: 225 15% 15%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 25% 94%;
+    --muted-foreground: 225 10% 40%;
 
-    --accent: 199 89% 48%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 25% 97%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 220 25% 88%;
+    --input: 220 25% 88%;
+    --ring: 210 100% 56%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Light Mode Space Theme Gradients */
+    /* Premium Gradients */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(217 91% 60%),
-      hsl(199 89% 48%),
-      hsl(262 83% 58%)
+      hsl(210 100% 56%),
+      hsl(270 100% 70%),
+      hsl(180 100% 50%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(199 89% 48%),
-      hsl(217 91% 60%),
-      hsl(45 93% 47%)
+      hsl(180 100% 50%),
+      hsl(120 100% 50%),
+      hsl(30 100% 60%)
     );
-    --gradient-space: linear-gradient(
-      135deg,
-      hsl(210 40% 98%) 0%,
-      hsl(217 91% 95%) 50%,
-      hsl(199 89% 96%) 100%
-    );
-    --gradient-starfield: radial-gradient(
-      circle at 70% 20%,
-      hsl(217 91% 60% / 0.08) 0%,
-      transparent 2%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      hsl(199 89% 48% / 0.06) 0%,
-      transparent 1%
-    ),
-    radial-gradient(
-      circle at 90% 60%,
-      hsl(262 83% 58% / 0.04) 0%,
-      transparent 1.5%
+    --gradient-neural: linear-gradient(
+      45deg,
+      hsl(210 100% 56% / 0.1),
+      hsl(270 100% 70% / 0.1),
+      hsl(180 100% 50% / 0.1)
     );
 
-    /* Light Mode Glows */
-    --glow-cosmic: 0 4px 20px hsl(217 91% 60% / 0.15), 0 0 40px hsl(217 91% 60% / 0.1);
-    --glow-nebula: 0 4px 25px hsl(262 83% 58% / 0.15), 0 0 50px hsl(262 83% 58% / 0.08);
-    --glow-starlight: 0 4px 15px hsl(199 89% 48% / 0.2), 0 0 30px hsl(199 89% 48% / 0.1);
-
-    --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-cosmic: 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    /* Premium Shadows & Glows */
+    --glow-primary: 0 0 20px hsl(210 100% 56% / 0.3), 0 0 40px hsl(210 100% 56% / 0.2);
+    --glow-secondary: 0 0 25px hsl(180 100% 50% / 0.4), 0 0 50px hsl(180 100% 50% / 0.2);
+    --glow-accent: 0 0 30px hsl(270 100% 70% / 0.3), 0 0 60px hsl(270 100% 70% / 0.1);
+    --shadow-neural: 0 8px 32px hsl(210 100% 56% / 0.15);
   }
 
   .dark {
-    /* Dark Mode - Deep Space Theme */
-    --background: 240 10% 3.9%;
+    /* Dark Mode - Cyberpunk Deep Space */
+    --background: 230 15% 4%;
     --foreground: 0 0% 98%;
 
-    /* Deep Space Colors Enhanced */
-    --cosmic-blue: 217 91% 65%;
-    --nebula-purple: 262 83% 70%;
-    --starlight-cyan: 199 89% 60%;
-    --galaxy-pink: 336 75% 60%;
-    --solar-gold: 45 93% 58%;
+    /* Enhanced Dark Colors */
+    --cyber-blue: 210 100% 65%;
+    --electric-cyan: 180 100% 60%;
+    --neon-purple: 270 100% 75%;
+    --plasma-pink: 320 100% 75%;
+    --quantum-green: 120 100% 60%;
+    --neural-orange: 30 100% 70%;
 
-    /* Dark Mode UI Components */
-    --card: 240 10% 3.9%;
+    --card: 230 15% 4%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 230 15% 4%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 217 91% 65%;
-    --primary-foreground: 240 10% 3.9%;
+    --primary: 210 100% 65%;
+    --primary-foreground: 230 15% 4%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 230 15% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 230 15% 12%;
+    --muted-foreground: 230 5% 60%;
 
-    --accent: 199 89% 60%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 180 100% 60%;
+    --accent-foreground: 230 15% 4%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 85% 65%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 217 91% 65%;
+    --border: 230 15% 12%;
+    --input: 230 15% 12%;
+    --ring: 210 100% 65%;
 
-    /* Dark Mode Space Theme Gradients */
+    /* Dark Mode Premium Gradients */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(217 91% 65%),
-      hsl(262 83% 70%),
-      hsl(199 89% 60%)
+      hsl(210 100% 65%),
+      hsl(270 100% 75%),
+      hsl(180 100% 60%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(199 89% 60%),
-      hsl(217 91% 65%),
-      hsl(336 75% 60%)
+      hsl(180 100% 60%),
+      hsl(320 100% 75%),
+      hsl(30 100% 70%)
     );
-    --gradient-space: radial-gradient(
+    --gradient-neural: radial-gradient(
       ellipse at center,
-      hsl(240 10% 3.9%) 0%,
-      hsl(240 15% 2%) 50%,
-      hsl(240 20% 1%) 100%
-    );
-    --gradient-starfield: radial-gradient(
-      circle at 70% 20%,
-      hsl(0 0% 98% / 0.1) 0%,
-      transparent 2%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      hsl(0 0% 98% / 0.08) 0%,
-      transparent 1%
-    ),
-    radial-gradient(
-      circle at 90% 60%,
-      hsl(0 0% 98% / 0.06) 0%,
-      transparent 1.5%
-    ),
-    radial-gradient(
-      circle at 40% 40%,
-      hsl(0 0% 98% / 0.04) 0%,
-      transparent 1%
+      hsl(210 100% 65% / 0.15),
+      hsl(270 100% 75% / 0.1),
+      transparent 70%
     );
 
-    /* Dark Mode Enhanced Glows */
-    --glow-cosmic: 0 0 30px hsl(217 91% 65% / 0.4), 0 0 60px hsl(217 91% 65% / 0.2);
-    --glow-nebula: 0 0 40px hsl(262 83% 70% / 0.5), 0 0 80px hsl(262 83% 70% / 0.2);
-    --glow-starlight: 0 0 25px hsl(199 89% 60% / 0.6), 0 0 50px hsl(199 89% 60% / 0.3);
+    /* Enhanced Dark Glows */
+    --glow-primary: 0 0 30px hsl(210 100% 65% / 0.5), 0 0 60px hsl(210 100% 65% / 0.3);
+    --glow-secondary: 0 0 35px hsl(180 100% 60% / 0.6), 0 0 70px hsl(180 100% 60% / 0.3);
+    --glow-accent: 0 0 40px hsl(270 100% 75% / 0.5), 0 0 80px hsl(270 100% 75% / 0.2);
+    --shadow-neural: 0 12px 48px hsl(210 100% 65% / 0.25);
   }
 }
 
@@ -180,238 +145,331 @@
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
-    background: var(--gradient-space), var(--gradient-starfield);
+    @apply bg-background text-foreground font-exo overflow-x-hidden;
+    background: 
+      radial-gradient(ellipse at top, hsl(var(--primary) / 0.03), transparent 50%),
+      radial-gradient(ellipse at bottom, hsl(var(--accent) / 0.03), transparent 50%),
+      var(--gradient-neural);
     background-attachment: fixed;
-    transition: all var(--animation-smooth);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 }
 
-/* Cosmic Component Styles */
+/* Premium Component Styles */
 @layer components {
   .hero-text {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent font-bold;
     background-size: 200% 200%;
-    animation: cosmic-shift 4s ease-in-out infinite alternate;
+    animation: neural-pulse 4s ease-in-out infinite;
+    font-variation-settings: 'wght' 800;
   }
 
-  .glow-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border rounded-xl;
-    box-shadow: var(--glow-cosmic);
-    transition: all var(--animation-smooth);
-    position: relative;
+  .premium-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl relative overflow-hidden;
+    box-shadow: var(--shadow-neural);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .glow-card::before {
+  .premium-card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: var(--gradient-primary);
     opacity: 0;
     border-radius: inherit;
-    transition: opacity var(--animation-smooth);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
   }
 
-  .glow-card:hover {
-    box-shadow: var(--glow-nebula);
-    transform: translateY(-2px) scale(1.01);
-    border-color: hsl(var(--primary) / 0.5);
+  .premium-card:hover {
+    box-shadow: var(--glow-primary);
+    transform: translateY(-8px) scale(1.02);
+    border-color: hsl(var(--primary) / 0.6);
   }
 
-  .glow-card:hover::before {
+  .premium-card:hover::before {
     opacity: 0.05;
   }
 
-  .dark .glow-card:hover::before {
+  .dark .premium-card:hover::before {
     opacity: 0.1;
   }
 
-  .cosmic-float {
-    animation: cosmic-float 8s ease-in-out infinite;
+  .magnetic-btn {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+    transform-style: preserve-3d;
   }
 
-  .nebula-pulse {
-    animation: nebula-pulse 3s ease-in-out infinite alternate;
+  .magnetic-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--glow-secondary);
   }
 
-  .starfield-bg {
-    background: var(--gradient-starfield);
-    animation: starfield-twinkle 6s ease-in-out infinite;
-  }
-
-  /* Light mode specific styles */
-  :root .light-mode-panel {
-    @apply bg-white/90 backdrop-blur-sm border border-primary/20;
-    box-shadow: 0 8px 32px hsl(var(--primary) / 0.1);
-  }
-
-  /* Dark mode specific styles */
-  .dark .dark-mode-panel {
-    @apply bg-card/50 backdrop-blur-lg border border-primary/30;
-    box-shadow: var(--glow-cosmic);
-  }
-}
-
-/* Cosmic Animations */
-@layer utilities {
-  @keyframes cosmic-shift {
-    0%, 100% {
-      background-position: 0% 50%;
-      filter: hue-rotate(0deg);
-    }
-    25% {
-      background-position: 100% 50%;
-      filter: hue-rotate(90deg);
-    }
-    50% {
-      background-position: 200% 50%;
-      filter: hue-rotate(180deg);
-    }
-    75% {
-      background-position: 300% 50%;
-      filter: hue-rotate(270deg);
-    }
-  }
-
-  @keyframes cosmic-float {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    25% {
-      transform: translateY(-15px) rotate(2deg);
-    }
-    50% {
-      transform: translateY(-30px) rotate(0deg);
-    }
-    75% {
-      transform: translateY(-15px) rotate(-2deg);
-    }
-  }
-
-  @keyframes nebula-pulse {
-    0% {
-      box-shadow: var(--glow-cosmic);
-      filter: brightness(1);
-    }
-    50% {
-      box-shadow: var(--glow-nebula);
-      filter: brightness(1.2);
-    }
-    100% {
-      box-shadow: var(--glow-starlight);
-      filter: brightness(1.1);
-    }
-  }
-
-  @keyframes starfield-twinkle {
-    0%, 100% {
-      opacity: 0.8;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes cosmic-rotate {
-    0% {
-      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    }
-    33% {
-      transform: rotateX(120deg) rotateY(120deg) rotateZ(120deg);
-    }
-    66% {
-      transform: rotateX(240deg) rotateY(240deg) rotateZ(240deg);
-    }
-    100% {
-      transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-    }
-  }
-
-  .cosmic-gradient {
-    background: var(--gradient-primary);
-    background-size: 400% 400%;
-    animation: cosmic-shift var(--animation-cosmic);
-  }
-
-  .scroll-smooth {
-    scroll-behavior: smooth;
-  }
-
-  /* Spaceship UI Elements */
-  .hologram-effect {
-    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
-    background-size: 200% 200%;
-    animation: hologram-scan 3s linear infinite;
-  }
-
-  .circuit-pattern {
+  .neural-grid {
     background-image: 
-      linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-      linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: grid-flow 20s linear infinite;
   }
 
-  .scanner-line {
+  .holographic {
     position: relative;
     overflow: hidden;
   }
 
-  .scanner-line::after {
+  .holographic::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent);
-    animation: scanner-sweep 2s linear infinite;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--accent) / 0.3),
+      transparent
+    );
+    animation: hologram-sweep 3s linear infinite;
   }
 
-  /* Terminal-style text - adaptive for themes */
-  .terminal-text {
-    font-family: 'Courier New', monospace;
-    transition: all var(--animation-smooth);
+  .floating-element {
+    animation: quantum-float 6s ease-in-out infinite;
   }
 
-  :root .terminal-text {
-    color: hsl(var(--primary));
-    text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+  .skill-orb {
+    @apply relative rounded-full p-4 backdrop-blur-sm border border-primary/20;
+    background: radial-gradient(
+      ellipse at center,
+      hsl(var(--primary) / 0.1),
+      transparent 70%
+    );
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .dark .terminal-text {
-    color: hsl(var(--accent));
-    text-shadow: 0 0 10px hsl(var(--accent) / 0.6);
+  .skill-orb:hover {
+    transform: scale(1.1) rotateY(15deg);
+    box-shadow: var(--glow-accent);
+    border-color: hsl(var(--accent) / 0.6);
+  }
+
+  .timeline-connector {
+    @apply relative;
+  }
+
+  .timeline-connector::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--primary)),
+      hsl(var(--accent)),
+      hsl(var(--primary))
+    );
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+
+  .project-card {
+    @apply premium-card group cursor-pointer;
+    perspective: 1000px;
+  }
+
+  .project-card:hover .project-content {
+    transform: rotateY(-5deg) translateZ(20px);
+  }
+
+  .project-content {
+    @apply transition-all duration-500 ease-out;
+    transform-style: preserve-3d;
   }
 }
 
-/* Enhanced Cosmic Animations */
+/* Futuristic Animations */
 @layer utilities {
-  @keyframes hologram-scan {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  @keyframes neural-pulse {
+    0%, 100% {
+      background-position: 0% 50%;
+      filter: hue-rotate(0deg) brightness(1);
+    }
+    25% {
+      background-position: 100% 50%;
+      filter: hue-rotate(90deg) brightness(1.2);
+    }
+    50% {
+      background-position: 200% 50%;
+      filter: hue-rotate(180deg) brightness(1.1);
+    }
+    75% {
+      background-position: 300% 50%;
+      filter: hue-rotate(270deg) brightness(1.2);
+    }
   }
 
-  @keyframes scanner-sweep {
+  @keyframes quantum-float {
+    0%, 100% {
+      transform: translateY(0px) rotateX(0deg);
+    }
+    25% {
+      transform: translateY(-20px) rotateX(5deg);
+    }
+    50% {
+      transform: translateY(-40px) rotateX(0deg);
+    }
+    75% {
+      transform: translateY(-20px) rotateX(-5deg);
+    }
+  }
+
+  @keyframes hologram-sweep {
     0% { left: -100%; }
     100% { left: 100%; }
   }
 
+  @keyframes grid-flow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, 40px); }
+  }
+
   @keyframes data-stream {
-    0% { transform: translateY(100vh); opacity: 0; }
+    0% { 
+      transform: translateY(100vh) translateX(-50%);
+      opacity: 0;
+    }
     10% { opacity: 1; }
     90% { opacity: 1; }
-    100% { transform: translateY(-100vh); opacity: 0; }
+    100% { 
+      transform: translateY(-100vh) translateX(-50%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .neural-gradient {
+    background: var(--gradient-primary);
+    background-size: 400% 400%;
+    animation: neural-pulse 6s ease-in-out infinite;
+  }
+
+  .data-particles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: hsl(var(--accent));
+    animation: data-stream 3s linear infinite;
+  }
+
+  .pulse-ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid hsl(var(--primary) / 0.3);
+    border-radius: inherit;
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Typography Scale */
+  .text-neural {
+    font-variation-settings: 'wght' 700;
+    letter-spacing: -0.02em;
+  }
+
+  .text-code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-variant-ligatures: common-ligatures;
+  }
+
+  /* Interactive Elements */
+  .interactive-hover:hover {
+    animation: quantum-float 2s ease-in-out infinite;
+  }
+
+  .magnetic-field {
+    position: relative;
+    cursor: none;
+  }
+
+  .magnetic-field::after {
+    content: '';
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(
+      circle,
+      hsl(var(--accent)),
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 768px) {
+    .hero-text {
+      font-size: clamp(2rem, 8vw, 4rem);
+    }
+    
+    .premium-card {
+      @apply rounded-xl;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .premium-card {
+      @apply shadow-none border;
+    }
   }
 }
-html {
-  overflow-x: hidden !important;
-}
-::selection {
-  background-color: transparent;
-  color: inherit;
+
+/* Font Families */
+@layer utilities {
+  .font-exo {
+    font-family: 'Exo 2', system-ui, -apple-system, sans-serif;
+  }
+  
+  .font-neural {
+    font-family: 'Exo 2', system-ui, -apple-system, sans-serif;
+    font-variation-settings: 'wght' 800;
+    letter-spacing: -0.03em;
+  }
 }
