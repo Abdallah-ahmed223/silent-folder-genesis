@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { Code2, Layers3, Paintbrush, Rocket } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import SkillCategory from './skills/SkillCategory'
 import SkillsStats from './skills/SkillsStats'
 
@@ -45,53 +45,129 @@ const containerVariants = {
   }
 }
 
+const floatingElements = [
+  { id: 1, delay: 1, x: '8%', y: '15%' },
+  { id: 2, delay: 2.5, x: '92%', y: '25%' },
+  { id: 3, delay: 0.5, x: '12%', y: '85%' },
+  { id: 4, delay: 3, x: '88%', y: '75%' },
+];
+
 export default function SkillsSection() {
   const { t } = useTranslation();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 12,
+        y: (e.clientY / window.innerHeight - 0.5) * 12,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
   
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20 relative">
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+    <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20 neural-grid overflow-hidden">
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 neural-grid opacity-20"></div>
+      
+      {/* 3D Background Scene */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
         <Suspense fallback={<div />}>
           <Skills3DScene />
         </Suspense>
       </div>
+
+      {/* Floating Elements */}
+      {floatingElements.map((element) => (
+        <motion.div
+          key={element.id}
+          className="absolute w-3 h-3 bg-primary/25 rounded-full floating-element"
+          style={{
+            left: element.x,
+            top: element.y,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.25, 0.75, 0.25],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            delay: element.delay,
+          }}
+        />
+      ))}
+
+      {/* Data Streams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute data-particles"
+            style={{
+              left: `${20 + i * 20}%`,
+              animationDelay: `${i * 0.7}s`,
+            }}
+          />
+        ))}
+      </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          style={{
+            transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
+          }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            {t('skills.title')} <span className="hero-text">{t('skills.titleHighlight')}</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('skills.description')}
-          </p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse mr-3" />
+              <span className="text-sm font-neural text-accent font-code">SKILLS • ANALYSIS MODE</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              {t('skills.title')} <span className="hero-text">{t('skills.titleHighlight')}</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto premium-card p-4">
+              {t('skills.description')}
+            </p>
+          </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {skillCategories.map((category, index) => (
-            <SkillCategory
-              key={category.title}
-              title={category.title}
-              icon={category.icon}
-              skills={category.skills}
-              delay={category.delay}
-            />
-          ))}
-        </motion.div>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {skillCategories.map((category, index) => (
+              <SkillCategory
+                key={category.title}
+                title={category.title}
+                icon={category.icon}
+                skills={category.skills}
+                delay={category.delay}
+              />
+            ))}
+          </motion.div>
 
-        <SkillsStats />
+          <SkillsStats />
+        </motion.div>
       </div>
+
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/40 pointer-events-none z-[5]"></div>
     </section>
   )
 }
