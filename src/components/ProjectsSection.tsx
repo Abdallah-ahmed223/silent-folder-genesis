@@ -1,9 +1,10 @@
+
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Code, Palette, Zap } from 'lucide-react'
+import { Code, Palette, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { useTranslation } from 'react-i18next'
 import { lazy, Suspense } from 'react'
+import ProjectCard from './projects/ProjectCard'
 
 const Projects3DScene = lazy(() => import('./3d/Projects3DScene'))
 
@@ -15,8 +16,7 @@ const projects = [
     technologies: ['React', 'Three.js', 'Node.js', 'PostgreSQL'],
     github: 'https://github.com',
     live: 'https://example.com',
-    icon: Code,
-    color: 'from-blue-500 to-cyan-500'
+    icon: Code
   },
   {
     title: 'Design System',
@@ -25,8 +25,7 @@ const projects = [
     technologies: ['React', 'Storybook', 'Figma', 'TypeScript'],
     github: 'https://github.com',
     live: 'https://example.com',
-    icon: Palette,
-    color: 'from-purple-500 to-pink-500'
+    icon: Palette
   },
   {
     title: 'Real-time Dashboard',
@@ -35,8 +34,7 @@ const projects = [
     technologies: ['Next.js', 'D3.js', 'WebSockets', 'Tailwind'],
     github: 'https://github.com',
     live: 'https://example.com',
-    icon: Zap,
-    color: 'from-emerald-500 to-teal-500'
+    icon: Zap
   }
 ]
 
@@ -57,9 +55,9 @@ const itemVariants = {
 
 export default function ProjectsSection() {
   const { t } = useTranslation();
+  
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
-      {/* 3D Background */}
       <div className="absolute inset-0 opacity-25 pointer-events-none">
         <Suspense fallback={<div />}>
           <Projects3DScene />
@@ -90,80 +88,12 @@ export default function ProjectsSection() {
           className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
           {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="group"
-            >
-              <Card className="glow-card h-full overflow-hidden">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
-                  
-                  {/* Project Icon */}
-                  <div className="absolute top-4 left-4">
-                    <div className="p-2 rounded-lg bg-background/80 backdrop-blur-sm">
-                      <project.icon className="w-5 h-5 text-primary" />
-                    </div>
-                  </div>
-                </div>
-
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 group/btn"
-                      asChild
-                    >
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-                        {t('projects.buttons.code')}
-                      </a>
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="flex-1 group/btn"
-                      asChild
-                    >
-                      <a href={project.live} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-                        {t('projects.buttons.live')}
-                      </a>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+            <motion.div key={project.title} variants={itemVariants}>
+              <ProjectCard {...project} />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* View All Projects Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
