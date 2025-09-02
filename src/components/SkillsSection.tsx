@@ -2,11 +2,10 @@
 import { motion } from 'framer-motion'
 import { Code2, Layers3, Paintbrush, Rocket } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { lazy, Suspense, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import SkillCategory from './skills/SkillCategory'
 import SkillsStats from './skills/SkillsStats'
-
-const Skills3DScene = lazy(() => import('./3d/Skills3DScene'))
+import Portfolio3DScene from './Portfolio3DScene'
 
 const skillCategories = [
   {
@@ -59,8 +58,8 @@ export default function SkillsSection() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 12,
-        y: (e.clientY / window.innerHeight - 0.5) * 12,
+        x: (e.clientX / window.innerWidth - 0.5) * 6,
+        y: (e.clientY / window.innerHeight - 0.5) * 6,
       });
     };
 
@@ -69,29 +68,27 @@ export default function SkillsSection() {
   }, []);
   
   return (
-    <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/20 neural-grid overflow-hidden">
+    <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-card/10 neural-grid overflow-hidden">
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 neural-grid opacity-20"></div>
+      <div className="absolute inset-0 neural-grid opacity-10"></div>
       
       {/* 3D Background Scene */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
-        <Suspense fallback={<div />}>
-          <Skills3DScene />
-        </Suspense>
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Portfolio3DScene opacity={0.1} />
       </div>
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (
         <motion.div
           key={element.id}
-          className="absolute w-3 h-3 bg-primary/25 rounded-full floating-element"
+          className="absolute w-2 h-2 bg-primary/15 rounded-full"
           style={{
             left: element.x,
             top: element.y,
           }}
           animate={{
-            y: [0, -30, 0],
-            opacity: [0.25, 0.75, 0.25],
+            y: [0, -25, 0],
+            opacity: [0.15, 0.4, 0.15],
           }}
           transition={{
             duration: 6,
@@ -102,14 +99,14 @@ export default function SkillsSection() {
       ))}
 
       {/* Data Streams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(4)].map((_, i) => (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        {[...Array(3)].map((_, i) => (
           <div
             key={i}
             className="absolute data-particles"
             style={{
-              left: `${20 + i * 20}%`,
-              animationDelay: `${i * 0.7}s`,
+              left: `${25 + i * 25}%`,
+              animationDelay: `${i * 1.2}s`,
             }}
           />
         ))}
@@ -121,7 +118,7 @@ export default function SkillsSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           style={{
-            transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
+            transform: `translate(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px)`,
           }}
         >
           <motion.div
@@ -167,7 +164,7 @@ export default function SkillsSection() {
       </div>
 
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/40 pointer-events-none z-[5]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/30 pointer-events-none z-[5]"></div>
     </section>
   )
 }

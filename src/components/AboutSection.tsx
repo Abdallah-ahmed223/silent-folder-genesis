@@ -1,12 +1,11 @@
 
 import { motion } from "framer-motion";
-import { lazy, Suspense, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import AboutContent from './about/AboutContent';
 import AboutProfile from './about/AboutProfile';
 import AboutStats from './about/AboutStats';
-
-const About3DScene = lazy(() => import('./3d/About3DScene'));
+import Portfolio3DScene from './Portfolio3DScene';
 
 const floatingElements = [
   { id: 1, delay: 0, x: '15%', y: '25%' },
@@ -21,8 +20,8 @@ export default function AboutSection() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 10,
-        y: (e.clientY / window.innerHeight - 0.5) * 10,
+        x: (e.clientX / window.innerWidth - 0.5) * 5,
+        y: (e.clientY / window.innerHeight - 0.5) * 5,
       });
     };
 
@@ -33,27 +32,25 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 neural-grid overflow-hidden">
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 neural-grid opacity-20"></div>
+      <div className="absolute inset-0 neural-grid opacity-10"></div>
       
       {/* 3D Background Scene */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none z-0">
-        <Suspense fallback={<div />}>
-          <About3DScene />
-        </Suspense>
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Portfolio3DScene opacity={0.15} />
       </div>
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (
         <motion.div
           key={element.id}
-          className="absolute w-3 h-3 bg-primary/30 rounded-full floating-element"
+          className="absolute w-2 h-2 bg-primary/20 rounded-full"
           style={{
             left: element.x,
             top: element.y,
           }}
           animate={{
-            y: [0, -20, 0],
-            opacity: [0.3, 0.7, 0.3],
+            y: [0, -15, 0],
+            opacity: [0.2, 0.5, 0.2],
           }}
           transition={{
             duration: 4,
@@ -64,14 +61,14 @@ export default function AboutSection() {
       ))}
 
       {/* Data Streams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(4)].map((_, i) => (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+        {[...Array(3)].map((_, i) => (
           <div
             key={i}
             className="absolute data-particles"
             style={{
-              left: `${25 + i * 20}%`,
-              animationDelay: `${i * 0.8}s`,
+              left: `${25 + i * 25}%`,
+              animationDelay: `${i * 1}s`,
             }}
           />
         ))}
@@ -83,9 +80,26 @@ export default function AboutSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           style={{
-            transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
+            transform: `translate(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px)`,
           }}
         >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse mr-3" />
+              <span className="text-sm font-neural text-accent font-code">ABOUT • PROFILE ANALYSIS</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              {t('about.title')} <span className="hero-text">{t('about.titleHighlight')}</span>
+            </h2>
+          </motion.div>
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AboutContent />
             

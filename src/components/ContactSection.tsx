@@ -1,12 +1,11 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { lazy, Suspense, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import ContactInfo from './contact/ContactInfo'
 import ContactForm from './contact/ContactForm'
 import SocialLinks from './contact/SocialLinks'
-
-const Contact3DScene = lazy(() => import('./3d/Contact3DScene'))
+import Portfolio3DScene from './Portfolio3DScene'
 
 const floatingElements = [
   { id: 1, delay: 0.8, x: '10%', y: '20%' },
@@ -21,8 +20,8 @@ export default function ContactSection() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 8,
-        y: (e.clientY / window.innerHeight - 0.5) * 8,
+        x: (e.clientX / window.innerWidth - 0.5) * 4,
+        y: (e.clientY / window.innerHeight - 0.5) * 4,
       });
     };
 
@@ -33,27 +32,25 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 neural-grid overflow-hidden">
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 neural-grid opacity-15"></div>
+      <div className="absolute inset-0 neural-grid opacity-8"></div>
       
       {/* 3D Background Scene */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none z-0">
-        <Suspense fallback={<div />}>
-          <Contact3DScene />
-        </Suspense>
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Portfolio3DScene opacity={0.08} />
       </div>
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (
         <motion.div
           key={element.id}
-          className="absolute w-3 h-3 bg-primary/30 rounded-full floating-element"
+          className="absolute w-2 h-2 bg-primary/15 rounded-full"
           style={{
             left: element.x,
             top: element.y,
           }}
           animate={{
-            y: [0, -20, 0],
-            opacity: [0.3, 0.8, 0.3],
+            y: [0, -18, 0],
+            opacity: [0.15, 0.4, 0.15],
           }}
           transition={{
             duration: 4.5,
@@ -64,14 +61,14 @@ export default function ContactSection() {
       ))}
 
       {/* Data Streams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(3)].map((_, i) => (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-15">
+        {[...Array(2)].map((_, i) => (
           <div
             key={i}
             className="absolute data-particles"
             style={{
-              left: `${30 + i * 20}%`,
-              animationDelay: `${i * 1}s`,
+              left: `${35 + i * 30}%`,
+              animationDelay: `${i * 1.5}s`,
             }}
           />
         ))}
@@ -83,7 +80,7 @@ export default function ContactSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           style={{
-            transform: `translate(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px)`,
+            transform: `translate(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px)`,
           }}
         >
           <motion.div
@@ -131,7 +128,7 @@ export default function ContactSection() {
       </div>
 
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/60 pointer-events-none z-[5]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/40 pointer-events-none z-[5]"></div>
     </section>
   )
 }
