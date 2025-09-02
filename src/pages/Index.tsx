@@ -1,3 +1,4 @@
+
 import Navigation from "@/components/Navigation";
 import FloatingNavigation from "@/components/FloatingNavigation";
 import PremiumHeroSection from "@/components/PremiumHeroSection";
@@ -9,7 +10,8 @@ import Footer from "@/components/Footer";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-background font-exo">
+    <div className="min-h-screen bg-background text-foreground font-exo">
+      <Navigation />
       <FloatingNavigation />
       <main>
         <PremiumHeroSection />
