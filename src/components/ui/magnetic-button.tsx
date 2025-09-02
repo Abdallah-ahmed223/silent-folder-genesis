@@ -17,7 +17,12 @@ export function MagneticButton({
   className,
   variant = 'primary',
   size = 'md',
-  ...props 
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  disabled,
+  type = 'button',
+  ...htmlProps
 }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -40,25 +45,27 @@ export function MagneticButton({
       setPosition({ x: deltaX, y: deltaY })
     }
 
-    const handleMouseEnter = () => {
+    const handleMouseEnterInternal = (e: MouseEvent) => {
       setIsHovered(true)
+      onMouseEnter?.(e as any)
     }
 
-    const handleMouseLeave = () => {
+    const handleMouseLeaveInternal = (e: MouseEvent) => {
       setIsHovered(false)
       setPosition({ x: 0, y: 0 })
+      onMouseLeave?.(e as any)
     }
 
     button.addEventListener('mousemove', handleMouseMove)
-    button.addEventListener('mouseenter', handleMouseEnter)
-    button.addEventListener('mouseleave', handleMouseLeave)
+    button.addEventListener('mouseenter', handleMouseEnterInternal)
+    button.addEventListener('mouseleave', handleMouseLeaveInternal)
 
     return () => {
       button.removeEventListener('mousemove', handleMouseMove)
-      button.removeEventListener('mouseenter', handleMouseEnter)
-      button.removeEventListener('mouseleave', handleMouseLeave)
+      button.removeEventListener('mouseenter', handleMouseEnterInternal)
+      button.removeEventListener('mouseleave', handleMouseLeaveInternal)
     }
-  }, [strength, isHovered])
+  }, [strength, isHovered, onMouseEnter, onMouseLeave])
 
   const variants = {
     primary: 'neural-gradient text-white border-0 shadow-glow-primary',
@@ -76,7 +83,7 @@ export function MagneticButton({
     <motion.button
       ref={buttonRef}
       className={cn(
-        'magnetic-btn relative rounded-xl font-semibold font-neural transition-all duration-300 ease-out overflow-hidden',
+        'magnetic-btn relative rounded-xl font-semibold font-neural transition-all duration-300 ease-out overflow-hidden group',
         variants[variant],
         sizes[size],
         className
@@ -96,7 +103,10 @@ export function MagneticButton({
       whileTap={{
         scale: 0.95,
       }}
-      {...props}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+      {...htmlProps}
     >
       {/* Holographic overlay */}
       <div className="holographic absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
