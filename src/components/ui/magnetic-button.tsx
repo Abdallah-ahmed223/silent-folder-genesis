@@ -43,9 +43,6 @@ export function MagneticButton({
     onAnimationEnd,
     onAnimationIteration,
     onTransitionEnd,
-    onTransitionStart,
-    onTransitionRun,
-    onTransitionCancel,
     ...safeHtmlProps
   } = htmlProps
 
