@@ -28,6 +28,20 @@ export function MagneticButton({
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
+  // Filter out drag-related props that conflict with Framer Motion
+  const {
+    onDrag,
+    onDragEnd,
+    onDragStart,
+    onDragEnter,
+    onDragExit,
+    onDragLeave,
+    onDragOver,
+    onDrop,
+    draggable,
+    ...safeHtmlProps
+  } = htmlProps
+
   useEffect(() => {
     const button = buttonRef.current
     if (!button) return
@@ -106,7 +120,7 @@ export function MagneticButton({
       onClick={onClick}
       disabled={disabled}
       type={type}
-      {...htmlProps}
+      {...safeHtmlProps}
     >
       {/* Holographic overlay */}
       <div className="holographic absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
