@@ -14,18 +14,18 @@
     "getInTouch": "Contact Me"
   },
   "about": {
-    "title": "About My",
-    "titleHighlight": "Cosmic Journey",
-    "paragraph1": "Welcome to my corner of the digital cosmos! I'm a passionate developer who explores the infinite possibilities of web technology, creating stellar user experiences that transcend ordinary boundaries.",
-    "paragraph2": "With years of experience navigating the vast universe of frontend development, I specialize in React, TypeScript, and Three.js - the perfect toolkit for building immersive, space-age applications that captivate and inspire.",
-    "paragraph3": "When I'm not coding, you'll find me stargazing, exploring new technologies, or contemplating the mysteries of the digital universe. Ready to embark on an extraordinary journey together?",
-    "downloadResume": "Download Cosmic CV",
-    "getInTouch": "Launch Communication",
+    "title": "Who",
+    "titleHighlight": "Am I",
+    "paragraph1": "Welcome to my portfolio. I'm a frontend developer with a passion for crafting thoughtful, user-centered web experiences that combine technical precision with creative design.",
+    "paragraph2": "With years of hands-on experience in modern frontend development, I specialize in React, TypeScript, and Three.js — tools that help me build responsive, interactive applications tailored to real-world needs.",
+    "paragraph3": "Outside of coding, I enjoy exploring new technologies, refining workflows, and staying curious about how digital experiences shape our everyday lives. Let’s build something meaningful together.",
+    "downloadResume": "Download My CV",
+    "getInTouch": "Contact Me",
     "stats": {
-      "experience": "Years in Space",
-      "projects": "Missions Completed",
-      "clients": "Galaxies Served",
-      "technologies": "Tech Mastered"
+      "experience": "Years of Experience",
+      "projects": "Projects Completed",
+      "clients": "Clients Served",
+      "technologies": "Technologies Mastered"
     }
   },
   "projects": {

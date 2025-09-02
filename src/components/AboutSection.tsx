@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Download, MapPin, Calendar, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageSrc from "@/images/me.webp";
+import CVFile from "@/images/Abdallah_Ahmed_Web_Front_end (1).pdf";
 import { useTranslation } from 'react-i18next';
 import { lazy, Suspense } from 'react';
 
@@ -15,6 +16,22 @@ const stats = [
 
 export default function AboutSection() {
   const { t } = useTranslation();
+  
+  const handleDownloadCV = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    // Use the imported CV file
+    link.href = CVFile;
+    // Set download attribute with filename
+    link.download = 'Abdallah_Ahmed_Web_Front_end_CV.pdf';
+    // Append to body
+    document.body.appendChild(link);
+    // Trigger click
+    link.click();
+    // Clean up
+    document.body.removeChild(link);
+  };
+  
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 relative">
       {/* 3D Background */}
@@ -53,7 +70,11 @@ export default function AboutSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="glow-card">
+              <Button 
+                size="lg" 
+                className="glow-card"
+                onClick={handleDownloadCV}
+              >
                 <Download className="w-5 h-5 mr-2" />
                 {t('about.downloadResume')}
               </Button>
