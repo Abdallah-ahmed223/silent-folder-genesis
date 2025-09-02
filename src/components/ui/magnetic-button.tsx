@@ -28,7 +28,7 @@ export function MagneticButton({
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
-  // Filter out drag-related props that conflict with Framer Motion
+  // Filter out props that conflict with Framer Motion
   const {
     onDrag,
     onDragEnd,
@@ -39,6 +39,13 @@ export function MagneticButton({
     onDragOver,
     onDrop,
     draggable,
+    onAnimationStart,
+    onAnimationEnd,
+    onAnimationIteration,
+    onTransitionEnd,
+    onTransitionStart,
+    onTransitionRun,
+    onTransitionCancel,
     ...safeHtmlProps
   } = htmlProps
 
