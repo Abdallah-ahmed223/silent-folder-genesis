@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import ContactInfo from './contact/ContactInfo'
 import ContactForm from './contact/ContactForm'
 import SocialLinks from './contact/SocialLinks'
-import Portfolio3DScene from './Portfolio3DScene'
+
 
 const floatingElements = [
   { id: 1, delay: 0.8, x: '10%', y: '20%' },
@@ -34,10 +34,7 @@ export default function ContactSection() {
       {/* Animated Background Grid */}
       <div className="absolute inset-0 neural-grid opacity-8"></div>
       
-      {/* 3D Background Scene */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Portfolio3DScene opacity={0.08} />
-      </div>
+
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (

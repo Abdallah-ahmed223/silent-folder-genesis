@@ -1,9 +1,10 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { Github } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import ProjectCard from './projects/ProjectCard'
-import Portfolio3DScene from './Portfolio3DScene'
+
 
 const projects = [
   {
@@ -59,10 +60,7 @@ export default function ProjectsSection() {
       {/* Animated Background Grid */}
       <div className="absolute inset-0 neural-grid opacity-10"></div>
       
-      {/* 3D Background Scene */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Portfolio3DScene opacity={0.12} />
-      </div>
+
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (
@@ -130,7 +128,16 @@ export default function ProjectsSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+              <ProjectCard 
+                key={project.id} 
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                technologies={project.tech}
+                github={project.link} // Assuming 'link' in projects array is the github link
+                live={project.link} // Assuming 'link' in projects array is also the live link, or needs adjustment
+                icon={Github} // Default icon, can be changed based on project type if needed
+              />
             ))}
           </div>
         </motion.div>

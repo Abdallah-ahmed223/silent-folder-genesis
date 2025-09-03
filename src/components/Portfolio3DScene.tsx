@@ -2,8 +2,6 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import SolarSystem from './3d/SolarSystem'
-
 // Loading fallback with space theme
 function SceneLoading() {
   return (
@@ -40,8 +38,7 @@ export default function Portfolio3DScene({ className = "", opacity = 0.3 }: Port
           <pointLight position={[20, 20, 20]} intensity={0.4} color="#ffffff" />
           <directionalLight position={[-20, 10, 10]} intensity={0.2} color="#87CEEB" />
           
-          {/* Solar System - focused planets only */}
-          <SolarSystem focusPlanets={['earth', 'mars', 'jupiter']} />
+
           
           {/* Interactive Camera Controls */}
           <OrbitControls

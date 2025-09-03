@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail, Zap, Cpu, Satellite } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import Portfolio3DScene from './Portfolio3DScene'
+
 import { useTranslation } from 'react-i18next'
 
 const socialLinks = [
@@ -23,10 +23,7 @@ export default function HeroSection() {
       {/* Starfield Background */}
       <div className="absolute inset-0 starfield-bg opacity-30"></div>
       
-      {/* 3D Background Scene */}
-      <div className="absolute inset-0 z-0">
-        <Portfolio3DScene />
-      </div>
+
       {/* Content Overlay */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <motion.div
@@ -81,7 +78,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.7 + index * 0.1 }}
-                className="glow-card light-mode-panel dark-mode-panel p-4 text-center group hover:scale-105 transition-transform duration-300"
+                className="glow-card light-mode-panel dark-mode-panel p-4 text-center group transition-transform duration-300"
               >
                 <stat.icon className="w-6 h-6 mx-auto mb-2 text-primary nebula-pulse" />
                 <div className="text-2xl font-bold text-primary">{stat.value}</div>
@@ -128,7 +125,6 @@ export default function HeroSection() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 className="p-3 rounded-full glow-card light-mode-panel dark-mode-panel group relative overflow-hidden  mx-3 "
                 style={{ animationDelay: `${index * 0.1}s` }}

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import AboutContent from './about/AboutContent';
 import AboutProfile from './about/AboutProfile';
 import AboutStats from './about/AboutStats';
-import Portfolio3DScene from './Portfolio3DScene';
+
 
 const floatingElements = [
   { id: 1, delay: 0, x: '15%', y: '25%' },
@@ -34,10 +34,7 @@ export default function AboutSection() {
       {/* Animated Background Grid */}
       <div className="absolute inset-0 neural-grid opacity-10"></div>
       
-      {/* 3D Background Scene */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Portfolio3DScene opacity={0.15} />
-      </div>
+
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (

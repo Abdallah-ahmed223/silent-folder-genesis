@@ -170,6 +170,10 @@
     @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent font-bold;
     background-size: 200% 200%;
     animation: neural-pulse 4s ease-in-out infinite;
+  }
+
+  .hero-text:hover {
+    animation-play-state: paused;
     font-variation-settings: 'wght' 800;
   }
 
@@ -192,7 +196,6 @@
 
   .premium-card:hover {
     box-shadow: var(--glow-primary);
-    transform: translateY(-8px) scale(1.02);
     border-color: hsl(var(--primary) / 0.6);
   }
 
@@ -210,7 +213,6 @@
   }
 
   .magnetic-btn:hover {
-    transform: translateY(-2px) scale(1.05);
     box-shadow: var(--glow-secondary);
   }
 
@@ -247,6 +249,18 @@
     animation: quantum-float 6s ease-in-out infinite;
   }
 
+  .floating-element:hover {
+    animation-play-state: paused;
+  }
+
+  .cosmic-float {
+    animation: cosmic-float 5s ease-in-out infinite;
+  }
+
+  .cosmic-float:hover {
+    animation-play-state: paused;
+  }
+
   .skill-orb {
     @apply relative rounded-full p-4 backdrop-blur-sm border border-primary/20;
     background: radial-gradient(
@@ -258,7 +272,6 @@
   }
 
   .skill-orb:hover {
-    transform: scale(1.1) rotateY(15deg);
     box-shadow: var(--glow-accent);
     border-color: hsl(var(--accent) / 0.6);
   }
@@ -290,7 +303,6 @@
   }
 
   .project-card:hover .project-content {
-    transform: rotateY(-5deg) translateZ(20px);
   }
 
   .project-content {
@@ -332,6 +344,21 @@
     }
     75% {
       transform: translateY(-20px) rotateX(-5deg);
+    }
+  }
+
+  @keyframes cosmic-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(0deg);
+    }
+    75% {
+      transform: translateY(-10px) rotate(-2deg);
     }
   }
 

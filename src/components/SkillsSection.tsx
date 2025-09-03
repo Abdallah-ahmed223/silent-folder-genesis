@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import SkillCategory from './skills/SkillCategory'
 import SkillsStats from './skills/SkillsStats'
-import Portfolio3DScene from './Portfolio3DScene'
+
 
 const skillCategories = [
   {
@@ -72,10 +72,7 @@ export default function SkillsSection() {
       {/* Animated Background Grid */}
       <div className="absolute inset-0 neural-grid opacity-10"></div>
       
-      {/* 3D Background Scene */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Portfolio3DScene opacity={0.1} />
-      </div>
+
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (

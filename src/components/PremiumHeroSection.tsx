@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail, Code2, Palette, Zap } from 'lucide-react'
 import { MagneticButton } from '@/components/ui/magnetic-button'
-import Portfolio3DScene from './Portfolio3DScene'
+
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 
@@ -48,9 +48,7 @@ export default function PremiumHeroSection() {
       <div className="absolute inset-0 neural-grid opacity-30"></div>
       
       {/* 3D Background Scene */}
-      <div className="absolute inset-0 z-0">
-        <Portfolio3DScene />
-      </div>
+
 
       {/* Floating Elements */}
       {floatingElements.map((element) => (
