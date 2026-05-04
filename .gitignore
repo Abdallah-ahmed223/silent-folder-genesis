@@ -15,6 +15,10 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+# Cursor project skills (optional). Prefer user/global skills; keep repo free of agent packs + scripts.
+.cursor/skills/
+**/__pycache__/
+*.pyc
 .idea
 .DS_Store
 *.suo
