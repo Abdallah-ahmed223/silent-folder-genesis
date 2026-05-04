@@ -43,7 +43,7 @@ export default function SkillsSection() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="section-stage relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <div className="absolute inset-0 neural-grid opacity-10" />
 
@@ -55,7 +55,7 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
+          <div className="identity-panel px-6 py-3 holographic inline-flex items-center mb-8">
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse mr-3" />
             <span className="text-xs sm:text-sm font-neural text-accent font-code tracking-wider">
               {site.skills.badge}

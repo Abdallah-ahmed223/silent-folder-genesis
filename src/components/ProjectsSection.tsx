@@ -50,7 +50,7 @@ const projects: {
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="projects" className="section-stage relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 neural-grid opacity-10" />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -61,7 +61,7 @@ export default function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
+          <div className="identity-panel px-6 py-3 holographic inline-flex items-center mb-8">
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse mr-3" />
             <span className="text-xs sm:text-sm font-neural text-accent font-code tracking-wider">
               {site.projects.badge}

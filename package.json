@@ -43,6 +43,8 @@
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@react-three/postprocessing": "^2.19.1",
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.90",
     "@tanstack/react-query": "^5.56.2",
     "caniuse-lite": "^1.0.30001727",
     "class-variance-authority": "^0.7.1",

@@ -1,4 +1,8 @@
 export const site = {
+  spline: {
+    // Keep Spline only in Hero for now.
+    heroScene: 'https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode',
+  },
   nav: {
     home: 'Home',
     about: 'About',

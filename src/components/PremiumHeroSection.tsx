@@ -10,6 +10,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import HeroScene3D from "@/components/3d/HeroScene3D";
+import SplineScene from "@/components/3d/SplineScene";
 import { site } from "@/content/site";
 
 const socialLinks = [
@@ -106,6 +107,7 @@ function FloatingHeroSkillCard({
 
 export default function PremiumHeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const hasSplineHero = site.spline.heroScene.length > 0;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -122,7 +124,7 @@ export default function PremiumHeroSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="section-stage relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 neural-grid opacity-20" />
 
@@ -130,7 +132,21 @@ export default function PremiumHeroSection() {
         className="absolute inset-0"
         style={{ scale: sceneScale, opacity: sceneOpacity }}
       >
-        <HeroScene3D className="opacity-80" />
+        {hasSplineHero ? (
+          <SplineScene
+            scene={site.spline.heroScene}
+            className="absolute inset-0 opacity-95"
+            placeholderClassName="absolute inset-0"
+            fallback={<HeroScene3D className="opacity-80" />}
+            onLoad={(app: unknown) => {
+              // Optional runtime variable if the scene defines it.
+              const runtime = app as { setVariable?: (name: string, value: string) => void };
+              runtime.setVariable?.("heroRole", site.hero.subtitle);
+            }}
+          />
+        ) : (
+          <HeroScene3D className="opacity-80" />
+        )}
       </motion.div>
 
       <div className="absolute inset-0 bg-background/30 pointer-events-none z-[2]" />
@@ -166,7 +182,7 @@ export default function PremiumHeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="inline-flex items-center pointer-events-auto"
           >
-            <div className="premium-card px-6 py-3 holographic">
+            <div className="identity-panel px-6 py-3 holographic">
               <div className="flex items-center gap-3">
                 <div className="w-2.5 h-2.5 bg-quantum-green rounded-full animate-pulse" />
                 <span className="text-xs sm:text-sm font-neural text-accent font-code tracking-wider">

@@ -3,6 +3,7 @@ import SideRailNav from '@/components/SideRailNav'
 import PremiumHeroSection from '@/components/PremiumHeroSection'
 import AboutSection from '@/components/AboutSection'
 import SectionSkeleton from '@/components/SectionSkeleton'
+import usePageSnapNavigation from '@/hooks/usePageSnapNavigation'
 
 const ExperienceSection = lazy(() => import('@/components/ExperienceSection'))
 const ProjectsSection = lazy(() => import('@/components/ProjectsSection'))
@@ -11,6 +12,8 @@ const ContactSection = lazy(() => import('@/components/ContactSection'))
 const Footer = lazy(() => import('@/components/Footer'))
 
 export default function Index() {
+  usePageSnapNavigation()
+
   return (
     <div className="min-h-screen bg-background font-exo overflow-x-hidden">
       <SideRailNav />

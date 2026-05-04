@@ -13,7 +13,7 @@ const floatingElements = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="about" className="section-stage relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 neural-grid opacity-10" />
 
       {floatingElements.map((element) => (
@@ -57,7 +57,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
+          <div className="identity-panel px-6 py-3 holographic inline-flex items-center mb-8">
             <User className="w-3.5 h-3.5 text-accent mr-3" />
             <span className="text-xs sm:text-sm font-neural text-accent font-code tracking-wider">
               {site.about.badge}
