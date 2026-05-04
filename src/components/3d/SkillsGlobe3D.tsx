@@ -43,6 +43,9 @@ const CATEGORY_COLORS: Record<Skill['category'], string> = {
   devops: '#10b981',
 }
 
+const SPLIT_LAMBDA = 1.85
+type SmoothSplitRef = React.MutableRefObject<number>
+
 function fibonacciSphere(n: number, radius: number) {
   const points: [number, number, number][] = []
   const phi = Math.PI * (3 - Math.sqrt(5))
@@ -55,35 +58,40 @@ function fibonacciSphere(n: number, radius: number) {
   return points
 }
 
-/** Shared smoothed 0..1 split; updated once per frame in Scene */
-type SmoothSplitRef = React.MutableRefObject<number>
-
-function BigMergeCube({ smoothSplitRef }: { smoothSplitRef: SmoothSplitRef }) {
+function CoreMetalCube({ smoothSplitRef }: { smoothSplitRef: SmoothSplitRef }) {
   const meshRef = useRef<THREE.Mesh>(null!)
 
   useFrame((state) => {
     if (!meshRef.current) return
     const split = smoothSplitRef.current
-    const mergeAmount = 1 - THREE.MathUtils.smoothstep(split, 0.06, 0.34)
+    const mergeAmount = 1 - THREE.MathUtils.smoothstep(split, 0.08, 0.4)
     const t = state.clock.getElapsedTime()
-    meshRef.current.rotation.x = t * 0.18
-    meshRef.current.rotation.y = t * 0.26
-    const s = Math.max(0.001, mergeAmount * 1.45)
+    meshRef.current.rotation.x = t * 0.14
+    meshRef.current.rotation.y = t * 0.2
+    meshRef.current.rotation.z = t * 0.06
+    meshRef.current.position.y = Math.sin(t * 0.7) * 0.14
+    const s = Math.max(0.001, 1 + mergeAmount * 0.9)
     meshRef.current.scale.setScalar(s)
-    const mat = meshRef.current.material as THREE.MeshStandardMaterial
-    mat.opacity = Math.min(1, mergeAmount * 1.4)
+    const mat = meshRef.current.material as THREE.MeshPhysicalMaterial
+    mat.opacity = Math.min(1, 0.28 + mergeAmount * 0.72)
     meshRef.current.visible = mergeAmount > 0.015
   })
 
   return (
     <mesh ref={meshRef}>
-      <boxGeometry args={[1.1, 1.1, 1.1]} />
-      <meshStandardMaterial
-        color="#2563eb"
-        emissive="#1e1b4b"
-        emissiveIntensity={0.45}
-        metalness={0.88}
-        roughness={0.18}
+      <boxGeometry args={[1.25, 1.25, 1.25]} />
+      <meshPhysicalMaterial
+        color="#7dd3fc"
+        emissive="#2563eb"
+        emissiveIntensity={0.24}
+        metalness={0.2}
+        roughness={0.08}
+        clearcoat={1}
+        clearcoatRoughness={0.05}
+        reflectivity={1}
+        transmission={0.65}
+        thickness={0.8}
+        ior={1.2}
         transparent
         opacity={1}
       />
@@ -91,14 +99,17 @@ function BigMergeCube({ smoothSplitRef }: { smoothSplitRef: SmoothSplitRef }) {
   )
 }
 
-interface SkillCubeProps {
+function SkillCube({
+  target,
+  skill,
+  index,
+  smoothSplitRef,
+}: {
   target: [number, number, number]
   skill: Skill
   index: number
   smoothSplitRef: SmoothSplitRef
-}
-
-function SkillCube({ target, skill, index, smoothSplitRef }: SkillCubeProps) {
+}) {
   const groupRef = useRef<THREE.Group>(null!)
   const labelRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
@@ -108,20 +119,21 @@ function SkillCube({ target, skill, index, smoothSplitRef }: SkillCubeProps) {
     const g = groupRef.current
     if (!g) return
     const split = smoothSplitRef.current
-    const spread = THREE.MathUtils.smoothstep(split, 0.06, 0.82)
+    const spread = THREE.MathUtils.smoothstep(split, 0.08, 0.86)
     const t = state.clock.getElapsedTime()
     const eased = spread * spread * (3 - 2 * spread)
     g.position.set(target[0] * eased, target[1] * eased, target[2] * eased)
-    g.rotation.x = t * 0.12 + index * 0.04
-    g.rotation.y = t * 0.18 + index * 0.06
-    const base = 0.32
-    const hoverBoost = hovered ? 1.15 : 1
+    g.rotation.x = t * 0.11 + index * 0.02
+    g.rotation.y = t * 0.17 + index * 0.05
+    g.position.y += Math.sin(t * 1.05 + index * 0.37) * 0.045 * eased
+    const base = 0.34
+    const hoverBoost = hovered ? 1.16 : 1
     const sc = Math.max(0.001, base * eased * hoverBoost)
     g.scale.setScalar(sc)
 
-    const la = spread > 0.08 ? Math.min(1, (spread - 0.08) / 0.42) : 0
+    const la = spread > 0.12 ? Math.min(1, (spread - 0.12) / 0.34) : 0
     const el = labelRef.current
-    if (el) el.style.opacity = String(la * (hovered ? 1 : 0.88))
+    if (el) el.style.opacity = String(la * (hovered ? 1 : 0.86))
   })
 
   return (
@@ -138,25 +150,33 @@ function SkillCube({ target, skill, index, smoothSplitRef }: SkillCubeProps) {
         }}
       >
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial
+        <meshPhysicalMaterial
           color={color}
           emissive={color}
-          emissiveIntensity={hovered ? 0.95 : 0.42}
-          metalness={0.75}
-          roughness={0.28}
+          emissiveIntensity={hovered ? 0.55 : 0.22}
+          metalness={0.22}
+          roughness={hovered ? 0.08 : 0.14}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
+          reflectivity={1}
+          transmission={0.5}
+          thickness={0.55}
+          ior={1.17}
+          transparent
+          opacity={0.9}
         />
       </mesh>
       <mesh raycast={() => null}>
-        <boxGeometry args={[1.03, 1.03, 1.03]} />
-        <meshBasicMaterial color={color} wireframe transparent opacity={0.35} />
+        <boxGeometry args={[1.05, 1.05, 1.05]} />
+        <meshBasicMaterial color={color} wireframe transparent opacity={hovered ? 0.5 : 0.3} />
       </mesh>
-      <Html position={[0, 0.75, 0]} center distanceFactor={7} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+      <Html position={[0, 0.78, 0]} center distanceFactor={7.5} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <div
           ref={labelRef}
           style={{
             padding: '4px 10px',
             borderRadius: '8px',
-            background: `${color}22`,
+            background: `${color}20`,
             border: `1px solid ${color}`,
             color: '#ffffff',
             fontSize: '12px',
@@ -166,7 +186,7 @@ function SkillCube({ target, skill, index, smoothSplitRef }: SkillCubeProps) {
             backdropFilter: 'blur(8px)',
             textShadow: `0 0 8px ${color}`,
             opacity: 0,
-            transition: 'opacity 240ms ease-out',
+            transition: 'opacity 220ms ease-out',
           }}
         >
           {skill.name}
@@ -176,11 +196,8 @@ function SkillCube({ target, skill, index, smoothSplitRef }: SkillCubeProps) {
   )
 }
 
-/** ~2–3: frame-rate independent; lower = slower expand/collapse */
-const SPLIT_LAMBDA = 1.85
-
 function Scene({ splitTarget }: { splitTarget: number }) {
-  const positions = useMemo(() => fibonacciSphere(SKILLS.length, 4.2), [])
+  const positions = useMemo(() => fibonacciSphere(SKILLS.length, 4.3), [])
   const groupRef = useRef<THREE.Group>(null!)
   const targetRef = useRef(splitTarget)
   const smoothSplitRef = useRef(splitTarget)
@@ -193,27 +210,27 @@ function Scene({ splitTarget }: { splitTarget: number }) {
 
     if (groupRef.current) {
       const split = smoothSplitRef.current
-      const spread = THREE.MathUtils.smoothstep(split, 0.06, 0.82)
-      const speed = 0.04 + spread * 0.05
+      const spread = THREE.MathUtils.smoothstep(split, 0.08, 0.86)
+      const speed = 0.045 + spread * 0.055
       groupRef.current.rotation.y = state.clock.getElapsedTime() * speed
     }
   })
 
   return (
     <>
-      <ambientLight intensity={0.45} />
-      <pointLight position={[6, 6, 6]} intensity={1.1} />
-      <pointLight position={[-6, -4, -2]} intensity={0.55} color="#a855f7" />
-      <directionalLight position={[4, 8, 4]} intensity={0.35} />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[6, 6, 7]} intensity={0.9} color="#7dd3fc" />
+      <pointLight position={[-6, -5, -3]} intensity={0.62} color="#a855f7" />
+      <directionalLight position={[4, 8, 4]} intensity={0.28} />
       <Environment preset="city" />
-      <BigMergeCube smoothSplitRef={smoothSplitRef} />
+      <CoreMetalCube smoothSplitRef={smoothSplitRef} />
       <group ref={groupRef}>
         {SKILLS.map((skill, i) => (
           <SkillCube key={skill.name} skill={skill} target={positions[i]} index={i} smoothSplitRef={smoothSplitRef} />
         ))}
       </group>
       <EffectComposer>
-        <Bloom intensity={0.65} luminanceThreshold={0.32} luminanceSmoothing={0.9} mipmapBlur kernelSize={2} />
+        <Bloom intensity={0.52} luminanceThreshold={0.32} luminanceSmoothing={0.9} mipmapBlur kernelSize={2} />
       </EffectComposer>
     </>
   )
@@ -221,14 +238,13 @@ function Scene({ splitTarget }: { splitTarget: number }) {
 
 interface SkillsGlobe3DProps {
   className?: string
-  /** 0 = single merged cube, 1 = cubes split with labels */
   splitProgress?: number
 }
 
 export default function SkillsGlobe3D({ className = '', splitProgress = 0 }: SkillsGlobe3DProps) {
   const [ref, inView] = useInView('100px')
   const [hover, setHover] = useState(false)
-  const effectiveSplit = Math.min(1, splitProgress + (hover ? 0.4 : 0))
+  const effectiveSplit = Math.min(1, splitProgress + (hover ? 0.42 : 0))
 
   return (
     <div
@@ -257,7 +273,7 @@ export default function SkillsGlobe3D({ className = '', splitProgress = 0 }: Ski
             enableZoom={false}
             enableRotate
             autoRotate
-            autoRotateSpeed={0.35 + effectiveSplit * 0.35}
+            autoRotateSpeed={0.34 + effectiveSplit * 0.35}
             rotateSpeed={0.55}
           />
         </Canvas>

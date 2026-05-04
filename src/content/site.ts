@@ -2,6 +2,7 @@ export const site = {
   spline: {
     // Keep Spline only in Hero for now.
     heroScene: 'https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode',
+    loaderScene: 'https://prod.spline.design/KFonZGtsoUXP-qx7/scene.splinecode',
   },
   nav: {
     home: 'Home',

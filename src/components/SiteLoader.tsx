@@ -15,7 +15,7 @@ export default function SiteLoader({ open }: SiteLoaderProps) {
           role="status"
           aria-live="polite"
           aria-busy="true"
-          aria-label="Loading portfolio"
+          aria-label="Loading experience"
           className="fixed inset-0 z-[11000] flex flex-col items-center justify-center cursor-wait bg-background"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -36,47 +36,58 @@ export default function SiteLoader({ open }: SiteLoaderProps) {
 
           <div className="relative z-10 flex flex-col items-center px-6 max-w-md w-full">
             <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mb-8"
+              className="relative mb-7 h-[11rem] w-[11rem] flex items-center justify-center"
+              aria-hidden
             >
-              <div className="relative w-[4.5rem] h-[4.5rem] rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/40">
-                <span className="text-background font-black text-2xl font-neural tracking-tight">AA</span>
-                {!reduceMotion && (
+              {!reduceMotion && (
+                <>
                   <motion.div
-                    className="absolute inset-0 rounded-2xl border-2 border-primary/50"
-                    animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute h-[10.4rem] w-[10.4rem] rounded-full border-2 border-primary/60"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ repeat: Infinity, duration: 3.4, ease: 'linear' }}
+                    style={{ borderTopColor: 'transparent', borderLeftColor: 'transparent' }}
                   />
-                )}
-              </div>
+                  <motion.div
+                    className="absolute h-[8.2rem] w-[8.2rem] rounded-full border-2 border-accent/70"
+                    animate={{ rotate: [360, 0] }}
+                    transition={{ repeat: Infinity, duration: 2.8, ease: 'linear' }}
+                    style={{ borderBottomColor: 'transparent', borderRightColor: 'transparent' }}
+                  />
+                  <motion.div
+                    className="absolute h-[6rem] w-[6rem] rounded-full border-2 border-neon-purple/65"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ repeat: Infinity, duration: 2.3, ease: 'linear' }}
+                    style={{ borderTopColor: 'transparent', borderBottomColor: 'transparent' }}
+                  />
+                </>
+              )}
+
+              <motion.div
+                className="h-4 w-4 rounded-full bg-primary shadow-[0_0_26px_hsl(var(--primary)/0.9)]"
+                animate={!reduceMotion ? { scale: [1, 1.24, 1], opacity: [0.9, 0.45, 0.9] } : undefined}
+                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+              />
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08, duration: 0.4 }}
-              className="text-xl sm:text-2xl font-bold text-foreground font-neural tracking-tight text-center mb-1"
-            >
-              Abdallah Ahmed
-            </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.4 }}
-              className="text-[10px] sm:text-xs text-muted-foreground font-mono uppercase tracking-[0.2em] mb-8 text-center"
+              transition={{ delay: 0.08, duration: 0.4 }}
+              className="text-[11px] sm:text-xs text-muted-foreground font-mono uppercase tracking-[0.28em] mb-6 text-center"
             >
-              Senior Frontend Engineer
+              PREPARING EXPERIENCE
             </motion.p>
 
-            <div className="premium-card px-5 py-2.5 holographic w-full max-w-xs mb-8 flex items-center justify-center gap-2 border-primary/30">
+            <div className="identity-panel px-5 py-2.5 holographic w-full max-w-xs mb-6 flex items-center justify-center gap-2 border-primary/30">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-quantum-green" />
               </span>
               <span className="text-[10px] sm:text-xs font-neural text-accent font-code tracking-wider">
-                INITIALIZING INTERFACE
+                LOADING SCENE
               </span>
             </div>
 
@@ -97,9 +108,7 @@ export default function SiteLoader({ open }: SiteLoaderProps) {
               )}
             </div>
 
-            <p className="mt-4 text-[10px] text-muted-foreground/70 font-mono tracking-widest uppercase">
-              Portfolio v1
-            </p>
+            <div className="mt-4 h-px w-20 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
           </div>
         </motion.div>
       )}
