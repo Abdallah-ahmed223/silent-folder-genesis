@@ -1,254 +1,276 @@
-
-import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, Code2, Palette, Zap } from 'lucide-react'
-import { MagneticButton } from '@/components/ui/magnetic-button'
-
-import { useTranslation } from 'react-i18next'
-import { useState, useEffect } from 'react'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useAnimationControls,
+} from "framer-motion";
+import { ArrowDown, Github, Linkedin, Mail, Code2, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { cn } from "@/lib/utils";
+import { useEffect, useRef } from "react";
+import HeroScene3D from "@/components/3d/HeroScene3D";
+import { site } from "@/content/site";
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/abdallah-ahmed222', label: 'GitHub', color: 'hover:text-cyber-blue' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/abdallah-ahmed-783512231/', label: 'LinkedIn', color: 'hover:text-electric-cyan' },
-  { icon: Mail, href: 'mailto:abdallah.ahmed2022222@gmail.com', label: 'Email', color: 'hover:text-neon-purple' },
-]
+  {
+    icon: Github,
+    href: "https://github.com/abdallah-ahmed222",
+    label: "GitHub",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/abdallah-ahmed-783512231/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Mail,
+    href: "mailto:abdallah.ahmed2022222@gmail.com",
+    label: "Email",
+  },
+];
 
 const techStack = [
-  { name: 'Vue.js', icon: Code2, percentage: 95 },
-  { name: 'React', icon: Code2, percentage: 90 },
-  { name: 'TypeScript', icon: Code2, percentage: 88 },
-  { name: '3D Web', icon: Zap, percentage: 85 },
-]
+  { name: "React", icon: Code2 },
+  { name: "Vue 3", icon: Code2 },
+  { name: "TypeScript", icon: Code2 },
+  { name: "Next.js", icon: Zap },
+];
 
-const floatingElements = [
-  { id: 1, delay: 0, x: '10%', y: '20%' },
-  { id: 2, delay: 2, x: '80%', y: '30%' },
-  { id: 3, delay: 4, x: '15%', y: '70%' },
-  { id: 4, delay: 1, x: '85%', y: '80%' },
-]
+/** Percent / corner positions — kept away from center headline on md+ */
+const heroSkillSlots = [
+  "top-[11%] left-[2%] sm:left-[4%] md:left-[6%] lg:left-[8%]",
+  "top-[14%] right-[1%] sm:right-[3%] md:right-[5%] lg:top-[18%]",
+  "bottom-[36%] left-[2%] sm:left-[3%] md:bottom-[30%] md:left-[5%]",
+  "bottom-[14%] right-[1%] sm:bottom-[16%] sm:right-[3%] md:right-[6%]",
+];
 
-export default function PremiumHeroSection() {
-  const { t } = useTranslation()
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+function FloatingHeroSkillCard({
+  tech,
+  index,
+  slotClassName,
+}: {
+  tech: { name: string; icon: LucideIcon };
+  index: number;
+  slotClassName: string;
+}) {
+  const float = useAnimationControls();
+  const dir = index % 2 === 0 ? 1 : -1;
+
+  const startFloat = () =>
+    float.start({
+      y: [0, -8 * dir, 5, -7 * dir, 0],
+      x: [0, 6 * dir, -4, 4 * dir, 0],
+      rotate: [0, 0.9 * dir, -0.7 * dir, 0.5 * dir, 0],
+      transition: {
+        duration: 7 + index * 0.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatDelay: 0.2,
+      },
+    });
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
+    void startFloat();
+  }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden neural-grid">
-      {/* Animated Background Grid */}
-      <div className="absolute inset-0 neural-grid opacity-30"></div>
-      
-      {/* 3D Background Scene */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.55, delay: 0.9 + index * 0.12 }}
+      className={cn("absolute z-10 pointer-events-auto", slotClassName)}
+    >
+      <motion.div
+        animate={float}
+        onHoverStart={() => float.stop()}
+        onHoverEnd={() => void startFloat()}
+        className="hero-skill-node hero-skill-node--compact group will-change-transform flex flex-row items-center gap-2 pl-2.5 pr-3 py-2 sm:pl-3 sm:pr-3.5 sm:py-2.5 max-w-[min(42vw,10.5rem)] sm:max-w-none"
+        whileHover={{ scale: 1.06 }}
+        transition={{ type: "spring", stiffness: 420, damping: 26 }}
+        data-cursor="hover"
+      >
+        <div className="relative z-10 shrink-0 rounded-md border border-primary/35 bg-primary/12 p-1.5 shadow-[0_0_14px_-6px_hsl(var(--primary)/0.5)]">
+          <tech.icon
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary"
+            aria-hidden
+          />
+        </div>
+        <p className="relative z-10 text-[11px] sm:text-xs font-semibold text-foreground font-neural leading-tight tracking-tight">
+          {tech.name}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
 
+export default function PremiumHeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
 
-      {/* Floating Elements */}
-      {floatingElements.map((element) => (
-        <motion.div
-          key={element.id}
-          className="absolute w-4 h-4 bg-primary/20 rounded-full floating-element"
-          style={{
-            left: element.x,
-            top: element.y,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            delay: element.delay,
-          }}
-        />
-      ))}
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
 
-      {/* Data Streams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute data-particles"
-            style={{
-              left: `${20 + i * 15}%`,
-              animationDelay: `${i * 0.5}s`,
-            }}
+  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const sceneScale = useTransform(scrollYProgress, [0, 1], [1, 1.4]);
+  const sceneOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.2]);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <div className="absolute inset-0 neural-grid opacity-20" />
+
+      <motion.div
+        className="absolute inset-0"
+        style={{ scale: sceneScale, opacity: sceneOpacity }}
+      >
+        <HeroScene3D className="opacity-80" />
+      </motion.div>
+
+      <div className="absolute inset-0 bg-background/30 pointer-events-none z-[2]" />
+
+      <motion.div
+        className="absolute inset-0 z-[7] pointer-events-none"
+        style={{ opacity: contentOpacity }}
+        aria-label="Core technologies"
+      >
+        {techStack.map((tech, index) => (
+          <FloatingHeroSkillCard
+            key={tech.name}
+            tech={tech}
+            index={index}
+            slotClassName={heroSkillSlots[index] ?? heroSkillSlots[0]!}
           />
         ))}
-      </div>
+      </motion.div>
 
-      {/* Content Overlay */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <motion.div
+        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pointer-events-none"
+        style={{ opacity: contentOpacity }}
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="space-y-12"
-          style={{
-            transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
-          }}
+          className="space-y-10"
         >
-          {/* Status Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center"
+            className="inline-flex items-center pointer-events-auto"
           >
             <div className="premium-card px-6 py-3 holographic">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-quantum-green rounded-full animate-pulse" />
-                <span className="text-sm font-neural text-accent font-code">SYSTEM ONLINE • READY FOR DEPLOYMENT</span>
+                <div className="w-2.5 h-2.5 bg-quantum-green rounded-full animate-pulse" />
+                <span className="text-xs sm:text-sm font-neural text-accent font-code tracking-wider">
+                  {site.hero.status}
+                </span>
               </div>
             </div>
           </motion.div>
 
-          {/* Main Title */}
           <motion.div
+            style={{ scale: titleScale, y: titleY }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <h1 className="text-5xl sm:text-7xl lg:text-9xl font-neural leading-tight">
-              <motion.span 
-                className="block"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{ 
-                  duration: 8, 
-                  repeat: Infinity,
-                  ease: "linear" 
-                }}
-              >
-                {t('hero.title')}
-              </motion.span>
-              <motion.span 
-                className="hero-text block quantum-float"
-                style={{ height: 'clamp(4rem, 12vw, 8rem)' }}
-              >
-                {t('hero.subtitle')}
-              </motion.span>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-neural leading-[1.05] tracking-tight">
+              <span className="block text-foreground">{site.hero.title}</span>
+              <span className="block text-primary mt-2">
+                {site.hero.subtitle}
+              </span>
             </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed premium-card p-6"
+              className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed pt-4"
             >
-              {t('hero.description')}
+              {site.hero.description}
             </motion.p>
           </motion.div>
 
-          {/* Tech Stack Visualization */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pointer-events-auto"
           >
-            {techStack.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
-                className="skill-orb text-center group"
-                whileHover={{ scale: 1.1, rotateY: 15 }}
-              >
-                <tech.icon className="w-8 h-8 mx-auto mb-3 text-primary group-hover:text-accent transition-colors duration-300" />
-                <div className="text-lg font-bold text-primary mb-1">{tech.percentage}%</div>
-                <div className="text-sm text-muted-foreground font-neural">{tech.name}</div>
-                
-                {/* Skill bar */}
-                <div className="w-full bg-muted/20 rounded-full h-1 mt-2 overflow-hidden">
-                  <motion.div
-                    className="h-full neural-gradient"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${tech.percentage}%` }}
-                    transition={{ duration: 1.5, delay: 1.5 + index * 0.2 }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          >
-            <MagneticButton
-              variant="primary"
-              size="lg"
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group"
-            >
-              <span>{t('hero.viewWork')}</span>
-              <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
-            </MagneticButton>
-            
             <MagneticButton
               variant="secondary"
               size="lg"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="group"
             >
-              {t('hero.getInTouch')}
+              <span>{site.hero.viewWork}</span>
+              <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+            </MagneticButton>
+
+            <MagneticButton
+              variant="secondary"
+              size="lg"
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              {site.hero.getInTouch}
             </MagneticButton>
           </motion.div>
 
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.6 }}
-            className="flex justify-center gap-6"
+            className="flex justify-center gap-4 pointer-events-auto"
           >
-            {socialLinks.map((social, index) => (
+            {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`premium-card p-4 group relative overflow-hidden interactive-hover ${social.color}`}
-                whileHover={{ scale: 1.1, rotateY: 10 }}
+                className="premium-card p-3.5 group"
+                whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                data-cursor="hover"
               >
-                <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors duration-300 relative z-10" />
+                <social.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
                 <span className="sr-only">{social.label}</span>
               </motion.a>
             ))}
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        style={{ opacity: contentOpacity }}
+        className="absolute bottom-2 left-[49.4%] -translate-x-1/2 z-10 sm:bottom-4 md:bottom-5 pointer-events-none"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="flex flex-col items-center gap-2 text-muted-foreground"
         >
-          <span className="text-xs font-neural">SCROLL TO EXPLORE</span>
-          <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center">
+          <div className="w-6 h-10 border-2 border-primary/40 rounded-full flex justify-center">
             <motion.div
               animate={{ y: [0, 16, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -258,8 +280,7 @@ export default function PremiumHeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/60 pointer-events-none z-[5]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/80 pointer-events-none z-[5]" />
     </section>
-  )
+  );
 }

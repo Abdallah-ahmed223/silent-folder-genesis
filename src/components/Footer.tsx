@@ -1,27 +1,33 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react'
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { site } from '@/content/site'
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:hello@example.com', label: 'Email' }
+  { icon: Github, href: 'https://github.com/abdallah-ahmed222', label: 'GitHub' },
+  {
+    icon: Linkedin,
+    href: 'https://www.linkedin.com/in/abdallah-ahmed-783512231/',
+    label: 'LinkedIn',
+  },
+  { icon: Mail, href: 'mailto:abdallah.ahmed2022222@gmail.com', label: 'Email' },
 ]
 
 const quickLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact' }
+  { name: site.nav.home, href: '#home' },
+  { name: site.nav.about, href: '#about' },
+  { name: site.nav.experience, href: '#experience' },
+  { name: site.nav.projects, href: '#projects' },
+  { name: site.nav.skills, href: '#skills' },
+  { name: site.nav.contact, href: '#contact' },
 ]
 
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="border-t border-primary/20 bg-card/50 backdrop-blur-sm">
+    <footer className="border-t border-primary/20 bg-card/40 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -29,12 +35,11 @@ export default function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-2xl font-bold hero-text">Portfolio</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Crafting exceptional digital experiences with modern web 
-              technologies and creative design solutions.
+            <h3 className="text-2xl font-bold text-primary tracking-tight">Abdallah Ahmed</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
+              Senior Frontend Engineer building scalable enterprise React, Vue 3, and TypeScript applications.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex gap-3">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
@@ -43,90 +48,74 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.1 }}
-                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="p-2.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-4 h-4" />
                   <span className="sr-only">{social.label}</span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <motion.li
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground font-mono">
+              Navigate
+            </h4>
+            <ul className="grid grid-cols-2 gap-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.name}
-                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                   </a>
-                </motion.li>
+                </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold">Get In Touch</h4>
-            <div className="space-y-2">
-              <p className="text-muted-foreground">
-                Ready to start a project together?
-              </p>
-              <a
-                href="mailto:hello@example.com"
-                className="text-primary hover:text-primary/80 transition-colors duration-300 font-medium"
-              >
-                hello@example.com
-              </a>
-              <p className="text-sm text-muted-foreground">
-                San Francisco, CA
-              </p>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground font-mono">
+              Get In Touch
+            </h4>
+            <a
+              href="mailto:abdallah.ahmed2022222@gmail.com"
+              className="block text-sm text-primary hover:text-primary/80 transition-colors duration-200 font-medium"
+            >
+              abdallah.ahmed2022222@gmail.com
+            </a>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Giza, Egypt</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
-          className="border-t border-primary/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
+          className="border-t border-primary/10 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3"
         >
-          <p className="text-sm text-muted-foreground">
-            © 2024 Portfolio. All rights reserved.
-          </p>
-          <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-            <span>Made with</span>
-            <Heart className="w-4 h-4 text-red-500 fill-current" />
-            <span>using React & Three.js</span>
-          </div>
+          <p className="text-xs text-muted-foreground font-mono">© {year} Abdallah Ahmed. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground font-mono">Built with React, TypeScript, and Three.js.</p>
         </motion.div>
       </div>
     </footer>

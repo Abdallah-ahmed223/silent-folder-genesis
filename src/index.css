@@ -1,5 +1,7 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&display=swap');
+@import "@fontsource/exo-2/400.css";
+@import "@fontsource/exo-2/600.css";
+@import "@fontsource/exo-2/700.css";
+@import "@fontsource/exo-2/800.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,78 +10,10 @@
 
 @layer base {
   :root {
-    /* Light Mode - High-tech Laboratory Theme */
-    --background: 220 25% 97%;
-    --foreground: 225 15% 8%;
-
-    /* Futuristic Color Palette */
-    --cyber-blue: 210 100% 56%;
-    --electric-cyan: 180 100% 50%;
-    --neon-purple: 270 100% 70%;
-    --plasma-pink: 320 100% 70%;
-    --quantum-green: 120 100% 50%;
-    --neural-orange: 30 100% 60%;
-
-    /* Enhanced UI Components */
-    --card: 0 0% 100%;
-    --card-foreground: 225 15% 8%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 225 15% 8%;
-
-    --primary: 210 100% 56%;
-    --primary-foreground: 220 25% 97%;
-
-    --secondary: 220 25% 90%;
-    --secondary-foreground: 225 15% 15%;
-
-    --muted: 220 25% 94%;
-    --muted-foreground: 225 10% 40%;
-
-    --accent: 180 100% 50%;
-    --accent-foreground: 220 25% 97%;
-
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 220 25% 88%;
-    --input: 220 25% 88%;
-    --ring: 210 100% 56%;
-
-    --radius: 1rem;
-
-    /* Premium Gradients */
-    --gradient-primary: linear-gradient(
-      135deg,
-      hsl(210 100% 56%),
-      hsl(270 100% 70%),
-      hsl(180 100% 50%)
-    );
-    --gradient-secondary: linear-gradient(
-      135deg,
-      hsl(180 100% 50%),
-      hsl(120 100% 50%),
-      hsl(30 100% 60%)
-    );
-    --gradient-neural: linear-gradient(
-      45deg,
-      hsl(210 100% 56% / 0.1),
-      hsl(270 100% 70% / 0.1),
-      hsl(180 100% 50% / 0.1)
-    );
-
-    /* Premium Shadows & Glows */
-    --glow-primary: 0 0 20px hsl(210 100% 56% / 0.3), 0 0 40px hsl(210 100% 56% / 0.2);
-    --glow-secondary: 0 0 25px hsl(180 100% 50% / 0.4), 0 0 50px hsl(180 100% 50% / 0.2);
-    --glow-accent: 0 0 30px hsl(270 100% 70% / 0.3), 0 0 60px hsl(270 100% 70% / 0.1);
-    --shadow-neural: 0 8px 32px hsl(210 100% 56% / 0.15);
-  }
-
-  .dark {
-    /* Dark Mode - Cyberpunk Deep Space */
+    /* Dark-only theme */
     --background: 230 15% 4%;
     --foreground: 0 0% 98%;
 
-    /* Enhanced Dark Colors */
     --cyber-blue: 210 100% 65%;
     --electric-cyan: 180 100% 60%;
     --neon-purple: 270 100% 75%;
@@ -111,7 +45,8 @@
     --input: 230 15% 12%;
     --ring: 210 100% 65%;
 
-    /* Dark Mode Premium Gradients */
+    --radius: 1rem;
+
     --gradient-primary: linear-gradient(
       135deg,
       hsl(210 100% 65%),
@@ -131,10 +66,12 @@
       transparent 70%
     );
 
-    /* Enhanced Dark Glows */
-    --glow-primary: 0 0 30px hsl(210 100% 65% / 0.5), 0 0 60px hsl(210 100% 65% / 0.3);
-    --glow-secondary: 0 0 35px hsl(180 100% 60% / 0.6), 0 0 70px hsl(180 100% 60% / 0.3);
-    --glow-accent: 0 0 40px hsl(270 100% 75% / 0.5), 0 0 80px hsl(270 100% 75% / 0.2);
+    --glow-primary:
+      0 0 30px hsl(210 100% 65% / 0.5), 0 0 60px hsl(210 100% 65% / 0.3);
+    --glow-secondary:
+      0 0 35px hsl(180 100% 60% / 0.6), 0 0 70px hsl(180 100% 60% / 0.3);
+    --glow-accent:
+      0 0 40px hsl(270 100% 75% / 0.5), 0 0 80px hsl(270 100% 75% / 0.2);
     --shadow-neural: 0 12px 48px hsl(210 100% 65% / 0.25);
   }
 }
@@ -146,9 +83,17 @@
 
   body {
     @apply bg-background text-foreground font-exo overflow-x-hidden;
-    background: 
-      radial-gradient(ellipse at top, hsl(var(--primary) / 0.03), transparent 50%),
-      radial-gradient(ellipse at bottom, hsl(var(--accent) / 0.03), transparent 50%),
+    background:
+      radial-gradient(
+        ellipse at top,
+        hsl(var(--primary) / 0.03),
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom,
+        hsl(var(--accent) / 0.03),
+        transparent 50%
+      ),
       var(--gradient-neural);
     background-attachment: fixed;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -162,19 +107,40 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
+
+  /* No highlight fill when selecting text (copy still works) */
+  ::selection {
+    background: transparent;
+    color: inherit;
+  }
+
+  ::-moz-selection {
+    background: transparent;
+    color: inherit;
+  }
+
+  /* Skip render work for offscreen sections (Chromium/Edge/Opera) */
+  main > section[id]:not(#home):not(#about) {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px;
+  }
 }
 
 /* Premium Component Styles */
 @layer components {
   .hero-text {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent font-bold;
-    background-size: 200% 200%;
-    animation: neural-pulse 4s ease-in-out infinite;
+    @apply text-primary font-bold;
   }
 
-  .hero-text:hover {
-    animation-play-state: paused;
-    font-variation-settings: 'wght' 800;
+  .glow-card {
+    @apply bg-card/60 backdrop-blur-xl border border-primary/20 rounded-2xl relative overflow-hidden;
+    box-shadow: var(--shadow-neural);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glow-card:hover {
+    box-shadow: var(--glow-primary);
+    border-color: hsl(var(--primary) / 0.6);
   }
 
   .premium-card {
@@ -184,7 +150,7 @@
   }
 
   .premium-card::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: var(--gradient-primary);
@@ -200,11 +166,67 @@
   }
 
   .premium-card:hover::before {
-    opacity: 0.05;
+    opacity: 0.1;
   }
 
-  .dark .premium-card:hover::before {
-    opacity: 0.1;
+  /* Hero tech stack — chamfered “node” panel (neural / HUD identity) */
+  .hero-skill-node {
+    --hero-node-cut: 12px;
+    @apply bg-card/70 backdrop-blur-xl border border-primary/20 relative overflow-hidden;
+    box-shadow: var(--shadow-neural);
+    clip-path: polygon(
+      var(--hero-node-cut) 0%,
+      calc(100% - var(--hero-node-cut)) 0%,
+      100% var(--hero-node-cut),
+      100% calc(100% - var(--hero-node-cut)),
+      calc(100% - var(--hero-node-cut)) 100%,
+      var(--hero-node-cut) 100%,
+      0% calc(100% - var(--hero-node-cut)),
+      0% var(--hero-node-cut)
+    );
+    transition:
+      box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hero-skill-node::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    pointer-events: none;
+    clip-path: inherit;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hero-skill-node::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    clip-path: inherit;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.08) 0%,
+      transparent 42%,
+      transparent 58%,
+      hsl(var(--accent) / 0.06) 100%
+    );
+    opacity: 1;
+  }
+
+  .hero-skill-node:hover {
+    box-shadow: var(--glow-primary);
+    border-color: hsl(var(--primary) / 0.55);
+  }
+
+  .hero-skill-node:hover::before {
+    opacity: 0.12;
+  }
+
+  .hero-skill-node--compact {
+    --hero-node-cut: 7px;
   }
 
   .magnetic-btn {
@@ -216,8 +238,63 @@
     box-shadow: var(--glow-secondary);
   }
 
+  /** Site-wide CTA — same glass treatment as hero “Get in Touch” (also used by `Button` + `MagneticButton`) */
+  .premium-cta-btn {
+    @apply magnetic-btn overflow-hidden rounded-xl font-semibold font-neural;
+    @apply bg-card/80 backdrop-blur-xl border border-primary/30 text-foreground;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:border-primary/60;
+    isolation: isolate;
+  }
+
+  .premium-cta-btn > *:not(.pulse-ring) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .premium-cta-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: var(--gradient-primary);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .premium-cta-btn:hover::before {
+    opacity: 0.1;
+  }
+
+  .premium-cta-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--accent) / 0.28),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+
+  .premium-cta-btn:hover::after {
+    opacity: 1;
+    animation: hologram-sweep 3s linear infinite;
+  }
+
   .neural-grid {
-    background-image: 
+    background-image:
       linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
       linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
     background-size: 40px 40px;
@@ -230,7 +307,7 @@
   }
 
   .holographic::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
@@ -281,7 +358,7 @@
   }
 
   .timeline-connector::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 50%;
     top: 0;
@@ -314,7 +391,8 @@
 /* Futuristic Animations */
 @layer utilities {
   @keyframes neural-pulse {
-    0%, 100% {
+    0%,
+    100% {
       background-position: 0% 50%;
       filter: hue-rotate(0deg) brightness(1);
     }
@@ -333,7 +411,8 @@
   }
 
   @keyframes quantum-float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) rotateX(0deg);
     }
     25% {
@@ -348,7 +427,8 @@
   }
 
   @keyframes cosmic-float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) rotate(0deg);
     }
     25% {
@@ -363,23 +443,35 @@
   }
 
   @keyframes hologram-sweep {
-    0% { left: -100%; }
-    100% { left: 100%; }
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
   }
 
   @keyframes grid-flow {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(40px, 40px); }
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(40px, 40px);
+    }
   }
 
   @keyframes data-stream {
-    0% { 
+    0% {
       transform: translateY(100vh) translateX(-50%);
       opacity: 0;
     }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { 
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
       transform: translateY(-100vh) translateX(-50%);
       opacity: 0;
     }
@@ -403,7 +495,7 @@
   }
 
   .data-particles::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 50%;
@@ -414,7 +506,7 @@
   }
 
   .pulse-ring::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border: 2px solid hsl(var(--primary) / 0.3);
@@ -424,12 +516,12 @@
 
   /* Typography Scale */
   .text-neural {
-    font-variation-settings: 'wght' 700;
+    font-variation-settings: "wght" 700;
     letter-spacing: -0.02em;
   }
 
   .text-code {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
     font-variant-ligatures: common-ligatures;
   }
 
@@ -444,15 +536,11 @@
   }
 
   .magnetic-field::after {
-    content: '';
+    content: "";
     position: fixed;
     width: 20px;
     height: 20px;
-    background: radial-gradient(
-      circle,
-      hsl(var(--accent)),
-      transparent 70%
-    );
+    background: radial-gradient(circle, hsl(var(--accent)), transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
@@ -462,10 +550,6 @@
 
   /* Responsive Breakpoints */
   @media (max-width: 768px) {
-    .hero-text {
-      font-size: clamp(2rem, 8vw, 4rem);
-    }
-    
     .premium-card {
       @apply rounded-xl;
     }
@@ -491,12 +575,20 @@
 /* Font Families */
 @layer utilities {
   .font-exo {
-    font-family: 'Exo 2', system-ui, -apple-system, sans-serif;
+    font-family:
+      "Exo 2",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
-  
+
   .font-neural {
-    font-family: 'Exo 2', system-ui, -apple-system, sans-serif;
-    font-variation-settings: 'wght' 800;
+    font-family:
+      "Exo 2",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-variation-settings: "wght" 800;
     letter-spacing: -0.03em;
   }
 }

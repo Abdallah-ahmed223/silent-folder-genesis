@@ -86,9 +86,9 @@ export function MagneticButton({
   }, [strength, isHovered, onMouseEnter, onMouseLeave])
 
   const variants = {
-    primary: 'neural-gradient text-white border-0 shadow-glow-primary',
-    secondary: 'bg-card/80 backdrop-blur-xl border border-primary/30 text-foreground hover:border-primary/60',
-    accent: 'bg-accent text-accent-foreground border-0 shadow-glow-secondary'
+    primary: 'premium-cta-btn',
+    secondary: 'premium-cta-btn',
+    accent: 'premium-cta-btn',
   }
 
   const sizes = {
@@ -100,12 +100,7 @@ export function MagneticButton({
   return (
     <motion.button
       ref={buttonRef}
-      className={cn(
-        'magnetic-btn relative rounded-xl font-semibold font-neural transition-all duration-300 ease-out overflow-hidden group',
-        variants[variant],
-        sizes[size],
-        className
-      )}
+      className={cn('group', variants[variant], sizes[size], className)}
       animate={{
         x: position.x,
         y: position.y,
@@ -126,16 +121,11 @@ export function MagneticButton({
       type={type}
       {...safeHtmlProps}
     >
-      {/* Holographic overlay */}
-      <div className="holographic absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
-      {/* Content */}
-      <span className="relative z-10 flex items-center justify-center gap-2">
-        {children}
-      </span>
-      
-      {/* Pulse ring effect */}
-      <div className="pulse-ring absolute inset-0 opacity-0 group-hover:opacity-100" />
+      <div
+        className="pulse-ring pointer-events-none absolute inset-0 z-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        aria-hidden
+      />
+      <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
     </motion.button>
   )
 }

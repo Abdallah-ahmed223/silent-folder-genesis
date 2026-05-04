@@ -1,63 +1,54 @@
-
-import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
-import { useTranslation } from 'react-i18next'
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { site } from "@/content/site";
 
 const contactInfo = [
   {
     icon: Mail,
-    label: 'contact.info.email',
-    value: 'hello@example.com',
-    href: 'mailto:hello@example.com'
+    label: site.contact.info.email,
+    value: "abdallah.ahmed2022222@gmail.com",
+    href: "mailto:abdallah.ahmed2022222@gmail.com",
   },
   {
     icon: Phone,
-    label: 'contact.info.phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567'
+    label: site.contact.info.phone,
+    value: "+20 100 254 6915",
+    href: "tel:+201002546915",
   },
   {
     icon: MapPin,
-    label: 'contact.info.location',
-    value: 'San Francisco, CA',
-    href: '#'
-  }
-]
+    label: site.contact.info.location,
+    value: "Giza, Egypt",
+    href: "https://maps.google.com/?q=Giza,Egypt",
+  },
+];
 
 export default function ContactInfo() {
-  const { t } = useTranslation()
-
   return (
-    <div className="space-y-4">
-      {contactInfo.map((item, index) => (
+    <div className="space-y-3">
+      {contactInfo.map((item) => (
         <motion.a
           key={item.label}
           href={item.href}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-          viewport={{ once: true }}
-          whileHover={{ x: 8 }}
-          className="block"
+          target={item.href.startsWith("http") ? "_blank" : undefined}
+          rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          whileHover={{ x: 6 }}
+          transition={{ type: "spring", stiffness: 400, damping: 28 }}
+          className="block premium-card p-4 hover:border-primary/50 transition-colors"
         >
-          <Card className="glow-card hover:border-primary/50 transition-all duration-300">
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                  <item.icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">
-                    {t(item.label)}
-                  </p>
-                  <p className="font-medium">{item.value}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-lg bg-primary/10 text-primary">
+              <item.icon className="w-5 h-5" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs text-muted-foreground font-mono uppercase tracking-wider">
+                {item.label}
+              </p>
+              <p className="font-medium text-foreground truncate">{item.value}</p>
+            </div>
+          </div>
         </motion.a>
       ))}
     </div>
-  )
+  );
 }

@@ -1,150 +1,99 @@
-
 import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
-import { Github } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { Database, Box, Settings, Sparkles } from 'lucide-react'
 import ProjectCard from './projects/ProjectCard'
+import { site } from '@/content/site'
 
+type ProjectKey = keyof typeof site.projects.items
 
-const projects = [
+const projects: {
+  key: ProjectKey
+  icon: typeof Database
+  accentColor: string
+  technologies: string[]
+  live?: string
+}[] = [
   {
-    id: 1,
-    title: 'AI Dashboard',
-    description: 'Modern dashboard with AI analytics',
-    image: '/api/placeholder/400/250',
-    tech: ['React', 'TypeScript', 'AI'],
-    link: '#'
+    key: 'numoErp',
+    icon: Database,
+    accentColor: '#3b82f6',
+    technologies: [
+      'Vue 3',
+      'TypeScript',
+      'Inertia.js',
+      'TanStack Query',
+      'TanStack Table',
+      'Tailwind 4',
+      'shadcn',
+      'Reka UI',
+    ],
   },
   {
-    id: 2,
-    title: 'E-commerce Platform',
-    description: 'Full-stack e-commerce solution',
-    image: '/api/placeholder/400/250',
-    tech: ['Vue.js', 'Node.js', 'MongoDB'],
-    link: '#'
+    key: 'modelEditor',
+    icon: Box,
+    accentColor: '#22d3ee',
+    technologies: ['React', 'TypeScript', 'React Three Fiber', 'Three.js', 'Drei', 'Zustand'],
   },
   {
-    id: 3,
-    title: '3D Portfolio',
-    description: 'Interactive 3D web experience',
-    image: '/api/placeholder/400/250',
-    tech: ['Three.js', 'WebGL', 'GSAP'],
-    link: '#'
-  }
+    key: 'tms',
+    icon: Settings,
+    accentColor: '#a855f7',
+    technologies: ['React', 'TypeScript', 'Bootstrap 5', 'RESTful APIs'],
+  },
+  {
+    key: 'ideaConsult',
+    icon: Sparkles,
+    accentColor: '#10b981',
+    technologies: ['JavaScript', 'Bootstrap 5', 'WordPress', 'PHP'],
+    live: 'https://ideaconsult.biz/',
+  },
 ]
 
-const floatingElements = [
-  { id: 1, delay: 0.5, x: '12%', y: '20%' },
-  { id: 2, delay: 2, x: '88%', y: '30%' },
-  { id: 3, delay: 3.5, x: '18%', y: '80%' },
-];
-
 export default function ProjectsSection() {
-  const { t } = useTranslation();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 8,
-        y: (e.clientY / window.innerHeight - 0.5) * 8,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 neural-grid overflow-hidden">
-      {/* Animated Background Grid */}
-      <div className="absolute inset-0 neural-grid opacity-10"></div>
-      
+    <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="absolute inset-0 neural-grid opacity-10" />
 
-
-      {/* Floating Elements */}
-      {floatingElements.map((element) => (
-        <motion.div
-          key={element.id}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full"
-          style={{
-            left: element.x,
-            top: element.y,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.2, 0.6, 0.2],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            delay: element.delay,
-          }}
-        />
-      ))}
-
-      {/* Data Streams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-25">
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute data-particles"
-            style={{
-              left: `${15 + i * 20}%`,
-              animationDelay: `${i * 0.8}s`,
-            }}
-          />
-        ))}
-      </div>
-      
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          style={{
-            transform: `translate(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px)`,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse mr-3" />
-              <span className="text-sm font-neural text-accent font-code">PROJECTS • PORTFOLIO MODE</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              {t('projects.title')} <span className="hero-text">{t('projects.titleHighlight')}</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto premium-card p-4">
-              {t('projects.description')}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard 
-                key={project.id} 
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                technologies={project.tech}
-                github={project.link} // Assuming 'link' in projects array is the github link
-                live={project.link} // Assuming 'link' in projects array is also the live link, or needs adjustment
-                icon={Github} // Default icon, can be changed based on project type if needed
-              />
-            ))}
+          <div className="premium-card px-6 py-3 holographic inline-flex items-center mb-8">
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse mr-3" />
+            <span className="text-xs sm:text-sm font-neural text-accent font-code tracking-wider">
+              {site.projects.badge}
+            </span>
           </div>
-        </motion.div>
-      </div>
 
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/30 pointer-events-none z-[5]"></div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
+            {site.projects.title} <span className="text-primary">{site.projects.titleHighlight}</span>
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+            {site.projects.description}
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project, index) => {
+            const item = site.projects.items[project.key]
+            return (
+              <ProjectCard
+                key={project.key}
+                index={index}
+                icon={project.icon}
+                accentColor={project.accentColor}
+                title={item.title}
+                description={item.description}
+                technologies={project.technologies}
+                live={project.live}
+              />
+            )
+          })}
+        </div>
+      </div>
     </section>
   )
 }
