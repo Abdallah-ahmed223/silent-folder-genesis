@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useRef, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Html, OrbitControls, Environment } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
@@ -44,7 +44,27 @@ const CATEGORY_COLORS: Record<Skill['category'], string> = {
 }
 
 const SPLIT_LAMBDA = 1.85
+/** Viewports under this width: no orbit/hover; only scroll-driven split + automatic motion. */
+const MOBILE_SCROLL_ONLY_MAX_PX = 480
+/** Extra group spin on small viewports (no OrbitControls autoRotate). */
+const MOBILE_AUTO_SPIN_MULT = 1.35
 type SmoothSplitRef = React.MutableRefObject<number>
+
+function useSkillsScrollOnlyViewport() {
+  const [active, setActive] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < MOBILE_SCROLL_ONLY_MAX_PX : false,
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${MOBILE_SCROLL_ONLY_MAX_PX - 1}px)`)
+    const sync = () => setActive(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  return active
+}
 
 function fibonacciSphere(n: number, radius: number) {
   const points: [number, number, number][] = []
@@ -104,16 +124,19 @@ function SkillCube({
   skill,
   index,
   smoothSplitRef,
+  interactionDisabled,
 }: {
   target: [number, number, number]
   skill: Skill
   index: number
   smoothSplitRef: SmoothSplitRef
+  interactionDisabled: boolean
 }) {
   const groupRef = useRef<THREE.Group>(null!)
   const labelRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
   const color = CATEGORY_COLORS[skill.category]
+  const hoverOn = interactionDisabled ? false : hovered
 
   useFrame((state) => {
     const g = groupRef.current
@@ -127,35 +150,46 @@ function SkillCube({
     g.rotation.y = t * 0.17 + index * 0.05
     g.position.y += Math.sin(t * 1.05 + index * 0.37) * 0.045 * eased
     const base = 0.34
-    const hoverBoost = hovered ? 1.16 : 1
+    const hoverBoost = hoverOn ? 1.16 : 1
     const sc = Math.max(0.001, base * eased * hoverBoost)
     g.scale.setScalar(sc)
 
     const la = spread > 0.12 ? Math.min(1, (spread - 0.12) / 0.34) : 0
     const el = labelRef.current
-    if (el) el.style.opacity = String(la * (hovered ? 1 : 0.86))
+    if (el) el.style.opacity = String(la * (hoverOn ? 1 : 0.86))
   })
+
+  const noopRaycast = () => null
 
   return (
     <group ref={groupRef}>
       <mesh
-        onPointerOver={(e) => {
-          e.stopPropagation()
-          setHovered(true)
-          document.body.style.cursor = 'pointer'
-        }}
-        onPointerOut={() => {
-          setHovered(false)
-          document.body.style.cursor = 'auto'
-        }}
+        raycast={interactionDisabled ? noopRaycast : undefined}
+        onPointerOver={
+          interactionDisabled
+            ? undefined
+            : (e) => {
+                e.stopPropagation()
+                setHovered(true)
+                document.body.style.cursor = 'pointer'
+              }
+        }
+        onPointerOut={
+          interactionDisabled
+            ? undefined
+            : () => {
+                setHovered(false)
+                document.body.style.cursor = 'auto'
+              }
+        }
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshPhysicalMaterial
           color={color}
           emissive={color}
-          emissiveIntensity={hovered ? 0.55 : 0.22}
+          emissiveIntensity={hoverOn ? 0.55 : 0.22}
           metalness={0.22}
-          roughness={hovered ? 0.08 : 0.14}
+          roughness={hoverOn ? 0.08 : 0.14}
           clearcoat={1}
           clearcoatRoughness={0.05}
           reflectivity={1}
@@ -168,7 +202,7 @@ function SkillCube({
       </mesh>
       <mesh raycast={() => null}>
         <boxGeometry args={[1.05, 1.05, 1.05]} />
-        <meshBasicMaterial color={color} wireframe transparent opacity={hovered ? 0.5 : 0.3} />
+        <meshBasicMaterial color={color} wireframe transparent opacity={hoverOn ? 0.5 : 0.3} />
       </mesh>
       <Html position={[0, 0.78, 0]} center distanceFactor={7.5} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <div
@@ -196,7 +230,7 @@ function SkillCube({
   )
 }
 
-function Scene({ splitTarget }: { splitTarget: number }) {
+function Scene({ splitTarget, scrollOnly }: { splitTarget: number; scrollOnly: boolean }) {
   const positions = useMemo(() => fibonacciSphere(SKILLS.length, 4.3), [])
   const groupRef = useRef<THREE.Group>(null!)
   const targetRef = useRef(splitTarget)
@@ -211,7 +245,8 @@ function Scene({ splitTarget }: { splitTarget: number }) {
     if (groupRef.current) {
       const split = smoothSplitRef.current
       const spread = THREE.MathUtils.smoothstep(split, 0.08, 0.86)
-      const speed = 0.045 + spread * 0.055
+      const baseSpeed = 0.045 + spread * 0.055
+      const speed = scrollOnly ? baseSpeed * MOBILE_AUTO_SPIN_MULT : baseSpeed
       groupRef.current.rotation.y = state.clock.getElapsedTime() * speed
     }
   })
@@ -226,7 +261,14 @@ function Scene({ splitTarget }: { splitTarget: number }) {
       <CoreMetalCube smoothSplitRef={smoothSplitRef} />
       <group ref={groupRef}>
         {SKILLS.map((skill, i) => (
-          <SkillCube key={skill.name} skill={skill} target={positions[i]} index={i} smoothSplitRef={smoothSplitRef} />
+          <SkillCube
+            key={skill.name}
+            skill={skill}
+            target={positions[i]}
+            index={i}
+            smoothSplitRef={smoothSplitRef}
+            interactionDisabled={scrollOnly}
+          />
         ))}
       </group>
       <EffectComposer>
@@ -244,15 +286,20 @@ interface SkillsGlobe3DProps {
 export default function SkillsGlobe3D({ className = '', splitProgress = 0 }: SkillsGlobe3DProps) {
   const [ref, inView] = useInView('100px')
   const [hover, setHover] = useState(false)
-  const effectiveSplit = Math.min(1, splitProgress + (hover ? 0.42 : 0))
+  const scrollOnly = useSkillsScrollOnlyViewport()
+  const effectiveSplit = scrollOnly ? splitProgress : Math.min(1, splitProgress + (hover ? 0.42 : 0))
+
+  useEffect(() => {
+    if (scrollOnly) setHover(false)
+  }, [scrollOnly])
 
   return (
     <div
       ref={ref}
       className={`relative w-full ${className}`}
       style={{ minHeight: '600px' }}
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
+      onPointerEnter={scrollOnly ? undefined : () => setHover(true)}
+      onPointerLeave={scrollOnly ? undefined : () => setHover(false)}
     >
       <Suspense
         fallback={
@@ -266,16 +313,19 @@ export default function SkillsGlobe3D({ className = '', splitProgress = 0 }: Ski
           camera={{ position: [0, 0, 10.5], fov: 52 }}
           gl={{ antialias: true, alpha: true }}
           dpr={[1, 1.75]}
+          style={scrollOnly ? { touchAction: 'pan-y' } : undefined}
         >
-          <Scene splitTarget={effectiveSplit} />
-          <OrbitControls
-            enablePan={false}
-            enableZoom={false}
-            enableRotate
-            autoRotate
-            autoRotateSpeed={0.34 + effectiveSplit * 0.35}
-            rotateSpeed={0.55}
-          />
+          <Scene splitTarget={effectiveSplit} scrollOnly={scrollOnly} />
+          {!scrollOnly && (
+            <OrbitControls
+              enablePan={false}
+              enableZoom={false}
+              enableRotate
+              autoRotate
+              autoRotateSpeed={0.34 + effectiveSplit * 0.35}
+              rotateSpeed={0.55}
+            />
+          )}
         </Canvas>
       </Suspense>
     </div>
